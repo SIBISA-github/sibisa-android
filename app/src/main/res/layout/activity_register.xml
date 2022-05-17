@@ -44,7 +44,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/regist_name"
         />
-    <EditText
+    <com.bangkit.sibisa.ui.custom.EmailEditText
         android:id="@+id/regist_email"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -58,31 +58,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         />
 
-    <TextView
-        android:id="@+id/tittle_phone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginStart="32dp"
-        android:text="@string/phone_number"
-        android:textColor="@color/design_default_color_primary"
-        android:labelFor="@id/regist_phone_number"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/regist_email"
-        />
-    <EditText
-        android:id="@+id/regist_phone_number"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="32dp"
-        android:background="@drawable/text_border"
-        android:inputType="phone"
-        android:padding="5dp"
-        android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@+id/tittle_phone"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
 
     <TextView
         android:id="@+id/tittle_password"
@@ -94,9 +69,9 @@
         android:textColor="@color/design_default_color_primary"
         android:labelFor="@id/regist_password"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/regist_phone_number"
+        app:layout_constraintTop_toBottomOf="@id/regist_email"
         />
-    <EditText
+    <com.bangkit.sibisa.ui.custom.PasswordEditText
         android:id="@+id/regist_password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
