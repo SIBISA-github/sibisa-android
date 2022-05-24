@@ -3,9 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/marsh/OneDrive/Documents/Kuliah/Bangkit 2022/Capstone Project/sibisa-android/app/src/main/res/layout/activity_login.xml" value="0.18802083333333333" />
-        <entry key="..\:/Users/marsh/OneDrive/Documents/Kuliah/Bangkit 2022/Capstone Project/sibisa-android/app/src/main/res/layout/activity_main.xml" value="0.14" />
-        <entry key="..\:/Users/marsh/OneDrive/Documents/Kuliah/Bangkit 2022/Capstone Project/sibisa-android/app/src/main/res/menu/bottom_nav_menu.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/USER/Bangkit/sibisa-android/app/src/main/res/drawable/text_border.xml" value="0.1" />
+        <entry key="..\:/Users/USER/Bangkit/sibisa-android/app/src/main/res/layout/activity_register.xml" value="0.14666666666666667" />
+        <entry key="..\:/Users/marsh/OneDrive/Documents/Kuliah/Bangkit 2022/Capstone Project/sibisa-android/app/src/main/res/drawable/ic_baseline_email_24.xml" value="0.128" />
+        <entry key="..\:/Users/marsh/OneDrive/Documents/Kuliah/Bangkit 2022/Capstone Project/sibisa-android/app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.128" />
+        <entry key="..\:/Users/marsh/OneDrive/Documents/Kuliah/Bangkit 2022/Capstone Project/sibisa-android/app/src/main/res/drawable/text_border.xml" value="0.196" />
+        <entry key="..\:/Users/marsh/OneDrive/Documents/Kuliah/Bangkit 2022/Capstone Project/sibisa-android/app/src/main/res/layout/activity_login.xml" value="0.22" />
+        <entry key="..\:/Users/marsh/OneDrive/Documents/Kuliah/Bangkit 2022/Capstone Project/sibisa-android/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/marsh/OneDrive/Documents/Kuliah/Bangkit 2022/Capstone Project/sibisa-android/app/src/main/res/layout/fragment_dashboard.xml" value="0.2265625" />
+        <entry key="..\:/Users/marsh/OneDrive/Documents/Kuliah/Bangkit 2022/Capstone Project/sibisa-android/app/src/main/res/menu/bottom_nav_menu.xml" value="0.2265625" />
       </map>
     </option>
   </component>
