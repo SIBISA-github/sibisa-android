@@ -31,26 +31,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/emailEditTextLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+    <com.bangkit.sibisa.ui.custom.EmailEditText
+        android:id="@+id/emailEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:hint="@string/email"
+        android:background="@drawable/text_border"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailTextView"
-        app:startIconDrawable="@drawable/ic_baseline_alternate_email_24">
-
-        <com.bangkit.sibisa.ui.custom.EmailEditText
-            android:id="@+id/emailEditText"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textColor="@color/black" />
-
-    </com.google.android.material.textfield.TextInputLayout>
+        app:layout_constraintTop_toBottomOf="@+id/emailTextView" />
 
     <TextView
         android:id="@+id/passwordTextView"
@@ -61,28 +52,20 @@
         android:text="@string/password"
         android:textColor="?android:textColorPrimary"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailEditTextLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/emailEditText" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/passwordEditTextLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+    <com.bangkit.sibisa.ui.custom.PasswordEditText
+        android:id="@+id/passwordEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
+        android:background="@drawable/text_border"
         android:layout_marginEnd="32dp"
-        android:hint="@string/password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordTextView"
         app:passwordToggleEnabled="true"
-        app:startIconDrawable="@drawable/ic_baseline_lock_24">
-
-        <com.bangkit.sibisa.ui.custom.PasswordEditText
-            android:id="@+id/passwordEditText"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="textPassword" />
-    </com.google.android.material.textfield.TextInputLayout>
+        android:inputType="textPassword" />
 
     <Button
         android:id="@+id/loginButton"
@@ -95,31 +78,7 @@
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordEditTextLayout" />
-
-    <TextView
-        android:id="@+id/registerTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:text="@string/register_text"
-        android:textColor="?android:textColorPrimary"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginButton" />
-
-    <Button
-        android:id="@+id/registerButton"
-        android:layout_width="0dp"
-        android:layout_height="64dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:text="@string/register"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registerTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/passwordEditText" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineHorizontal"

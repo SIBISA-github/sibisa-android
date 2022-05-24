@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
         // temporary
-        startActivity(Intent(this, LoginActivity::class.java))
-        finish()
+//        startActivity(Intent(this, LoginActivity::class.java))
+//        finish()
     }
 }
