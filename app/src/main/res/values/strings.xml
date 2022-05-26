@@ -10,4 +10,7 @@
     <string name="title_login_page">Login</string>
     <string name="register_text">Don\'t have an account yet? Register here</string>
     <string name="login">login</string>
+    <string name="title_profile">Profile</string>
+    <string name="level_heading">LEVEL</string>
+    <string name="exp_heading">EXP</string>
 </resources>
