@@ -21,10 +21,9 @@ class RegisterActivity : AppCompatActivity() {
         binding.registButton.setOnClickListener {
             val name = binding.registName.text?.trim().toString()
             val email = binding.registEmail.text?.trim().toString()
-            val phone = binding.registPhoneNumber.text?.trim().toString()
             val password = binding.registPassword.text?.trim().toString()
 
-//            viewModel.register(name, email, phone, password).observe(this){ data ->
+//            viewModel.register(name, email, password).observe(this){ data ->
 //                if (data != null) {
 //
 //                }
