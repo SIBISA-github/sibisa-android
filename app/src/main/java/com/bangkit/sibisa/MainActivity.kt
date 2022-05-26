@@ -11,6 +11,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.bangkit.sibisa.databinding.ActivityMainBinding
 import com.bangkit.sibisa.pref.UserPreference
 import com.bangkit.sibisa.ui.login.LoginActivity
+import com.bangkit.sibisa.ui.register.RegisterActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -42,7 +43,7 @@ class MainActivity : AppCompatActivity() {
     private fun checkUserStatus() {
         token = getUserToken()
         if (token.isNullOrEmpty()) {
-            startActivity(Intent(this, LoginActivity::class.java))
+            startActivity(Intent(this, RegisterActivity::class.java))
             finish()
         }
     }

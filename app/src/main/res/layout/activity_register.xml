@@ -23,10 +23,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="32dp"
+        android:autofillHints="name"
         android:background="@drawable/text_border"
         android:inputType="text"
         android:padding="5dp"
-        android:autofillHints="name"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,13 +51,13 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="32dp"
         android:background="@drawable/text_border"
+        android:importantForAutofill="no"
         android:inputType="text"
         android:padding="5dp"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tittle_username"
-        android:importantForAutofill="no" />
+        app:layout_constraintTop_toBottomOf="@id/tittle_username" />
 
     <TextView
         android:id="@+id/tittle_email"
@@ -121,6 +121,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/regist_password" />
+
+    <TextView
+        android:id="@+id/loginCtaTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/registButton" />
 
     <ProgressBar
         android:id="@+id/progressBar"

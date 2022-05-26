@@ -1,11 +1,18 @@
 package com.bangkit.sibisa.ui.register
 
 import android.content.Intent
+import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
+import android.text.style.StyleSpan
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import com.bangkit.sibisa.R
 import com.bangkit.sibisa.databinding.ActivityRegisterBinding
 import com.bangkit.sibisa.factory.ViewModelFactory
 import com.bangkit.sibisa.models.result.NetworkResult
@@ -21,6 +28,8 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        setupUI()
 
         viewModel = ViewModelProvider(this, ViewModelFactory(this))[RegisterViewModel::class.java]
 
@@ -52,6 +61,28 @@ class RegisterActivity : AppCompatActivity() {
                         }
                     }
                 }
+        }
+    }
+
+    private fun setupUI() {
+        val text = resources.getString(R.string.login_from_register_cta)
+        val spannableString = SpannableString(text)
+        val boldSpan = StyleSpan(Typeface.BOLD)
+        val clickSpan = object : ClickableSpan() {
+            override fun onClick(view: View) {
+                startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
+            }
+        }
+
+        val startIndex = text.indexOf("here")
+        val endIndex = startIndex + "here".length
+
+        spannableString.setSpan(boldSpan, startIndex, endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        spannableString.setSpan(clickSpan, startIndex, endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+        with(binding.loginCtaTextView) {
+            this.text = spannableString
+            this.movementMethod = LinkMovementMethod.getInstance()
         }
     }
 }
