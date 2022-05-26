@@ -10,40 +10,67 @@
         android:id="@+id/tittle_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="160dp"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="160dp"
+        android:labelFor="@id/regist_name"
         android:text="@string/name"
         android:textColor="@color/design_default_color_primary"
-        android:labelFor="@id/regist_name"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/regist_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="32dp"
-        android:padding="5dp"
-        android:inputType="text"
         android:background="@drawable/text_border"
+        android:inputType="text"
+        android:padding="5dp"
+        android:autofillHints="name"
         android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/tittle_name"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tittle_name" />
+
+
+    <TextView
+        android:id="@+id/tittle_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:labelFor="@id/regist_password"
+        android:text="@string/password"
+        android:textColor="@color/design_default_color_primary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/regist_name" />
+
+    <EditText
+        android:id="@+id/regist_username"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="32dp"
+        android:background="@drawable/text_border"
+        android:inputType="text"
+        android:padding="5dp"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tittle_username"
+        android:importantForAutofill="no" />
 
     <TextView
         android:id="@+id/tittle_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:labelFor="@id/regist_name"
         android:text="@string/email"
         android:textColor="@color/design_default_color_primary"
-        android:labelFor="@id/regist_name"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/regist_name"
-        />
+        app:layout_constraintTop_toBottomOf="@id/regist_username" />
+
     <com.bangkit.sibisa.ui.custom.EmailEditText
         android:id="@+id/regist_email"
         android:layout_width="0dp"
@@ -53,24 +80,23 @@
         android:inputType="textEmailAddress"
         android:padding="5dp"
         android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@+id/tittle_email"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tittle_email" />
 
 
     <TextView
         android:id="@+id/tittle_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:labelFor="@id/regist_password"
         android:text="@string/password"
         android:textColor="@color/design_default_color_primary"
-        android:labelFor="@id/regist_password"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/regist_email"
-        />
+        app:layout_constraintTop_toBottomOf="@id/regist_email" />
+
     <com.bangkit.sibisa.ui.custom.PasswordEditText
         android:id="@+id/regist_password"
         android:layout_width="0dp"
@@ -80,10 +106,9 @@
         android:inputType="textPassword"
         android:padding="5dp"
         android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@+id/tittle_password"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tittle_password" />
 
     <Button
         android:id="@+id/registButton"
@@ -93,10 +118,9 @@
         android:backgroundTint="@color/design_default_color_secondary"
         android:text="@string/register"
         android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/regist_password"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/regist_password" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -108,6 +132,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="visible"
-        />
+        tools:visibility="visible" />
 </androidx.constraintlayout.widget.ConstraintLayout>
