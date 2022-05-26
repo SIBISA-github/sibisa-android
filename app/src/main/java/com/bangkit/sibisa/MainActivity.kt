@@ -9,11 +9,13 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.bangkit.sibisa.databinding.ActivityMainBinding
+import com.bangkit.sibisa.pref.UserPreference
 import com.bangkit.sibisa.ui.login.LoginActivity
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private var token: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,8 +36,18 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        // temporary
-//        startActivity(Intent(this, LoginActivity::class.java))
-//        finish()
+        checkUserStatus()
+    }
+
+    private fun checkUserStatus() {
+        token = getUserToken()
+        if (token.isNullOrEmpty()) {
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        }
+    }
+
+    private fun getUserToken(): String? {
+        return UserPreference(this@MainActivity).getToken()
     }
 }

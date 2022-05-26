@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.login.LoginActivity">
 
-
     <TextView
         android:id="@+id/titleTextView"
         android:layout_width="wrap_content"
@@ -21,27 +20,30 @@
         app:layout_constraintTop_toTopOf="@+id/guidelineHorizontal" />
 
     <TextView
-        android:id="@+id/emailTextView"
+        android:id="@+id/usernameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
-        android:text="@string/email"
+        android:labelFor="@id/usernameEditText"
+        android:text="@string/username"
         android:textColor="?android:textColorPrimary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
 
-    <com.bangkit.sibisa.ui.custom.EmailEditText
-        android:id="@+id/emailEditText"
+    <EditText
+        android:id="@+id/usernameEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/text_border"
+        android:importantForAutofill="no"
+        android:inputType="text"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/usernameTextView" />
 
     <TextView
         android:id="@+id/passwordTextView"
@@ -52,20 +54,20 @@
         android:text="@string/password"
         android:textColor="?android:textColorPrimary"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/usernameEditText" />
 
     <com.bangkit.sibisa.ui.custom.PasswordEditText
         android:id="@+id/passwordEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:background="@drawable/text_border"
         android:layout_marginEnd="32dp"
+        android:background="@drawable/text_border"
+        android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordTextView"
-        app:passwordToggleEnabled="true"
-        android:inputType="textPassword" />
+        app:passwordToggleEnabled="true" />
 
     <Button
         android:id="@+id/loginButton"

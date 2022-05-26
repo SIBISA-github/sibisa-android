@@ -27,7 +27,7 @@ class LoginActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this, ViewModelFactory(this))[LoginViewModel::class.java]
 
         binding.loginButton.setOnClickListener {
-            val email = binding.emailEditText.text?.trim().toString()
+            val email = binding.usernameEditText.text?.trim().toString()
             val pass = binding.passwordEditText.text?.trim().toString()
 
             viewModel.login(email, pass).observe(this) { result ->
@@ -47,7 +47,7 @@ class LoginActivity : AppCompatActivity() {
                         }
                         is NetworkResult.Error -> {
                             binding.progressBar.visibility = View.GONE
-                            showToast(this, result.error)
+                            showToast(this, "Login error, please try again")
                         }
                     }
                 }

@@ -1,5 +1,6 @@
 package com.bangkit.sibisa.repository
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.bangkit.sibisa.models.login.LoginRequest
@@ -13,7 +14,7 @@ class AuthRepository(private val retrofitService: RetrofitService) {
         try {
             val response = retrofitService.login(loginData)
 
-            if (response.status in 499 downTo 400) {
+            if (response.status in 599 downTo 400) {
                 throw Exception(response.message)
             }
 
@@ -30,7 +31,7 @@ class AuthRepository(private val retrofitService: RetrofitService) {
         try {
             val response = retrofitService.register(registerData)
 
-            if (response.status in 499 downTo 400) {
+            if (response.status in 599 downTo 400) {
                 throw Exception(response.message)
             }
 
