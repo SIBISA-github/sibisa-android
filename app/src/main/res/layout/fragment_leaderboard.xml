@@ -6,17 +6,82 @@
     android:layout_height="match_parent"
     tools:context=".ui.leaderboard.LeaderboardFragment">
 
-    <TextView
-        android:id="@+id/text_dashboard"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ImageView
+        android:id="@+id/banner_leaderboard"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="0dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg_vector_teal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.35"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/rank1_image"
+        android:layout_width="112dp"
+        android:layout_height="112dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginBottom="20dp"
+        android:src="@color/purple_500"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/rank3_image"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="72dp"
+        android:layout_marginBottom="20dp"
+        android:src="@color/purple_500"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/rank1_image"
+        app:layout_constraintTop_toTopOf="@id/rank1_image" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/rank2_image"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_marginTop="72dp"
+        android:layout_marginEnd="96dp"
+        android:layout_marginBottom="20dp"
+        android:src="@color/purple_500"
+        app:layout_constraintEnd_toEndOf="@id/rank1_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/rank1_image" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1"
+        app:layout_constraintEnd_toEndOf="@id/rank1_image"
+        app:layout_constraintStart_toStartOf="@id/rank1_image"
+        app:layout_constraintTop_toBottomOf="@id/rank1_image" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2"
+        app:layout_constraintEnd_toEndOf="@id/rank2_image"
+        app:layout_constraintStart_toStartOf="@id/rank2_image"
+        app:layout_constraintTop_toBottomOf="@id/rank2_image" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3"
+        app:layout_constraintEnd_toEndOf="@id/rank3_image"
+        app:layout_constraintStart_toStartOf="@id/rank3_image"
+        app:layout_constraintTop_toBottomOf="@id/rank3_image" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/banner_leaderboard" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
