@@ -13,9 +13,9 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.bangkit.sibisa.ui.dashboard.DashboardFragment"
+        android:name="com.bangkit.sibisa.ui.leaderboard.LeaderboardFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_leaderboard" />
 
     <fragment
         android:id="@+id/navigation_profile"
