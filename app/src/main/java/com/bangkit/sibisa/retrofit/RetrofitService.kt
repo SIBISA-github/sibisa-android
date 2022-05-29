@@ -22,6 +22,9 @@ interface RetrofitService {
 
     @GET("user/{id}")
     suspend fun getUserProfileById(
-        @Path ("id") id: Int
+        @Path("id") id: Int
     ): BaseResponse<Profile>
+
+    @GET("user")
+    suspend fun getAllUserProfiles(): BaseResponse<List<Profile?>>
 }

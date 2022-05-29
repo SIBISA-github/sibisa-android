@@ -1,4 +1,4 @@
-package com.bangkit.sibisa
+package com.bangkit.sibisa.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,9 +8,9 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.bangkit.sibisa.R
 import com.bangkit.sibisa.databinding.ActivityMainBinding
 import com.bangkit.sibisa.pref.UserPreference
-import com.bangkit.sibisa.ui.login.LoginActivity
 import com.bangkit.sibisa.ui.register.RegisterActivity
 
 class MainActivity : AppCompatActivity() {

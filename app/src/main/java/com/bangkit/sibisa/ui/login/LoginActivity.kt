@@ -10,9 +10,8 @@ import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.text.style.StyleSpan
 import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import com.bangkit.sibisa.MainActivity
+import com.bangkit.sibisa.ui.MainActivity
 import com.bangkit.sibisa.R
 import com.bangkit.sibisa.databinding.ActivityLoginBinding
 import com.bangkit.sibisa.factory.ViewModelFactory
