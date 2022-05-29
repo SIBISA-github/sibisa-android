@@ -13,6 +13,7 @@
         <entry key="..\:/Users/marsh/OneDrive/Documents/Kuliah/Bangkit 2022/Capstone Project/sibisa-android/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.233" />
         <entry key="..\:/Users/marsh/OneDrive/Documents/Kuliah/Bangkit 2022/Capstone Project/sibisa-android/app/src/main/res/drawable/ic_launcher_background.xml" value="0.233" />
         <entry key="..\:/Users/marsh/OneDrive/Documents/Kuliah/Bangkit 2022/Capstone Project/sibisa-android/app/src/main/res/drawable/icon_bg.xml" value="0.2025" />
+        <entry key="..\:/Users/marsh/OneDrive/Documents/Kuliah/Bangkit 2022/Capstone Project/sibisa-android/app/src/main/res/drawable/list_item.xml" value="0.21" />
         <entry key="..\:/Users/marsh/OneDrive/Documents/Kuliah/Bangkit 2022/Capstone Project/sibisa-android/app/src/main/res/drawable/text_border.xml" value="0.196" />
         <entry key="..\:/Users/marsh/OneDrive/Documents/Kuliah/Bangkit 2022/Capstone Project/sibisa-android/app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="..\:/Users/marsh/OneDrive/Documents/Kuliah/Bangkit 2022/Capstone Project/sibisa-android/app/src/main/res/layout/activity_main.xml" value="0.2" />
@@ -23,6 +24,7 @@
         <entry key="..\:/Users/marsh/OneDrive/Documents/Kuliah/Bangkit 2022/Capstone Project/sibisa-android/app/src/main/res/layout/fragment_leaderboard.xml" value="0.20208333333333334" />
         <entry key="..\:/Users/marsh/OneDrive/Documents/Kuliah/Bangkit 2022/Capstone Project/sibisa-android/app/src/main/res/layout/fragment_notifications.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/marsh/OneDrive/Documents/Kuliah/Bangkit 2022/Capstone Project/sibisa-android/app/src/main/res/layout/fragment_profile.xml" value="0.25" />
+        <entry key="..\:/Users/marsh/OneDrive/Documents/Kuliah/Bangkit 2022/Capstone Project/sibisa-android/app/src/main/res/layout/leaderboard_item.xml" value="0.23645833333333333" />
         <entry key="..\:/Users/marsh/OneDrive/Documents/Kuliah/Bangkit 2022/Capstone Project/sibisa-android/app/src/main/res/menu/bottom_nav_menu.xml" value="0.2265625" />
       </map>
     </option>
