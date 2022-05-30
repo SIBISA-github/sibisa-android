@@ -29,6 +29,8 @@ class RegisterActivity : AppCompatActivity() {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.hide()
+
         setupUI()
 
         viewModel = ViewModelProvider(this, ViewModelFactory(this))[RegisterViewModel::class.java]

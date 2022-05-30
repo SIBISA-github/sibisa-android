@@ -22,4 +22,11 @@
     <string name="lorem_ipsum">Lorem Ipsum</string>
     <string name="rank3_number">3</string>
     <string name="text_leaderboard_empty">No user profiles available</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="save_changes">Save Changes</string>
+    <string name="logout_dialog_message">Are you sure you want to sign out?</string>
+    <string name="picture_dialog_message">Are you sure you want to change your profile picture?</string>
+    <string name="dialog_message_yes">Proceed</string>
+    <string name="dialog_message_no">Cancel</string>
+    <string name="text_exp">+%s XP</string>
 </resources>
