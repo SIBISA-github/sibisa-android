@@ -7,30 +7,31 @@
     tools:context=".ui.profile.ProfileFragment">
 
     <ImageView
-        android:layout_margin="0dp"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_margin="0dp"
         android:scaleType="centerCrop"
         android:src="@drawable/bg_vector_teal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.16"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:contentDescription="@string/profile_picture"
         android:id="@+id/profile_image"
         android:layout_width="144dp"
         android:layout_height="144dp"
         android:layout_marginTop="48dp"
         android:layout_marginBottom="20dp"
+        android:contentDescription="@string/profile_picture"
+        android:src="@color/black"
         app:civ_border_color="#FF000000"
         app:civ_border_width="2dp"
         app:layout_constraintBottom_toTopOf="@id/text_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@color/black" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/camera_image"
@@ -82,10 +83,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        app:drawableStartCompat="@drawable/ic_baseline_access_time_filled_24"
         android:drawablePadding="8dp"
         android:gravity="center"
         android:text="Lorem Ipsum"
+        app:drawableStartCompat="@drawable/ic_baseline_access_time_filled_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_username" />
@@ -96,10 +97,10 @@
         android:layout_height="2dp"
         android:layout_marginHorizontal="20dp"
         android:background="@color/teal_200"
+        app:layout_constraintBottom_toTopOf="@id/text_level_heading"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_join_date"
-        app:layout_constraintBottom_toTopOf="@id/text_level_heading"/>
+        app:layout_constraintTop_toBottomOf="@id/text_join_date" />
 
     <TextView
         android:id="@+id/text_level_heading"
@@ -151,5 +152,15 @@
         app:layout_constraintEnd_toEndOf="@id/text_exp_heading"
         app:layout_constraintStart_toStartOf="@id/text_exp_heading"
         app:layout_constraintTop_toBottomOf="@id/text_exp_heading" />
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sign_out"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_level" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

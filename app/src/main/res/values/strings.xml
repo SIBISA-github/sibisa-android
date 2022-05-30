@@ -22,4 +22,6 @@
     <string name="lorem_ipsum">Lorem Ipsum</string>
     <string name="rank3_number">3</string>
     <string name="text_leaderboard_empty">No user profiles available</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="save_changes">Save Changes</string>
 </resources>
