@@ -16,4 +16,10 @@
     <string name="login_from_register_cta">Already have an account? Click here to login</string>
     <string name="register_from_login_cta">Don\'t have an account yet? Register here</string>
     <string name="profile_picture">Profile Picture</string>
+    <string name="title_leaderboard">Leaderboard</string>
+    <string name="rank1_number">1</string>
+    <string name="rank2_number">2</string>
+    <string name="lorem_ipsum">Lorem Ipsum</string>
+    <string name="rank3_number">3</string>
+    <string name="text_leaderboard_empty">No user profiles available</string>
 </resources>
