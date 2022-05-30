@@ -12,9 +12,9 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_leaderboard"
         android:name="com.bangkit.sibisa.ui.leaderboard.LeaderboardFragment"
-        android:label="@string/title_dashboard"
+        android:label="@string/title_leaderboard"
         tools:layout="@layout/fragment_leaderboard" />
 
     <fragment

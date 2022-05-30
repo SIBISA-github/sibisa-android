@@ -1,12 +1,10 @@
 package com.bangkit.sibisa.ui.leaderboard
 
-import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bangkit.sibisa.adapter.ProfilesAdapter
@@ -14,8 +12,6 @@ import com.bangkit.sibisa.databinding.FragmentLeaderboardBinding
 import com.bangkit.sibisa.factory.ViewModelFactory
 import com.bangkit.sibisa.models.profile.Profile
 import com.bangkit.sibisa.models.result.NetworkResult
-import com.bangkit.sibisa.pref.UserPreference
-import com.bangkit.sibisa.ui.MainActivity
 import com.bangkit.sibisa.utils.showToast
 import com.bumptech.glide.Glide
 
@@ -64,14 +60,17 @@ class LeaderboardFragment : Fragment() {
                         binding.progressBar.visibility = View.GONE
 
                         result.data.let {
-                            if (it != null) {
+                            if (!it.isNullOrEmpty()) {
                                 setupTop3UI(it)
-                                setupRecyclerView(it.slice(2 until it.size - 1))
+                                setupRecyclerView(it.slice(3 until it.size))
+                            } else {
+                                binding.textLeaderboardError.visibility = View.VISIBLE
                             }
                         }
                     }
                     is NetworkResult.Error -> {
                         binding.progressBar.visibility = View.GONE
+                        binding.textLeaderboardError.visibility = View.VISIBLE
                         showToast(requireContext(), "Login error, please try again")
                     }
                 }
@@ -80,20 +79,50 @@ class LeaderboardFragment : Fragment() {
     }
 
     private fun setupTop3UI(profiles: List<Profile?>) {
-        with(binding) {
-            // no. 1
-            Glide.with(requireContext()).load(profiles[0]?.image).into(this.rank1Image)
-
-            // no. 2
-            Glide.with(requireContext()).load(profiles[1]?.image).into(this.rank1Image)
-
-            // no. 3
-            Glide.with(requireContext()).load(profiles[2]?.image).into(this.rank1Image)
+        Log.d("PROFILES", profiles.toString())
+        // no. 1
+        if (profiles[0]?.image != null) {
+            Glide.with(requireContext()).load(profiles[0]?.image).into(binding.rank1Image)
         }
+        if (!profiles[0]?.name.isNullOrEmpty()) {
+            binding.textRank1Name.text = profiles[0]?.name
+        }
+
+        // no. 2
+        if (profiles[1]?.image != null) {
+            Glide.with(requireContext()).load(profiles[1]?.image).into(binding.rank2Image)
+        }
+        if (!profiles[1]?.name.isNullOrEmpty()) {
+            binding.textRank2Name.text = profiles[1]?.name
+        }
+
+        // no. 3
+        if (profiles[2]?.image != null) {
+            Glide.with(requireContext()).load(profiles[2]?.image).into(binding.rank3Image)
+        }
+        if (!profiles[2]?.name.isNullOrEmpty()) {
+            binding.textRank3Name.text = profiles[2]?.name
+        }
+
+        binding.bannerLeaderboard.visibility = View.VISIBLE
+
+        binding.rank1Image.visibility = View.VISIBLE
+        binding.rank2Image.visibility = View.VISIBLE
+        binding.rank3Image.visibility = View.VISIBLE
+
+        binding.textRank1Name.visibility = View.VISIBLE
+        binding.textRank2Name.visibility = View.VISIBLE
+        binding.textRank3Name.visibility = View.VISIBLE
+
+        binding.textRank1Number.visibility = View.VISIBLE
+        binding.textRank2Number.visibility = View.VISIBLE
+        binding.textRank3Number.visibility = View.VISIBLE
     }
 
     private fun setupRecyclerView(profiles: List<Profile?>) {
+        Log.d("PROFILES", profiles.toString())
         profilesAdapter = ProfilesAdapter(requireContext())
+        profilesAdapter.setProfiles(profiles)
         binding.leaderboard.apply {
             adapter = profilesAdapter
         }
