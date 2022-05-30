@@ -2,14 +2,22 @@ package com.bangkit.sibisa.ui.profile
 
 import android.app.AlertDialog
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bangkit.sibisa.R
 import com.bangkit.sibisa.databinding.FragmentProfileBinding
+import com.bangkit.sibisa.factory.ViewModelFactory
+import com.bangkit.sibisa.models.result.NetworkResult
 import com.bangkit.sibisa.pref.UserPreference
 import com.bangkit.sibisa.ui.login.LoginActivity
+import com.bangkit.sibisa.utils.showToast
+import com.bumptech.glide.Glide
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
 
 class ProfileFragment : Fragment() {
 
@@ -18,6 +26,12 @@ class ProfileFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
+    private val viewModel: ProfileViewModel by lazy {
+        val factory = ViewModelFactory(requireContext())
+
+        ViewModelProvider(this, factory)[ProfileViewModel::class.java]
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,12 +61,19 @@ class ProfileFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val profileViewModel =
-            ViewModelProvider(this)[ProfileViewModel::class.java]
-
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
 
+        binding.cameraButton.setOnClickListener {
+            showToast(requireContext(), "Test camera button")
+        }
+
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        setupUI()
     }
 
     override fun onDestroyView() {
@@ -84,5 +105,46 @@ class ProfileFragment : Fragment() {
 
         val dialog: AlertDialog? = builder?.create()
         dialog?.show()
+    }
+
+    private fun setupUI() {
+        val pref = UserPreference(requireContext())
+        val userID = pref.getUserID()
+        viewModel.getUserProfile(userID).observe(viewLifecycleOwner) { result ->
+            if (result != null) {
+                when (result) {
+                    is NetworkResult.Loading -> {
+                        binding.progressBar.visibility = View.VISIBLE
+                    }
+                    is NetworkResult.Success -> {
+                        binding.progressBar.visibility = View.GONE
+
+                        val profile = result.data
+                        with(binding) {
+                            Glide.with(requireContext()).load(profile.image).into(profileImage)
+                            textName.text = profile.name
+                            textUsername.text = profile.username
+                            textLevel.text = profile.idlevel.toString()
+                            textExp.text = getString(R.string.text_exp, profile.exp.toString())
+                            val parsedDate = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                LocalDateTime.parse(
+                                    profile.createdAt,
+                                    DateTimeFormatter.ISO_DATE_TIME
+                                )
+                            } else {
+                                TODO("VERSION.SDK_INT < O")
+                            }
+                            val stringDate =
+                                parsedDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG))
+                            textJoinDate.text = stringDate
+                        }
+                    }
+                    is NetworkResult.Error -> {
+                        binding.progressBar.visibility = View.GONE
+                        showToast(requireContext(), "Error fetching profile, please try again")
+                    }
+                }
+            }
+        }
     }
 }

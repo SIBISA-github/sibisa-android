@@ -10,6 +10,7 @@ import android.text.Spanned
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.text.style.StyleSpan
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import com.bangkit.sibisa.ui.MainActivity
@@ -20,6 +21,7 @@ import com.bangkit.sibisa.models.result.NetworkResult
 import com.bangkit.sibisa.pref.UserPreference
 import com.bangkit.sibisa.ui.register.RegisterActivity
 import com.bangkit.sibisa.utils.showToast
+import org.json.JSONObject
 import java.util.*
 
 class LoginActivity : AppCompatActivity() {
@@ -50,7 +52,8 @@ class LoginActivity : AppCompatActivity() {
                             binding.progressBar.visibility = View.GONE
 
                             val pref = UserPreference(applicationContext)
-                            val userID = decodeToken(result.data!!)
+                            val jwt = decodeToken(result.data!!)
+                            val userID = JSONObject(jwt).getInt("id")
                             pref.setUserID(userID)
                             pref.setToken(result.data)
 
