@@ -2,9 +2,13 @@ package com.bangkit.sibisa.ui.profile
 
 import android.app.AlertDialog
 import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.*
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bangkit.sibisa.R
@@ -14,10 +18,13 @@ import com.bangkit.sibisa.models.result.NetworkResult
 import com.bangkit.sibisa.pref.UserPreference
 import com.bangkit.sibisa.ui.login.LoginActivity
 import com.bangkit.sibisa.utils.showToast
+import com.bangkit.sibisa.utils.uriToFile
 import com.bumptech.glide.Glide
+import java.io.File
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
+import kotlin.properties.Delegates
 
 class ProfileFragment : Fragment() {
 
@@ -26,12 +33,14 @@ class ProfileFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-
     private val viewModel: ProfileViewModel by lazy {
         val factory = ViewModelFactory(requireContext())
 
         ViewModelProvider(this, factory)[ProfileViewModel::class.java]
     }
+
+    private var getFile: File? = null
+    private var userID by Delegates.notNull<Int>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,7 +58,7 @@ class ProfileFragment : Fragment() {
                 true
             }
             R.id.logout_menu -> {
-                showDialog()
+                showLogoutDialog()
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -64,7 +73,7 @@ class ProfileFragment : Fragment() {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
 
         binding.cameraButton.setOnClickListener {
-            showToast(requireContext(), "Test camera button")
+            startGallery()
         }
 
         return binding.root
@@ -89,27 +98,9 @@ class ProfileFragment : Fragment() {
         activity?.finish()
     }
 
-    private fun showDialog() {
-        val builder: AlertDialog.Builder? = activity?.let {
-            AlertDialog.Builder(it)
-        }
-
-        builder?.setMessage(R.string.logout_dialog_message)?.setPositiveButton(
-            R.string.logout_dialog_message_yes
-        ) { dialog, _ ->
-            dialog.dismiss()
-            logout()
-        }?.setNegativeButton(R.string.logout_dialog_message_no) { dialog, _ ->
-            dialog.cancel()
-        }
-
-        val dialog: AlertDialog? = builder?.create()
-        dialog?.show()
-    }
-
     private fun setupUI() {
         val pref = UserPreference(requireContext())
-        val userID = pref.getUserID()
+        userID = pref.getUserID()
         viewModel.getUserProfile(userID).observe(viewLifecycleOwner) { result ->
             if (result != null) {
                 when (result) {
@@ -146,5 +137,85 @@ class ProfileFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private val launcherIntentGallery = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == AppCompatActivity.RESULT_OK) {
+            val selectedImg: Uri = result.data?.data as Uri
+            val myFile = uriToFile(selectedImg, requireContext())
+
+            getFile = myFile
+
+            showProfilePictureDialog(selectedImg)
+        }
+    }
+
+    private fun uploadImage(selectedImg: Uri) {
+        viewModel.updateProfile(userID, getFile)?.observe(viewLifecycleOwner) { result ->
+            if (result != null) {
+                when (result) {
+                    is NetworkResult.Loading -> {
+                        binding.progressBar.visibility = View.VISIBLE
+                    }
+                    is NetworkResult.Success -> {
+                        binding.progressBar.visibility = View.GONE
+
+                        binding.profileImage.setImageURI(selectedImg)
+                        showToast(requireContext(), "Profile picture updated!")
+                    }
+                    is NetworkResult.Error -> {
+                        binding.progressBar.visibility = View.GONE
+                        Log.d("USER_PROFILE", result.error)
+                        showToast(requireContext(), "Error updating profile picture, please try again")
+                    }
+                }
+            }
+        }
+    }
+
+    private fun startGallery() {
+        val intent = Intent()
+        intent.action = Intent.ACTION_GET_CONTENT
+        intent.type = "image/*"
+        val chooser = Intent.createChooser(intent, "Choose a Picture")
+        launcherIntentGallery.launch(chooser)
+    }
+
+    private fun showLogoutDialog() {
+        val builder: AlertDialog.Builder? = activity?.let {
+            AlertDialog.Builder(it)
+        }
+
+        builder?.setMessage(R.string.logout_dialog_message)?.setPositiveButton(
+            R.string.dialog_message_yes
+        ) { dialog, _ ->
+            dialog.dismiss()
+            logout()
+        }?.setNegativeButton(R.string.dialog_message_no) { dialog, _ ->
+            dialog.cancel()
+        }
+
+        val dialog: AlertDialog? = builder?.create()
+        dialog?.show()
+    }
+
+    private fun showProfilePictureDialog(selectedImg: Uri) {
+        val builder: AlertDialog.Builder? = activity?.let {
+            AlertDialog.Builder(it)
+        }
+
+        builder?.setMessage(R.string.picture_dialog_message)?.setPositiveButton(
+            R.string.dialog_message_yes
+        ) { dialog, _ ->
+            uploadImage(selectedImg)
+            dialog.dismiss()
+        }?.setNegativeButton(R.string.dialog_message_no) { dialog, _ ->
+            dialog.cancel()
+        }
+
+        val dialog: AlertDialog? = builder?.create()
+        dialog?.show()
     }
 }

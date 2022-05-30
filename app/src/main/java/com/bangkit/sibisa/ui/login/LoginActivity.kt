@@ -32,6 +32,8 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
 
+        supportActionBar?.hide()
+
         setContentView(binding.root)
 
         setupUI()
