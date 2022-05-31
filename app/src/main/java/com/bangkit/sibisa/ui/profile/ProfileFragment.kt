@@ -112,7 +112,9 @@ class ProfileFragment : Fragment() {
 
                         val profile = result.data
                         with(binding) {
-                            Glide.with(requireContext()).load(profile.image).into(profileImage)
+                            if (profile.image != null) {
+                                Glide.with(requireContext()).load(profile.image).into(profileImage)
+                            }
                             textName.text = profile.name
                             textUsername.text = profile.username
                             textLevel.text = profile.idlevel.toString()
@@ -132,7 +134,7 @@ class ProfileFragment : Fragment() {
                     }
                     is NetworkResult.Error -> {
                         binding.progressBar.visibility = View.GONE
-                        showToast(requireContext(), "Error fetching profile, please try again")
+                        showToast(requireContext(), result.error.uppercase())
                     }
                 }
             }
@@ -168,7 +170,7 @@ class ProfileFragment : Fragment() {
                     is NetworkResult.Error -> {
                         binding.progressBar.visibility = View.GONE
                         Log.d("USER_PROFILE", result.error)
-                        showToast(requireContext(), "Error updating profile picture, please try again")
+                        showToast(requireContext(), result.error.uppercase())
                     }
                 }
             }

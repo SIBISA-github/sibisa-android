@@ -49,6 +49,7 @@ class LoginActivity : AppCompatActivity() {
                     when (result) {
                         is NetworkResult.Loading -> {
                             binding.progressBar.visibility = View.VISIBLE
+                            binding.progressBar.bringToFront()
                         }
                         is NetworkResult.Success -> {
                             binding.progressBar.visibility = View.GONE
@@ -64,7 +65,7 @@ class LoginActivity : AppCompatActivity() {
                         }
                         is NetworkResult.Error -> {
                             binding.progressBar.visibility = View.GONE
-                            showToast(this, "Login error, please try again")
+                            showToast(this, result.error.uppercase())
                         }
                     }
                 }
