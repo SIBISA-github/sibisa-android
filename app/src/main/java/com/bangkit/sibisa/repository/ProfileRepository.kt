@@ -3,11 +3,14 @@ package com.bangkit.sibisa.repository
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
+import com.bangkit.sibisa.models.ErrorResponse
 import com.bangkit.sibisa.models.profile.Profile
 import com.bangkit.sibisa.models.profile.UpdateProfileResponse
 import com.bangkit.sibisa.models.result.NetworkResult
 import com.bangkit.sibisa.retrofit.RetrofitService
+import com.google.gson.Gson
 import okhttp3.MultipartBody
+import retrofit2.HttpException
 
 class ProfileRepository(private val retrofitService: RetrofitService) {
     fun getAllUserProfiles(): LiveData<NetworkResult<List<Profile?>?>> = liveData {
@@ -23,7 +26,11 @@ class ProfileRepository(private val retrofitService: RetrofitService) {
 
             emit(NetworkResult.Success(data))
         } catch (e: Exception) {
-            emit(NetworkResult.Error(e.message.toString()))
+            val errorBody = Gson().fromJson(
+                (e as? HttpException)?.response()?.errorBody()
+                    ?.charStream(), ErrorResponse::class.java
+            )
+            emit(NetworkResult.Error(errorBody.errorCode.toString()))
         }
     }
 
@@ -41,8 +48,11 @@ class ProfileRepository(private val retrofitService: RetrofitService) {
 
             emit(NetworkResult.Success(data))
         } catch (e: Exception) {
-            Log.d("USER_PROFILE", e.message.toString())
-            emit(NetworkResult.Error(e.message.toString()))
+            val errorBody = Gson().fromJson(
+                (e as? HttpException)?.response()?.errorBody()
+                    ?.charStream(), ErrorResponse::class.java
+            )
+            emit(NetworkResult.Error(errorBody.errorCode.toString()))
         }
     }
 
@@ -62,7 +72,11 @@ class ProfileRepository(private val retrofitService: RetrofitService) {
 
             emit(NetworkResult.Success(data))
         } catch (e: Exception) {
-            emit(NetworkResult.Error(e.message.toString()))
+            val errorBody = Gson().fromJson(
+                (e as? HttpException)?.response()?.errorBody()
+                    ?.charStream(), ErrorResponse::class.java
+            )
+            emit(NetworkResult.Error(errorBody.errorCode.toString()))
         }
     }
 }
