@@ -58,7 +58,7 @@ class RegisterActivity : AppCompatActivity() {
                             }
                             is NetworkResult.Error -> {
                                 binding.progressBar.visibility = View.GONE
-                                showToast(this, result.error)
+                                showToast(this, result.error.uppercase())
                             }
                         }
                     }

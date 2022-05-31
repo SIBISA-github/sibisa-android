@@ -71,7 +71,7 @@ class LeaderboardFragment : Fragment() {
                     is NetworkResult.Error -> {
                         binding.progressBar.visibility = View.GONE
                         binding.textLeaderboardError.visibility = View.VISIBLE
-                        showToast(requireContext(), "Login error, please try again")
+                        showToast(requireContext(), result.error.uppercase())
                     }
                 }
             }
