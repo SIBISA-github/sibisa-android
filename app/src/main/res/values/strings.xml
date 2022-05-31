@@ -8,4 +8,7 @@
     <string name="password">Password</string>
     <string name="register">Register</string>
     <string name="sibisa">Sibisa</string>
+    <string name="mempelajari_bahasa_dasar">Mempelajari bahasa dasar</string>
+    <string name="lesson_button">Skip Lesson</string>
+    <string name="lesson_subtittle">Mempelajari huruf A</string>
 </resources>
