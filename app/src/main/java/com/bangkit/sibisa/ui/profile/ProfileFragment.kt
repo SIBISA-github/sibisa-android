@@ -112,7 +112,9 @@ class ProfileFragment : Fragment() {
 
                         val profile = result.data
                         with(binding) {
-                            Glide.with(requireContext()).load(profile.image).into(profileImage)
+                            if (profile.image != null) {
+                                Glide.with(requireContext()).load(profile.image).into(profileImage)
+                            }
                             textName.text = profile.name
                             textUsername.text = profile.username
                             textLevel.text = profile.idlevel.toString()
