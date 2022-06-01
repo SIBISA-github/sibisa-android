@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bangkit.sibisa.R
 import com.bangkit.sibisa.databinding.LeaderboardItemBinding
 import com.bangkit.sibisa.models.profile.Profile
 import com.bangkit.sibisa.utils.ProfileDiffCallback
@@ -30,7 +31,8 @@ class ProfilesAdapter(private val appContext: Context) :
         }
     }
 
-    inner class ViewHolder(val binding: LeaderboardItemBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class ViewHolder(val binding: LeaderboardItemBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val binding =
@@ -43,10 +45,11 @@ class ProfilesAdapter(private val appContext: Context) :
         val profile = profiles[position]
 
         with(viewHolder.binding) {
+            tvRank.text = "${position+4}"
             tvUsername.text = profile?.name
-            Glide.with(appContext).load(profile?.image).into(ivProfile)
-            root.setOnClickListener {
-                onClickedCallback.onClicked(profile, appContext)
+            tvExp.text = appContext.getString(R.string.text_exp, profile?.exp.toString())
+            if (profile?.image != null) {
+                Glide.with(appContext).load(profile.image).into(ivProfile)
             }
         }
     }

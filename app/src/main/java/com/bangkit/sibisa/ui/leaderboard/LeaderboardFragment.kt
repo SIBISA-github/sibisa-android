@@ -85,7 +85,7 @@ class LeaderboardFragment : Fragment() {
             Glide.with(requireContext()).load(profiles[0]?.image).into(binding.rank1Image)
         }
         if (!profiles[0]?.name.isNullOrEmpty()) {
-            binding.textRank1Name.text = profiles[0]?.name
+            binding.textRank1Name.text = profiles[0]?.username
         }
 
         // no. 2
@@ -93,7 +93,7 @@ class LeaderboardFragment : Fragment() {
             Glide.with(requireContext()).load(profiles[1]?.image).into(binding.rank2Image)
         }
         if (!profiles[1]?.name.isNullOrEmpty()) {
-            binding.textRank2Name.text = profiles[1]?.name
+            binding.textRank2Name.text = profiles[1]?.username
         }
 
         // no. 3
@@ -101,7 +101,7 @@ class LeaderboardFragment : Fragment() {
             Glide.with(requireContext()).load(profiles[2]?.image).into(binding.rank3Image)
         }
         if (!profiles[2]?.name.isNullOrEmpty()) {
-            binding.textRank3Name.text = profiles[2]?.name
+            binding.textRank3Name.text = profiles[2]?.username
         }
 
         binding.bannerLeaderboard.visibility = View.VISIBLE

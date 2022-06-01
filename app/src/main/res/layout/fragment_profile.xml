@@ -26,7 +26,7 @@
         android:layout_marginBottom="20dp"
         android:contentDescription="@string/profile_picture"
         android:src="@drawable/ic_baseline_person_24"
-        app:layout_constraintBottom_toTopOf="@id/text_name"
+        app:layout_constraintBottom_toTopOf="@id/text_username"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -50,20 +50,20 @@
         app:layout_constraintTop_toTopOf="@id/profile_image" />
 
     <TextView
-        android:id="@+id/text_name"
+        android:id="@+id/text_username"
         style="@style/TextAppearance.MaterialComponents.Headline4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="4dp"
         android:gravity="center"
         tools:text="Lorem Ipsum"
-        app:layout_constraintBottom_toTopOf="@id/text_username"
+        app:layout_constraintBottom_toTopOf="@id/text_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/profile_image" />
 
     <TextView
-        android:id="@+id/text_username"
+        android:id="@+id/text_name"
         style="@style/TextAppearance.MaterialComponents.Body1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -73,7 +73,7 @@
         app:layout_constraintBottom_toTopOf="@id/text_join_date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_name" />
+        app:layout_constraintTop_toBottomOf="@id/text_username" />
 
     <TextView
         android:id="@+id/text_join_date"
@@ -87,7 +87,7 @@
         app:drawableStartCompat="@drawable/ic_baseline_access_time_filled_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_username" />
+        app:layout_constraintTop_toBottomOf="@id/text_name" />
 
     <View
         android:id="@+id/horizontal_line"

@@ -14,8 +14,9 @@
         android:scaleType="centerCrop"
         android:src="@drawable/bg_vector_teal"
         android:visibility="gone"
+        tools:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.35"
+        app:layout_constraintHeight_percent="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription" />
@@ -24,13 +25,14 @@
         android:id="@+id/rank1_image"
         android:layout_width="112dp"
         android:layout_height="112dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="4dp"
         android:layout_marginBottom="20dp"
         android:src="@color/purple_500"
         android:visibility="gone"
+        tools:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/text_rank1_number" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/rank3_image"
@@ -42,6 +44,7 @@
         android:layout_marginBottom="20dp"
         android:src="@color/purple_500"
         android:visibility="gone"
+        tools:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/rank1_image"
         app:layout_constraintTop_toTopOf="@id/rank1_image" />
@@ -55,75 +58,88 @@
         android:layout_marginBottom="20dp"
         android:src="@color/purple_500"
         android:visibility="gone"
+        tools:visibility="visible"
         app:layout_constraintEnd_toEndOf="@id/rank1_image"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/rank1_image" />
 
     <TextView
         android:id="@+id/text_rank1_number"
-        style="@style/TextAppearance.MaterialComponents.Body1"
+        style="@style/TextAppearance.MaterialComponents.Headline5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/rank1_number"
+        android:layout_marginVertical="8dp"
+        app:drawableStartCompat="@drawable/ic_baseline_emoji_events_24"
         android:visibility="gone"
+        tools:visibility="visible"
         app:layout_constraintEnd_toEndOf="@id/rank1_image"
         app:layout_constraintStart_toStartOf="@id/rank1_image"
-        app:layout_constraintTop_toBottomOf="@id/rank1_image" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/rank1_image" />
 
     <TextView
         android:id="@+id/text_rank1_name"
         style="@style/TextAppearance.MaterialComponents.Body2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Lorem Ipsum"
+        tools:text="Lorem Ipsum"
+        android:layout_marginVertical="8dp"
         android:visibility="gone"
+        tools:visibility="visible"
         app:layout_constraintEnd_toEndOf="@id/rank1_image"
         app:layout_constraintStart_toStartOf="@id/rank1_image"
-        app:layout_constraintTop_toBottomOf="@id/text_rank1_number" />
+        app:layout_constraintTop_toBottomOf="@id/rank1_image" />
 
     <TextView
         android:id="@+id/text_rank2_number"
-        style="@style/TextAppearance.MaterialComponents.Body1"
+        style="@style/TextAppearance.MaterialComponents.Headline6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/rank2_number"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="@id/rank2_image"
+        app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="@id/rank2_image"
-        app:layout_constraintTop_toBottomOf="@id/rank2_image" />
+        app:layout_constraintBottom_toTopOf="@id/rank2_image"
+        tools:visibility="visible" />
 
     <TextView
         android:id="@+id/text_rank2_name"
         style="@style/TextAppearance.MaterialComponents.Body2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/lorem_ipsum"
+        tools:text="@string/lorem_ipsum"
         android:visibility="gone"
+        tools:visibility="visible"
+        android:layout_marginVertical="8dp"
         app:layout_constraintEnd_toEndOf="@id/rank2_image"
         app:layout_constraintStart_toStartOf="@id/rank2_image"
-        app:layout_constraintTop_toBottomOf="@id/text_rank2_number" />
+        app:layout_constraintTop_toBottomOf="@id/rank2_image" />
 
     <TextView
         android:id="@+id/text_rank3_number"
-        style="@style/TextAppearance.MaterialComponents.Body1"
+        style="@style/TextAppearance.MaterialComponents.Headline6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/rank3_number"
         android:visibility="gone"
+        tools:visibility="visible"
         app:layout_constraintEnd_toEndOf="@id/rank3_image"
         app:layout_constraintStart_toStartOf="@id/rank3_image"
-        app:layout_constraintTop_toBottomOf="@id/rank3_image" />
+        app:layout_constraintBottom_toTopOf="@id/rank3_image" />
 
     <TextView
         android:id="@+id/text_rank3_name"
         style="@style/TextAppearance.MaterialComponents.Body2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Lorem Ipsum"
+        tools:text="Lorem Ipsum"
         android:visibility="gone"
+        tools:visibility="visible"
+        android:layout_marginVertical="8dp"
         app:layout_constraintEnd_toEndOf="@id/rank3_image"
         app:layout_constraintStart_toStartOf="@id/rank3_image"
-        app:layout_constraintTop_toBottomOf="@id/text_rank3_number" />
+        app:layout_constraintTop_toBottomOf="@id/rank3_image" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/leaderboard"
@@ -145,6 +161,7 @@
         android:gravity="center"
         android:text="@string/text_leaderboard_empty"
         android:visibility="gone"
+        tools:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
