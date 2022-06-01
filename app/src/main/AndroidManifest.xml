@@ -21,6 +21,8 @@
         android:theme="@style/Theme.SIBISA">
         <activity
             android:name=".ui.lesson.LessonActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.quiz.QuizActivity"
             android:exported="false" />
         <activity
