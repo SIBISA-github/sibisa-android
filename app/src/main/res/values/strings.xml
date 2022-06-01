@@ -29,4 +29,6 @@
     <string name="dialog_message_yes">Proceed</string>
     <string name="dialog_message_no">Cancel</string>
     <string name="text_exp">+%s XP</string>
+    <string name="unknown">unknown</string>
+    <string name="capture_button_alt">Capture</string>
 </resources>
