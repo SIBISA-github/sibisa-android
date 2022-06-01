@@ -1,6 +1,7 @@
 package com.bangkit.sibisa.ui
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
@@ -25,6 +26,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val navView: BottomNavigationView = binding.navView
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            window.navigationBarColor = getColor(R.color.green_garlands)
+        }
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         // Passing each menu ID as a set of Ids because each
