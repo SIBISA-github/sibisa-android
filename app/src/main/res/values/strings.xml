@@ -7,6 +7,10 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="register">Register</string>
+    <string name="sibisa">Sibisa</string>
+    <string name="mempelajari_bahasa_dasar">Mempelajari bahasa dasar</string>
+    <string name="lesson_button">Skip Lesson</string>
+    <string name="lesson_subtittle">Mempelajari huruf A</string>
     <string name="title_login_page">Login</string>
     <string name="login">login</string>
     <string name="title_profile">Profile</string>

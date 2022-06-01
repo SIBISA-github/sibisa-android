@@ -20,6 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SIBISA">
         <activity
+            android:name=".ui.lesson.LessonActivity"
             android:name=".ui.quiz.QuizActivity"
             android:exported="false" />
         <activity
