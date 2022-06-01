@@ -1,10 +1,14 @@
 package com.bangkit.sibisa.ui
 
+import android.content.Context
 import android.content.Intent
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
+import android.view.LayoutInflater
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -26,8 +30,18 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val navView: BottomNavigationView = binding.navView
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            window.navigationBarColor = getColor(R.color.green_garlands)
+
+        window.setBackgroundDrawable(null)
+        supportActionBar?.let {
+            it.setDisplayShowTitleEnabled(false)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                it.setBackgroundDrawable(ColorDrawable(getColor(R.color.green_garlands)))
+            }
+
+            // logo for action bar
+            it.setDisplayShowCustomEnabled(true)
+            val view = layoutInflater.inflate(R.layout.custom_image, null)
+            it.customView = view
         }
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
