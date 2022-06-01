@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.bangkit.sibisa.R
 import com.bangkit.sibisa.adapter.ProfilesAdapter
 import com.bangkit.sibisa.databinding.FragmentLeaderboardBinding
 import com.bangkit.sibisa.factory.ViewModelFactory
@@ -87,7 +88,7 @@ class LeaderboardFragment : Fragment() {
         if (!profiles[0]?.name.isNullOrEmpty()) {
             binding.textRank1Name.text = profiles[0]?.username
         }
-        binding.textRank1Exp.text = profiles[0]?.exp.toString()
+        binding.textRank1Exp.text = getString(R.string.text_exp, profiles[0]?.exp.toString())
 
         // no. 2
         if (profiles[1]?.image != null) {
@@ -96,7 +97,7 @@ class LeaderboardFragment : Fragment() {
         if (!profiles[1]?.name.isNullOrEmpty()) {
             binding.textRank2Name.text = profiles[1]?.username
         }
-        binding.textRank1Exp.text = profiles[0]?.exp.toString()
+        binding.textRank2Exp.text = getString(R.string.text_exp, profiles[1]?.exp.toString())
 
         // no. 3
         if (profiles[2]?.image != null) {
@@ -105,7 +106,7 @@ class LeaderboardFragment : Fragment() {
         if (!profiles[2]?.name.isNullOrEmpty()) {
             binding.textRank3Name.text = profiles[2]?.username
         }
-        binding.textRank1Exp.text = profiles[0]?.exp.toString()
+        binding.textRank3Exp.text = getString(R.string.text_exp, profiles[2]?.exp.toString())
 
         binding.bannerLeaderboard.visibility = View.VISIBLE
 
@@ -116,6 +117,10 @@ class LeaderboardFragment : Fragment() {
         binding.textRank1Name.visibility = View.VISIBLE
         binding.textRank2Name.visibility = View.VISIBLE
         binding.textRank3Name.visibility = View.VISIBLE
+
+        binding.textRank1Exp.visibility = View.VISIBLE
+        binding.textRank2Exp.visibility = View.VISIBLE
+        binding.textRank3Exp.visibility = View.VISIBLE
 
         binding.textRank1Number.visibility = View.VISIBLE
         binding.textRank2Number.visibility = View.VISIBLE
