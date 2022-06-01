@@ -77,7 +77,7 @@ class QuizActivity : AppCompatActivity() {
         binding = ActivityQuizBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.cameraCaptureButton.setOnClickListener {
+        binding.skipButton.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
 //            // Disable all camera controls
