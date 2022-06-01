@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bangkit.sibisa.databinding.FragmentHomeBinding
+import com.bangkit.sibisa.ui.lesson.LessonActivity
 
 class HomeFragment : Fragment() {
 
@@ -29,14 +30,20 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-//        val textView: TextView = binding.textHome
-//        homeViewModel.text.observe(viewLifecycleOwner) {
-//            textView.text = it
-//        }
+        val textView: TextView = binding.textHome
+        homeViewModel.text.observe(viewLifecycleOwner) {
+            textView.text = it
+        }
 
-//        binding.levelBtn1.setOnClickListener {
-//            startActivity(Intent(requireContext(), ))
-//        }
+        binding.levelBtn1.setOnClickListener {
+            startActivity(Intent(requireContext(), LessonActivity::class.java))
+        }
+        binding.levelBtn2.setOnClickListener {
+            startActivity(Intent(requireContext(), LessonActivity::class.java))
+        }
+        binding.levelBtn3.setOnClickListener {
+            startActivity(Intent(requireContext(), LessonActivity::class.java))
+        }
 
         return root
     }
