@@ -8,4 +8,8 @@
     <string name="password">Password</string>
     <string name="register">Register</string>
     <string name="sibisa">Sibisa</string>
+    <string name="level_basic">Level Basic</string>
+    <string name="level">Level 1</string>
+    <string name="level_intermediate">Level Intermediate</string>
+    <string name="level_expert">Level Expert</string>
 </resources>
