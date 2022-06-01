@@ -53,10 +53,6 @@ class ProfileFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.save_menu -> {
-                // save profile changes
-                true
-            }
             R.id.logout_menu -> {
                 showLogoutDialog()
                 true

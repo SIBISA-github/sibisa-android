@@ -12,14 +12,15 @@
         android:layout_height="0dp"
         android:layout_margin="0dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/bg_vector_teal"
+        android:src="@color/ferry"
         android:visibility="gone"
-        tools:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.4"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription"
+        tools:visibility="visible" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/rank1_image"
@@ -29,10 +30,10 @@
         android:layout_marginBottom="20dp"
         android:src="@color/purple_500"
         android:visibility="gone"
-        tools:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_rank1_number" />
+        app:layout_constraintTop_toBottomOf="@id/text_rank1_number"
+        tools:visibility="visible" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/rank3_image"
@@ -44,10 +45,10 @@
         android:layout_marginBottom="20dp"
         android:src="@color/purple_500"
         android:visibility="gone"
-        tools:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/rank1_image"
-        app:layout_constraintTop_toTopOf="@id/rank1_image" />
+        app:layout_constraintTop_toTopOf="@id/rank1_image"
+        tools:visibility="visible" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/rank2_image"
@@ -58,10 +59,10 @@
         android:layout_marginBottom="20dp"
         android:src="@color/purple_500"
         android:visibility="gone"
-        tools:visibility="visible"
         app:layout_constraintEnd_toEndOf="@id/rank1_image"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/rank1_image" />
+        app:layout_constraintTop_toTopOf="@id/rank1_image"
+        tools:visibility="visible" />
 
     <TextView
         android:id="@+id/text_rank1_number"
@@ -69,26 +70,42 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="8dp"
-        app:drawableStartCompat="@drawable/ic_baseline_emoji_events_24"
+        android:textColor="@color/white"
         android:visibility="gone"
-        tools:visibility="visible"
+        app:drawableStartCompat="@drawable/ic_baseline_emoji_events_24"
+        app:layout_constraintBottom_toTopOf="@id/rank1_image"
         app:layout_constraintEnd_toEndOf="@id/rank1_image"
         app:layout_constraintStart_toStartOf="@id/rank1_image"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/rank1_image" />
+        tools:visibility="visible" />
 
     <TextView
         android:id="@+id/text_rank1_name"
         style="@style/TextAppearance.MaterialComponents.Body2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="Lorem Ipsum"
         android:layout_marginVertical="8dp"
+        android:textColor="@color/white"
         android:visibility="gone"
-        tools:visibility="visible"
         app:layout_constraintEnd_toEndOf="@id/rank1_image"
         app:layout_constraintStart_toStartOf="@id/rank1_image"
-        app:layout_constraintTop_toBottomOf="@id/rank1_image" />
+        app:layout_constraintTop_toBottomOf="@id/rank1_image"
+        tools:text="Lorem Ipsum"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/text_rank1_exp"
+        style="@style/TextAppearance.MaterialComponents.Caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="4dp"
+        android:textColor="@color/white"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@id/text_rank1_name"
+        app:layout_constraintStart_toStartOf="@id/text_rank1_name"
+        app:layout_constraintTop_toBottomOf="@id/text_rank1_name"
+        tools:text="@string/lorem_ipsum"
+        tools:visibility="visible" />
 
     <TextView
         android:id="@+id/text_rank2_number"
@@ -96,11 +113,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/rank2_number"
+        android:textColor="@color/white"
         android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/rank2_image"
         app:layout_constraintEnd_toEndOf="@id/rank2_image"
         app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="@id/rank2_image"
-        app:layout_constraintBottom_toTopOf="@id/rank2_image"
         tools:visibility="visible" />
 
     <TextView
@@ -108,13 +126,28 @@
         style="@style/TextAppearance.MaterialComponents.Body2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="@string/lorem_ipsum"
-        android:visibility="gone"
-        tools:visibility="visible"
         android:layout_marginVertical="8dp"
+        android:textColor="@color/white"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="@id/rank2_image"
         app:layout_constraintStart_toStartOf="@id/rank2_image"
-        app:layout_constraintTop_toBottomOf="@id/rank2_image" />
+        app:layout_constraintTop_toBottomOf="@id/rank2_image"
+        tools:text="@string/lorem_ipsum"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/text_rank2_exp"
+        style="@style/TextAppearance.MaterialComponents.Caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="4dp"
+        android:textColor="@color/white"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@id/text_rank2_name"
+        app:layout_constraintStart_toStartOf="@id/text_rank2_name"
+        app:layout_constraintTop_toBottomOf="@id/text_rank2_name"
+        tools:text="@string/lorem_ipsum"
+        tools:visibility="visible" />
 
     <TextView
         android:id="@+id/text_rank3_number"
@@ -122,24 +155,40 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/rank3_number"
+        android:textColor="@color/white"
         android:visibility="gone"
-        tools:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@id/rank3_image"
         app:layout_constraintEnd_toEndOf="@id/rank3_image"
         app:layout_constraintStart_toStartOf="@id/rank3_image"
-        app:layout_constraintBottom_toTopOf="@id/rank3_image" />
+        tools:visibility="visible" />
 
     <TextView
         android:id="@+id/text_rank3_name"
         style="@style/TextAppearance.MaterialComponents.Body2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="Lorem Ipsum"
-        android:visibility="gone"
-        tools:visibility="visible"
         android:layout_marginVertical="8dp"
+        android:textColor="@color/white"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="@id/rank3_image"
         app:layout_constraintStart_toStartOf="@id/rank3_image"
-        app:layout_constraintTop_toBottomOf="@id/rank3_image" />
+        app:layout_constraintTop_toBottomOf="@id/rank3_image"
+        tools:text="Lorem Ipsum"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/text_rank3_exp"
+        style="@style/TextAppearance.MaterialComponents.Caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="4dp"
+        android:textColor="@color/white"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@id/text_rank3_name"
+        app:layout_constraintStart_toStartOf="@id/text_rank3_name"
+        app:layout_constraintTop_toBottomOf="@id/text_rank3_name"
+        tools:text="@string/lorem_ipsum"
+        tools:visibility="visible" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/leaderboard"
@@ -160,12 +209,13 @@
         android:layout_marginVertical="4dp"
         android:gravity="center"
         android:text="@string/text_leaderboard_empty"
+        android:textColor="@color/white"
         android:visibility="gone"
-        tools:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
 
     <ProgressBar
         android:id="@+id/progressBar"

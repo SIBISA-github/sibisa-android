@@ -87,6 +87,7 @@ class LeaderboardFragment : Fragment() {
         if (!profiles[0]?.name.isNullOrEmpty()) {
             binding.textRank1Name.text = profiles[0]?.username
         }
+        binding.textRank1Exp.text = profiles[0]?.exp.toString()
 
         // no. 2
         if (profiles[1]?.image != null) {
@@ -95,6 +96,7 @@ class LeaderboardFragment : Fragment() {
         if (!profiles[1]?.name.isNullOrEmpty()) {
             binding.textRank2Name.text = profiles[1]?.username
         }
+        binding.textRank1Exp.text = profiles[0]?.exp.toString()
 
         // no. 3
         if (profiles[2]?.image != null) {
@@ -103,6 +105,7 @@ class LeaderboardFragment : Fragment() {
         if (!profiles[2]?.name.isNullOrEmpty()) {
             binding.textRank3Name.text = profiles[2]?.username
         }
+        binding.textRank1Exp.text = profiles[0]?.exp.toString()
 
         binding.bannerLeaderboard.visibility = View.VISIBLE
 
