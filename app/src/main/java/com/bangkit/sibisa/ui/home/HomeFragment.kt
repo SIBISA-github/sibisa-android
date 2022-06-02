@@ -31,10 +31,6 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        binding.quizButton.setOnClickListener {
-            startActivity(Intent(requireContext(), QuizActivity::class.java))
-        }
-
         binding.levelBtn1.setOnClickListener {
             startActivity(Intent(requireContext(), LessonActivity::class.java))
         }

@@ -28,7 +28,6 @@ class MainActivity : AppCompatActivity() {
 
         val navView: BottomNavigationView = binding.navView
 
-        window.setBackgroundDrawable(null)
         supportActionBar?.let {
             it.setDisplayShowTitleEnabled(false)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
