@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bangkit.sibisa.databinding.FragmentHomeBinding
+import com.bangkit.sibisa.ui.lesson.LessonActivity
 import com.bangkit.sibisa.ui.quiz.QuizActivity
 
 class HomeFragment : Fragment() {
@@ -33,6 +34,17 @@ class HomeFragment : Fragment() {
         binding.quizButton.setOnClickListener {
             startActivity(Intent(requireContext(), QuizActivity::class.java))
         }
+
+        binding.levelBtn1.setOnClickListener {
+            startActivity(Intent(requireContext(), LessonActivity::class.java))
+        }
+        binding.levelBtn2.setOnClickListener {
+            startActivity(Intent(requireContext(), LessonActivity::class.java))
+        }
+        binding.levelBtn3.setOnClickListener {
+            startActivity(Intent(requireContext(), LessonActivity::class.java))
+        }
+
         return root
     }
 

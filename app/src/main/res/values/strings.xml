@@ -8,8 +8,13 @@
     <string name="password">Password</string>
     <string name="register">Register</string>
     <string name="sibisa">Sibisa</string>
-    <string name="mempelajari_bahasa_dasar">Mempelajari bahasa dasar</string>
+    <string name="level">Level 1</string>
+    <string name="level_basic">Level Basic</string>
+    <string name="level_intermediate">Level Intermediate</string>
+    <string name="lesson_tittle">Mempelajari Bahasa Dasar</string>
+    <string name="lesson_subtittle">Mengenal huruf A</string>
     <string name="lesson_button">Skip Lesson</string>
+    <string name="lesson_carousel_desc">huruf A</string>
     <string name="lesson_subtittle">Mempelajari huruf A</string>
     <string name="title_login_page">Login</string>
     <string name="login">login</string>
