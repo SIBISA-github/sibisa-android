@@ -21,6 +21,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
 import com.bangkit.sibisa.databinding.ActivityQuizBinding
+import com.bangkit.sibisa.models.detection.DetectionResult
 import com.bangkit.sibisa.ui.MainActivity
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.support.common.ops.NormalizeOp
@@ -348,8 +349,4 @@ class QuizActivity : AppCompatActivity() {
     }
 }
 
-/**
- * DetectionResult
- *      A class to store the visualization info of a detected object.
- */
-data class DetectionResult(val boundingBox: RectF, val text: String, val score: Float)
+
