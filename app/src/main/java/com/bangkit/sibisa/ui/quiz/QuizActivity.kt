@@ -48,7 +48,6 @@ class QuizActivity : AppCompatActivity() {
     private val permissionsRequestCode = Random.nextInt(0, 10000)
 
     private var lensFacing: Int = CameraSelector.LENS_FACING_FRONT
-    private val isFrontFacing get() = lensFacing == CameraSelector.LENS_FACING_FRONT
 
     private var pauseAnalysis = false
     private var imageRotationDegrees: Int = 0
@@ -80,30 +79,6 @@ class QuizActivity : AppCompatActivity() {
         binding.skipButton.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
-//            // Disable all camera controls
-//            it.isEnabled = false
-//
-//            if (pauseAnalysis) {
-//                // If image analysis is in paused state, resume it
-//                pauseAnalysis = false
-//                binding.imagePredicted.visibility = View.GONE
-//
-//            } else {
-//                // Otherwise, pause image analysis and freeze image
-//                pauseAnalysis = true
-//                val matrix = Matrix().apply {
-//                    postRotate(imageRotationDegrees.toFloat())
-//                    if (isFrontFacing) postScale(-1f, 1f)
-//                }
-//                val uprightImage = Bitmap.createBitmap(
-//                    bitmapBuffer, 0, 0, bitmapBuffer.width, bitmapBuffer.height, matrix, true
-//                )
-//                binding.imagePredicted.setImageBitmap(uprightImage)
-//                binding.imagePredicted.visibility = View.VISIBLE
-//            }
-//
-//            // Re-enable camera controls
-//            it.isEnabled = true
         }
     }
 
@@ -367,6 +342,9 @@ class QuizActivity : AppCompatActivity() {
 
         private const val ACCURACY_THRESHOLD = 0.0f
         private const val MODEL_PATH = "model.tflite"
+        private const val LV1_MODEL_PATH = "level1.tflite"
+        private const val LV2_MODEL_PATH = "level2.tflite"
+        private const val LV3_MODEL_PATH = "level3.tflite"
     }
 }
 
