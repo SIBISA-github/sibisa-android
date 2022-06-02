@@ -3,10 +3,6 @@ package com.bangkit.sibisa.models.question
 import com.google.gson.annotations.SerializedName
 
 data class Question(
-
-	@field:SerializedName("question")
-	val question: String? = null,
-
 	@field:SerializedName("answer")
 	val answer: String? = null,
 
