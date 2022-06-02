@@ -1,10 +1,12 @@
 package com.bangkit.sibisa.retrofit
 
 import com.bangkit.sibisa.models.BaseResponse
+import com.bangkit.sibisa.models.lesson.Lesson
 import com.bangkit.sibisa.models.login.LoginRequest
 import com.bangkit.sibisa.models.login.LoginResponse
 import com.bangkit.sibisa.models.profile.Profile
 import com.bangkit.sibisa.models.profile.UpdateProfileResponse
+import com.bangkit.sibisa.models.question.Question
 import com.bangkit.sibisa.models.register.RegisterRequest
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -39,4 +41,14 @@ interface RetrofitService {
         @Part("name") name: RequestBody?,
         @Part("username") username: RequestBody?,
     ): BaseResponse<UpdateProfileResponse>
+
+    @GET("lessons/level/{level}")
+    suspend fun getLessonsByLevel(
+        @Path("level") level: Int
+    ): BaseResponse<List<Lesson?>>
+
+    @GET("questions/level/{level}")
+    suspend fun getQuestionsByLevel(
+        @Path("level") level: Int
+    ): BaseResponse<List<Question?>>
 }
