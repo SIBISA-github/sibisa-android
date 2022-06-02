@@ -6,141 +6,155 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
-    <TextView
-        android:id="@+id/textHome"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="@string/sibisa"
-        android:textStyle="bold"
-        android:textAlignment="center"
-        android:textSize="28sp"
-        app:layout_constraintStart_toStartOf="parent"
+    <ImageView
+        android:id="@+id/image_divider_1"
+        android:layout_width="wrap_content"
+        android:layout_height="108dp"
+        android:layout_marginTop="36dp"
+        android:src="@drawable/chapter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <TextView
-        android:id="@+id/text_Basic"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:textAlignment="center"
-        android:textSize="16sp"
-        android:text="@string/level_basic"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textHome"/>
+        android:contentDescription="Level Dasar" />
 
     <ImageButton
         android:id="@+id/level_btn1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:src="@drawable/level"
         android:background="@drawable/circle_button"
-        app:layout_constraintStart_toStartOf="parent"
+        android:contentDescription="@string/level_basic"
+        android:src="@drawable/level"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_Basic"
-        android:contentDescription="@string/level_basic" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/image_divider_1" />
+
     <TextView
         android:id="@+id/level"
+        style="@style/TextAppearance.MaterialComponents.Body1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/level"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="Huruf Vokal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/level_btn1"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/level_btn1" />
 
     <ImageButton
         android:id="@+id/level_btn2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:src="@drawable/level"
         android:background="@drawable/circle_button"
-        app:layout_constraintStart_toStartOf="parent"
+        android:contentDescription="@string/level_basic"
+        android:src="@drawable/level"
         app:layout_constraintEnd_toStartOf="@id/level_btn3"
-        app:layout_constraintTop_toBottomOf="@id/level"
-        android:contentDescription="@string/level_basic" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/level" />
+
     <TextView
         android:id="@+id/level_2"
+        style="@style/TextAppearance.MaterialComponents.Body1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/level"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/level_3"
-        app:layout_constraintTop_toBottomOf="@id/level_btn2"/>
+        android:text="Kata Dasar"
+        app:layout_constraintEnd_toEndOf="@id/level_btn2"
+        app:layout_constraintStart_toStartOf="@id/level_btn2"
+        app:layout_constraintTop_toBottomOf="@id/level_btn2" />
 
     <ImageButton
         android:id="@+id/level_btn3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:src="@drawable/level"
         android:background="@drawable/circle_button"
-        app:layout_constraintStart_toEndOf="@id/level_btn2"
+        android:contentDescription="@string/level_basic"
+        android:src="@drawable/level"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/level"
-        android:contentDescription="@string/level_basic" />
+        app:layout_constraintStart_toEndOf="@id/level_btn2"
+        app:layout_constraintTop_toBottomOf="@id/level" />
+
     <TextView
         android:id="@+id/level_3"
+        style="@style/TextAppearance.MaterialComponents.Body1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/level"
-        app:layout_constraintStart_toEndOf="@id/level_2"
+        android:text="Kuis"
+        app:layout_constraintEnd_toEndOf="@id/level_btn3"
+        app:layout_constraintStart_toStartOf="@id/level_btn3"
+        app:layout_constraintTop_toBottomOf="@id/level_btn3" />
+
+    <ImageView
+        android:id="@+id/image_divider_2"
+        android:layout_width="wrap_content"
+        android:layout_height="108dp"
+        android:layout_marginTop="36dp"
+        android:src="@drawable/chapter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/level_btn3"/>
+        android:contentDescription="Level Pertengahan"
+        app:layout_constraintTop_toBottomOf="@id/level_3"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <View
+        android:id="@+id/horizontal_line"
+        android:layout_width="124dp"
+        android:layout_height="2dp"
+        android:layout_marginHorizontal="20dp"
+        android:background="@color/ferry"
+        android:layout_marginStart="24dp"
+        app:layout_constraintTop_toTopOf="@id/image_divider_1"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/image_divider_1"
+        app:layout_constraintVertical_bias="0.608" />
+
+    <View
+        android:id="@+id/horizontal_line_2"
+        android:layout_width="124dp"
+        android:layout_height="2dp"
+        android:layout_marginHorizontal="20dp"
+        android:background="@color/ferry"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintTop_toTopOf="@id/image_divider_1"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/image_divider_1"
+        app:layout_constraintVertical_bias="0.608" />
+
+    <View
+        android:id="@+id/horizontal_line_3"
+        android:layout_width="124dp"
+        android:layout_height="2dp"
+        android:layout_marginHorizontal="20dp"
+        android:background="@color/ferry"
+        android:layout_marginStart="24dp"
+        app:layout_constraintTop_toTopOf="@id/image_divider_2"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/image_divider_2"
+        app:layout_constraintVertical_bias="0.608" />
+
+    <View
+        android:id="@+id/horizontal_line_4"
+        android:layout_width="124dp"
+        android:layout_height="2dp"
+        android:layout_marginHorizontal="20dp"
+        android:background="@color/ferry"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintTop_toTopOf="@id/image_divider_2"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/image_divider_2"
+        app:layout_constraintVertical_bias="0.608" />
 
     <TextView
-        android:id="@+id/text_intermediate"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:textAlignment="center"
-        android:textSize="16sp"
-        android:text="@string/level_intermediate"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/level_2"/>
-
-    <ImageButton
-        android:id="@+id/level_btn4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:src="@drawable/level"
-        android:background="@drawable/circle_button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/level_btn5"
-        app:layout_constraintTop_toBottomOf="@id/text_intermediate"
-        android:contentDescription="@string/level_intermediate" />
-    <TextView
-        android:id="@+id/level_4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/level"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/level_5"
-        app:layout_constraintTop_toBottomOf="@id/level_btn4"/>
-
-    <ImageButton
-        android:id="@+id/level_btn5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:src="@drawable/level"
-        android:background="@drawable/circle_button"
-        app:layout_constraintStart_toEndOf="@id/level_btn4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_intermediate"
-        android:contentDescription="@string/level_intermediate" />
-    <TextView
-        android:id="@+id/level_5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/level"
-        app:layout_constraintStart_toEndOf="@id/level_4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/level_btn5"/>
+        app:layout_constraintTop_toBottomOf="@id/image_divider_2"
+        android:layout_marginVertical="30dp"
+        android:textAllCaps="true"
+        android:text="Coming Soon!"
+        style="@style/TextAppearance.MaterialComponents.Headline4" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
