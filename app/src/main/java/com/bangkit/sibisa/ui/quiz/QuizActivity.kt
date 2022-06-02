@@ -148,9 +148,17 @@ class QuizActivity : AppCompatActivity() {
                     .setMaxResults(5)
                     .setScoreThreshold(ACCURACY_THRESHOLD)
                     .build()
+
+                val level = intent.getIntExtra(LEVEL, 1)
+                val modelPath = when (level) {
+                    1 -> LV1_MODEL_PATH
+                    2 -> LV2_MODEL_PATH
+                    3 -> LV3_MODEL_PATH
+                    else -> LV1_MODEL_PATH
+                }
                 val detector = ObjectDetector.createFromFileAndOptions(
                     this,
-                    MODEL_PATH,
+                    modelPath,
                     options
                 )
 
@@ -342,10 +350,11 @@ class QuizActivity : AppCompatActivity() {
         private val TAG = QuizActivity::class.java.simpleName
 
         private const val ACCURACY_THRESHOLD = 0.0f
-        private const val MODEL_PATH = "model.tflite"
         private const val LV1_MODEL_PATH = "level1.tflite"
         private const val LV2_MODEL_PATH = "level2.tflite"
         private const val LV3_MODEL_PATH = "level3.tflite"
+
+        const val LEVEL = "level"
     }
 }
 
