@@ -20,9 +20,12 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.ViewModelProvider
 import com.bangkit.sibisa.databinding.ActivityQuizBinding
+import com.bangkit.sibisa.factory.ViewModelFactory
 import com.bangkit.sibisa.models.detection.DetectionResult
 import com.bangkit.sibisa.ui.MainActivity
+import com.bangkit.sibisa.ui.finish.FinishActivity
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.support.common.ops.NormalizeOp
 import org.tensorflow.lite.support.image.ImageProcessor
@@ -54,6 +57,9 @@ class QuizActivity : AppCompatActivity() {
     private var imageRotationDegrees: Int = 0
     private val tfImageBuffer = TensorImage(DataType.UINT8)
 
+    private val questions = intent.getStringArrayExtra(QUESTIONS)
+    private val level = intent.getIntExtra(LEVEL, 1)
+
     private val tfImageProcessor by lazy {
         val cropSize = minOf(bitmapBuffer.width, bitmapBuffer.height)
         ImageProcessor.Builder()
@@ -72,13 +78,16 @@ class QuizActivity : AppCompatActivity() {
         Size(320, 320) // Order of axis is: {1, height, width, 3}
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityQuizBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.skipButton.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
+            val intent = Intent(this, FinishActivity::class.java)
+            intent.putExtra(FinishActivity.IS_SUCCESS, false)
+            startActivity(intent, null)
             finish()
         }
     }
@@ -149,7 +158,6 @@ class QuizActivity : AppCompatActivity() {
                     .setScoreThreshold(ACCURACY_THRESHOLD)
                     .build()
 
-                val level = intent.getIntExtra(LEVEL, 1)
                 val modelPath = when (level) {
                     1 -> LV1_MODEL_PATH
                     2 -> LV2_MODEL_PATH
@@ -355,6 +363,7 @@ class QuizActivity : AppCompatActivity() {
         private const val LV3_MODEL_PATH = "level3.tflite"
 
         const val LEVEL = "level"
+        const val QUESTIONS = "questions"
     }
 }
 
