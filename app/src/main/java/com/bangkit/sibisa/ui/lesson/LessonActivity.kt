@@ -143,8 +143,10 @@ class LessonActivity : AppCompatActivity() {
                             questions = result.data
 
                             val mappedQuestions = ArrayList(questions.map {
-                                it?.answer
+                                it?.question
                             })
+
+                            Log.d("QUESTIONS", mappedQuestions.toString())
 
                             val intent = Intent(this, QuizActivity::class.java)
                             intent.putExtra(QuizActivity.LEVEL, LEVEL)

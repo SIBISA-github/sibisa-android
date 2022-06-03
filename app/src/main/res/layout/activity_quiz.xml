@@ -31,7 +31,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:visibility="gone" />
+        android:visibility="gone"
+        tools:ignore="ContentDescription" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card"
@@ -58,15 +59,28 @@
                 android:text="@string/question_prompt"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Body2" />
 
-            <TextView
-                android:id="@+id/text_question"
+            <TextSwitcher
+                android:id="@+id/text_question_switcher"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/margin_xsmall"
-                android:padding="12dp"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
-                tools:text="Lorem Ipsum" />
+                android:padding="12dp">
+
+                <TextView
+                    android:id="@+id/text_question"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                    tools:text="Lorem Ipsum" />
+
+                <TextView
+                    android:id="@+id/text_question_placeholder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                    tools:text="Lorem Ipsum" />
+            </TextSwitcher>
 
         </LinearLayout>
 
@@ -95,12 +109,13 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/skip_button"
+        style="@style/TextAppearance.MaterialComponents.Body2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/shutter_button_margin"
-        android:text="SKIP QUIZ"
-        style="@style/TextAppearance.MaterialComponents.Body2"
-        android:textColor="@color/white"
+        android:text="Menyerah"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/iridescent_turqoise"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />

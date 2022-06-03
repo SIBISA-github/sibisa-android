@@ -3,14 +3,18 @@ package com.bangkit.sibisa.ui.finish
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.bangkit.sibisa.R
+import kotlin.properties.Delegates
 
 class FinishActivity : AppCompatActivity() {
-    private val isSuccess = intent.getBooleanExtra(IS_SUCCESS, true)
-    private val fromLevel = intent.getIntExtra(IS_SUCCESS, 1)
+    private var isSuccess by Delegates.notNull<Boolean>()
+    private var fromLevel by Delegates.notNull<Int>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_finish)
+
+        isSuccess = intent.getBooleanExtra(IS_SUCCESS, true)
+        fromLevel = intent.getIntExtra(IS_SUCCESS, 1)
 
         setupUI()
     }

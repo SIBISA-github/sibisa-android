@@ -8,6 +8,8 @@ import android.content.pm.PackageManager
 import android.graphics.*
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.util.Size
 import android.view.View
@@ -20,12 +22,10 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.ViewModelProvider
 import com.bangkit.sibisa.databinding.ActivityQuizBinding
-import com.bangkit.sibisa.factory.ViewModelFactory
 import com.bangkit.sibisa.models.detection.DetectionResult
-import com.bangkit.sibisa.ui.MainActivity
 import com.bangkit.sibisa.ui.finish.FinishActivity
+import com.bangkit.sibisa.utils.showToast
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.support.common.ops.NormalizeOp
 import org.tensorflow.lite.support.image.ImageProcessor
@@ -57,8 +57,7 @@ class QuizActivity : AppCompatActivity() {
     private var imageRotationDegrees: Int = 0
     private val tfImageBuffer = TensorImage(DataType.UINT8)
 
-    private val questions = intent.getStringArrayExtra(QUESTIONS)
-    private val level = intent.getIntExtra(LEVEL, 1)
+    private lateinit var questions: ArrayList<String>
 
     private val tfImageProcessor by lazy {
         val cropSize = minOf(bitmapBuffer.width, bitmapBuffer.height)
@@ -90,6 +89,36 @@ class QuizActivity : AppCompatActivity() {
             startActivity(intent, null)
             finish()
         }
+
+        questions = intent.getStringArrayListExtra(QUESTIONS)!!
+
+        Log.d("QUESTIONS", questions.toString())
+
+        binding.skipButton.setOnClickListener {
+            val intent = Intent(this, FinishActivity::class.java)
+            intent.putExtra(FinishActivity.IS_SUCCESS, false)
+            intent.putExtra(FinishActivity.FROM_LEVEL, LEVEL)
+            startActivity(intent)
+            finish()
+        }
+
+        setupUI()
+    }
+
+    private fun setupUI() {
+        binding.textQuestionSwitcher.setInAnimation(
+            this,
+            androidx.appcompat.R.anim.abc_slide_in_bottom
+        )
+        binding.textQuestionSwitcher.setOutAnimation(
+            this,
+            androidx.appcompat.R.anim.abc_slide_out_top
+        )
+        showQuestion()
+    }
+
+    private fun showQuestion() {
+        binding.textQuestionSwitcher.setText(questions[0].uppercase())
     }
 
     override fun onDestroy() {
@@ -158,12 +187,13 @@ class QuizActivity : AppCompatActivity() {
                     .setScoreThreshold(ACCURACY_THRESHOLD)
                     .build()
 
-                val modelPath = when (level) {
+                val modelPath = when (intent.getIntExtra(LEVEL, 1)) {
                     1 -> LV1_MODEL_PATH
                     2 -> LV2_MODEL_PATH
                     3 -> LV3_MODEL_PATH
                     else -> LV1_MODEL_PATH
                 }
+
                 val detector = ObjectDetector.createFromFileAndOptions(
                     this,
                     modelPath,
@@ -174,7 +204,7 @@ class QuizActivity : AppCompatActivity() {
                 val results = detector.detect(tfImage)
 
                 // Step 4: Parse the detection result and show it
-                debugPrint(results)
+//                debugPrint(results)
 
                 val bestResult = results.maxByOrNull {
                     it.categories.first().score
@@ -183,30 +213,26 @@ class QuizActivity : AppCompatActivity() {
                 val resultToDisplay = bestResult?.let {
                     DetectionResult(
                         it.boundingBox,
-                        text = "${bestResult.categories.first().label}, ${
+                        displayText = "${bestResult.categories.first().label}, ${
                             bestResult.categories.first().score.times(
                                 100
                             ).toInt()
                         }%",
-                        score = bestResult.categories.first().score
+                        score = bestResult.categories.first().score,
+                        predictionText = bestResult.categories.first().label
                     )
                 }
+
+                Log.d("RESULT", resultToDisplay?.displayText.toString())
+                Log.d("RESULT", questions[0])
+                Log.d(
+                    "RESULT",
+                    (resultToDisplay?.displayText == questions[0].uppercase()).toString()
+                )
 
                 reportPrediction(resultToDisplay)
-
-                // Compute the FPS of the entire pipeline
-                val frameCount = 10
-                if (++frameCounter % frameCount == 0) {
-                    frameCounter = 0
-                    val now = System.currentTimeMillis()
-                    val delta = now - lastFpsTimestamp
-                    val fps = 1000 * frameCount.toFloat() / delta
-                    Log.d(
-                        TAG,
-                        "FPS: ${"%.02f".format(fps)} with tensorSize: ${tfImage.width} x ${tfImage.height}"
-                    )
-                    lastFpsTimestamp = now
-                }
+                resultToDisplay?.let { checkAnswer(it) }
+                checkQuiz()
             })
 
             // Create a new camera selector each time, enforcing lens facing
@@ -239,6 +265,35 @@ class QuizActivity : AppCompatActivity() {
         }
     }
 
+    private fun checkAnswer(result: DetectionResult) {
+        runOnUiThread {
+//            Log.d("RESULT", result.toString())
+            if (result.predictionText.equals(questions[0], true) && result.score >= 0.85f) {
+                Log.d("RESULT", "BENARRRR")
+                showToast(this, "Benar! ${questions[0]} terdeteksi")
+                questions.removeAt(0)
+                showQuestion()
+            }
+        }
+    }
+
+    private fun checkQuiz() {
+        if (questions.isEmpty()) {
+            binding.textQuestionSwitcher.setText("Selamat! Anda berhasil melewati kuis ini")
+
+            val delayPage: Long = 1000
+            Handler(Looper.getMainLooper()).postDelayed(
+                {
+                    val intent = Intent(this, FinishActivity::class.java)
+                    intent.putExtra(FinishActivity.IS_SUCCESS, true)
+                    intent.putExtra(FinishActivity.FROM_LEVEL, LEVEL)
+                    startActivity(intent)
+                    finish()
+                }, delayPage
+            )
+        }
+    }
+
     private fun reportPrediction(
         detectionResult: DetectionResult?
     ) = binding.viewFinder.post {
@@ -255,7 +310,7 @@ class QuizActivity : AppCompatActivity() {
 
         // Update the text and UI
         binding.textPrediction.text =
-            detectionResult.text
+            detectionResult.displayText
         (binding.boxPrediction.layoutParams as ViewGroup.MarginLayoutParams).apply {
             topMargin = location.top.toInt()
             leftMargin = location.left.toInt()

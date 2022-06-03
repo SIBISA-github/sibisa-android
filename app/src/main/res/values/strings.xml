@@ -12,7 +12,7 @@
     <string name="level_basic">Level Dasar</string>
     <string name="level_intermediate">Level Intermediate</string>
     <string name="lesson_tittle">Mempelajari Bahasa Dasar</string>
-    <string name="lesson_button">Skip Lesson</string>
+    <string name="lesson_button">Buka Kuis</string>
     <string name="lesson_carousel_desc">huruf A</string>
     <string name="lesson_subtittle">Mempelajari huruf A</string>
     <string name="title_login_page">Login</string>
