@@ -21,6 +21,7 @@ import com.bangkit.sibisa.ui.quiz.QuizActivity
 import com.bangkit.sibisa.utils.showToast
 import com.yuyakaido.android.cardstackview.*
 import okhttp3.internal.wait
+import kotlin.properties.Delegates
 
 class LessonActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLessonBinding
@@ -28,6 +29,8 @@ class LessonActivity : AppCompatActivity() {
     private lateinit var lessons: List<Lesson?>
     private lateinit var questions: List<Question?>
     private lateinit var cardStackView: CardStackView
+
+    private var level by Delegates.notNull<Int>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +53,9 @@ class LessonActivity : AppCompatActivity() {
         binding.lessonButton.setOnClickListener {
             goToQuiz()
         }
+
+        level = intent.getIntExtra(LEVEL, 0)
+        Log.d("LEVEL", level.toString())
 
         fetchLessons()
     }
@@ -102,7 +108,6 @@ class LessonActivity : AppCompatActivity() {
     }
 
     private fun fetchLessons() {
-        val level = intent.getIntExtra(LEVEL, 1)
         viewModel.getLessonsByLevel(level).observe(this) { result ->
             if (result != null) {
                 when (result) {
@@ -128,7 +133,6 @@ class LessonActivity : AppCompatActivity() {
     }
 
     private fun goToQuiz() {
-        val level = intent.getIntExtra(LEVEL, 1)
         viewModel.getQuestionsByLevel(level).observe(this) { result ->
             if (result != null) {
                 when (result) {

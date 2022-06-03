@@ -28,18 +28,20 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val intent = Intent(requireContext(), LessonActivity::class.java)
         binding.levelBtn1.setOnClickListener {
+            val intent = Intent(requireContext(), LessonActivity::class.java)
             intent.putExtra(LessonActivity.LEVEL, 1)
-            startActivity(intent, null)
+            startActivity(intent)
         }
         binding.levelBtn2.setOnClickListener {
+            val intent = Intent(requireContext(), LessonActivity::class.java)
             intent.putExtra(LessonActivity.LEVEL, 2)
-            startActivity(Intent(requireContext(), LessonActivity::class.java))
+            startActivity(intent)
         }
         binding.levelBtn3.setOnClickListener {
+            val intent = Intent(requireContext(), LessonActivity::class.java)
             intent.putExtra(LessonActivity.LEVEL, 3)
-            startActivity(Intent(requireContext(), LessonActivity::class.java))
+            startActivity(intent)
         }
 
         return root

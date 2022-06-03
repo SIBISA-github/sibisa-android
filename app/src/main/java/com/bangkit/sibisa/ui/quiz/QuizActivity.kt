@@ -156,9 +156,6 @@ class QuizActivity : AppCompatActivity() {
                 .setOutputImageFormat(ImageAnalysis.OUTPUT_IMAGE_FORMAT_RGBA_8888)
                 .build()
 
-            var frameCounter = 0
-            var lastFpsTimestamp = System.currentTimeMillis()
-
             imageAnalysis.setAnalyzer(executor, ImageAnalysis.Analyzer { image ->
                 if (!::bitmapBuffer.isInitialized) {
                     // The image rotation and RGB image buffer are initialized only once
@@ -187,6 +184,7 @@ class QuizActivity : AppCompatActivity() {
                     .setScoreThreshold(ACCURACY_THRESHOLD)
                     .build()
 
+                Log.d("LEVEL", intent.getIntExtra(LEVEL, 1).toString())
                 val modelPath = when (intent.getIntExtra(LEVEL, 1)) {
                     1 -> LV1_MODEL_PATH
                     2 -> LV2_MODEL_PATH
@@ -204,7 +202,7 @@ class QuizActivity : AppCompatActivity() {
                 val results = detector.detect(tfImage)
 
                 // Step 4: Parse the detection result and show it
-//                debugPrint(results)
+                debugPrint(results)
 
                 val bestResult = results.maxByOrNull {
                     it.categories.first().score
@@ -223,12 +221,7 @@ class QuizActivity : AppCompatActivity() {
                     )
                 }
 
-                Log.d("RESULT", resultToDisplay?.displayText.toString())
-                Log.d("RESULT", questions[0])
-                Log.d(
-                    "RESULT",
-                    (resultToDisplay?.displayText == questions[0].uppercase()).toString()
-                )
+                Log.d(TAG, questions[0])
 
                 reportPrediction(resultToDisplay)
                 resultToDisplay?.let { checkAnswer(it) }
@@ -267,7 +260,6 @@ class QuizActivity : AppCompatActivity() {
 
     private fun checkAnswer(result: DetectionResult) {
         runOnUiThread {
-//            Log.d("RESULT", result.toString())
             if (result.predictionText.equals(questions[0], true) && result.score >= 0.85f) {
                 Log.d("RESULT", "BENARRRR")
                 showToast(this, "Benar! ${questions[0]} terdeteksi")
@@ -281,16 +273,11 @@ class QuizActivity : AppCompatActivity() {
         if (questions.isEmpty()) {
             binding.textQuestionSwitcher.setText("Selamat! Anda berhasil melewati kuis ini")
 
-            val delayPage: Long = 1000
-            Handler(Looper.getMainLooper()).postDelayed(
-                {
-                    val intent = Intent(this, FinishActivity::class.java)
-                    intent.putExtra(FinishActivity.IS_SUCCESS, true)
-                    intent.putExtra(FinishActivity.FROM_LEVEL, LEVEL)
-                    startActivity(intent)
-                    finish()
-                }, delayPage
-            )
+            val intent = Intent(this, FinishActivity::class.java)
+            intent.putExtra(FinishActivity.IS_SUCCESS, true)
+            intent.putExtra(FinishActivity.FROM_LEVEL, LEVEL)
+            startActivity(intent)
+            finish()
         }
     }
 
