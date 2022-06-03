@@ -27,8 +27,8 @@ class QuizRepository(private val retrofitService: RetrofitService) {
             val errorBody = Gson().fromJson(
                 (e as? HttpException)?.response()?.errorBody()
                     ?.charStream(), ErrorResponse::class.java
-            )
-            emit(NetworkResult.Error(errorBody.errorCode.toString()))
+            ) ?: null
+            emit(NetworkResult.Error(errorBody?.errorCode.toString()))
         }
     }
 
@@ -48,8 +48,8 @@ class QuizRepository(private val retrofitService: RetrofitService) {
             val errorBody = Gson().fromJson(
                 (e as? HttpException)?.response()?.errorBody()
                     ?.charStream(), ErrorResponse::class.java
-            )
-            emit(NetworkResult.Error(errorBody.errorCode.toString()))
+            ) ?: null
+            emit(NetworkResult.Error(errorBody?.errorCode.toString()))
         }
     }
 }

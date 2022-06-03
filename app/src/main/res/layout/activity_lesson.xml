@@ -6,66 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".ui.lesson.LessonActivity">
 
-    <TextView
-        android:id="@+id/lesson_tittle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:text="@string/lesson_tittle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <androidx.constraintlayout.motion.widget.MotionLayout
+    <com.yuyakaido.android.cardstackview.CardStackView
         android:id="@+id/lesson_carousel"
-        android:layout_width="wrap_content"
-        android:layout_height="500dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="8dp"
+        android:layout_margin="16dp"
+        android:clipToPadding="false"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lesson_tittle"
-        tools:ignore="MotionLayoutInvalidSceneFileReference">
-
-        <ImageView
-            android:id="@+id/car01"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:src="@drawable/carousel_test"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:contentDescription="@string/lesson_carousel_desc"
-            />
-        <ImageView
-            android:id="@+id/car02"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:src="@drawable/carousel_test"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:contentDescription="@string/lesson_carousel_desc"
-            />
-        <ImageView
-            android:id="@+id/car03"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:src="@drawable/carousel_test"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:contentDescription="@string/lesson_carousel_desc"
-            />
-    </androidx.constraintlayout.motion.widget.MotionLayout>
-
-    <TextView
-        android:id="@+id/lesson_Subtittle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/lesson_subtittle"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lesson_carousel"
         app:layout_constraintBottom_toTopOf="@id/lesson_button"/>
 
     <Button
@@ -76,7 +26,20 @@
         android:paddingHorizontal="100dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lesson_Subtittle"
+        app:layout_constraintTop_toBottomOf="@+id/lesson_carousel"
         app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="2dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
