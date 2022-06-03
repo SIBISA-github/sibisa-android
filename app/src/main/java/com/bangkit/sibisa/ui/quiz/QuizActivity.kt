@@ -58,6 +58,7 @@ class QuizActivity : AppCompatActivity() {
     private val tfImageBuffer = TensorImage(DataType.UINT8)
 
     private lateinit var questions: ArrayList<String>
+    private lateinit var images: ArrayList<String>
 
     private val tfImageProcessor by lazy {
         val cropSize = minOf(bitmapBuffer.width, bitmapBuffer.height)
@@ -406,6 +407,7 @@ class QuizActivity : AppCompatActivity() {
 
         const val LEVEL = "level"
         const val QUESTIONS = "questions"
+        const val IS_QUIZ = "quiz"
     }
 }
 

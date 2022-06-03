@@ -50,8 +50,12 @@ class LessonActivity : AppCompatActivity() {
             it.setDisplayHomeAsUpEnabled(true)
         }
 
-        binding.lessonButton.setOnClickListener {
-            goToQuiz()
+        binding.lessonQuizButton.setOnClickListener {
+            goToQuestion(true)
+        }
+
+        binding.lessonExerciseButton.setOnClickListener {
+            goToQuestion(false)
         }
 
         level = intent.getIntExtra(LEVEL, 0)
@@ -132,7 +136,7 @@ class LessonActivity : AppCompatActivity() {
         }
     }
 
-    private fun goToQuiz() {
+    private fun goToQuestion(isQuiz: Boolean) {
         viewModel.getQuestionsByLevel(level).observe(this) { result ->
             if (result != null) {
                 when (result) {
@@ -153,6 +157,7 @@ class LessonActivity : AppCompatActivity() {
                             Log.d("QUESTIONS", mappedQuestions.toString())
 
                             val intent = Intent(this, QuizActivity::class.java)
+                            intent.putExtra(QuizActivity.IS_QUIZ, isQuiz)
                             intent.putExtra(QuizActivity.LEVEL, LEVEL)
                             intent.putStringArrayListExtra(QuizActivity.QUESTIONS, mappedQuestions)
                             startActivity(intent, null)
