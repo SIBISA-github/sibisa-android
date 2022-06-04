@@ -4,6 +4,8 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.bangkit.sibisa.models.ErrorResponse
+import com.bangkit.sibisa.models.exp.UpdateExpRequest
+import com.bangkit.sibisa.models.level.UpdateLevelRequest
 import com.bangkit.sibisa.models.profile.Profile
 import com.bangkit.sibisa.models.profile.UpdateProfileResponse
 import com.bangkit.sibisa.models.result.NetworkResult
@@ -71,6 +73,56 @@ class ProfileRepository(private val retrofitService: RetrofitService) {
         emit(NetworkResult.Loading)
         try {
             val response = retrofitService.updateProfile(userID, file, null, null)
+
+            if (response.status in 599 downTo 400) {
+                throw Exception(response.message)
+            }
+
+            val data = response.data!!
+
+            emit(NetworkResult.Success(data))
+        } catch (e: Exception) {
+            try {
+                val errorBody = Gson().fromJson(
+                    (e as? HttpException)?.response()?.errorBody()
+                        ?.charStream(), ErrorResponse::class.java
+                ) ?: null
+                emit(NetworkResult.Error(errorBody?.errorCode.toString()))
+            } catch (e: Exception) {
+                emit(NetworkResult.Error(e.message.toString()))
+            }
+        }
+    }
+
+    fun updateExp(expData: UpdateExpRequest): LiveData<NetworkResult<Profile>> = liveData {
+        emit(NetworkResult.Loading)
+        try {
+            val response = retrofitService.updateExp(expData)
+
+            if (response.status in 599 downTo 400) {
+                throw Exception(response.message)
+            }
+
+            val data = response.data!!
+
+            emit(NetworkResult.Success(data))
+        } catch (e: Exception) {
+            try {
+                val errorBody = Gson().fromJson(
+                    (e as? HttpException)?.response()?.errorBody()
+                        ?.charStream(), ErrorResponse::class.java
+                ) ?: null
+                emit(NetworkResult.Error(errorBody?.errorCode.toString()))
+            } catch (e: Exception) {
+                emit(NetworkResult.Error(e.message.toString()))
+            }
+        }
+    }
+
+    fun updateLevel(levelData: UpdateLevelRequest): LiveData<NetworkResult<Profile>> = liveData {
+        emit(NetworkResult.Loading)
+        try {
+            val response = retrofitService.updateLevel(levelData)
 
             if (response.status in 599 downTo 400) {
                 throw Exception(response.message)

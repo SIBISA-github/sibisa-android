@@ -49,7 +49,9 @@
     <string name="coming_soon">Coming Soon!</string>
     <string name="lesson_exercise_button">Latihan</string>
     <string name="congrats_text_heading">Selamat!</string>
-    <string name="congrats_text">Anda berhasil menjawab pertanyaan-pertanyaan dengan benar</string>
+    <string name="congrats_text">Kamu berhasil menjawab pertanyaan-pertanyaan dengan benar</string>
+    <string name="failed_text_heading">Coba lagi!</string>
+    <string name="failed_text">Kamu belum berhasil menjawab pertanyaan-pertanyaan dengan benar, yuk coba lagi!</string>
     <string name="continue_to_home">Lanjut</string>
     <string name="back_to_lesson">Kembali ke materi</string>
 </resources>

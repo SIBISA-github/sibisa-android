@@ -1,7 +1,9 @@
 package com.bangkit.sibisa.retrofit
 
 import com.bangkit.sibisa.models.BaseResponse
+import com.bangkit.sibisa.models.exp.UpdateExpRequest
 import com.bangkit.sibisa.models.lesson.Lesson
+import com.bangkit.sibisa.models.level.UpdateLevelRequest
 import com.bangkit.sibisa.models.login.LoginRequest
 import com.bangkit.sibisa.models.login.LoginResponse
 import com.bangkit.sibisa.models.profile.Profile
@@ -53,8 +55,12 @@ interface RetrofitService {
     ): BaseResponse<List<Question?>>
 
     @POST("user/level")
-    suspend fun updateLevel(): BaseResponse<Profile>
+    suspend fun updateLevel(
+        @Body level: UpdateLevelRequest
+    ): BaseResponse<Profile>
 
     @POST("user/exp")
-    suspend fun updateExp(): BaseResponse<Profile>
+    suspend fun updateExp(
+        @Body expData: UpdateExpRequest
+    ): BaseResponse<Profile>
 }
