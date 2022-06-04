@@ -92,8 +92,6 @@ class QuizActivity : AppCompatActivity() {
         binding = ActivityQuizBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        supportActionBar?.hide()
-
         info = intent.getParcelableExtra(INFO)!!
 
         quizzes = info.quizzes
@@ -116,12 +114,12 @@ class QuizActivity : AppCompatActivity() {
             }
         }
 
-        Log.d("INFO", info.toString())
-
         setupUI()
     }
 
     private fun setupUI() {
+        supportActionBar?.hide()
+
         binding.skipQuizButton.text = if (isQuiz) {
             "Lewati Kuis"
         } else {
@@ -174,19 +172,14 @@ class QuizActivity : AppCompatActivity() {
 
     private fun skipQuestion() {
         if (quizzes.isNotEmpty()) {
-            advanceQuestion()
             isSuccess = false
+            advanceQuestion()
         }
     }
 
     private fun skipQuiz() {
         isSuccess = false
-
-        val intent = Intent(this, FinishActivity::class.java)
-        intent.putExtra(FinishActivity.IS_SUCCESS, isSuccess)
-        intent.putExtra(FinishActivity.FROM_LEVEL, level)
-        startActivity(intent)
-        finish()
+        exitQuiz()
     }
 
     override fun onDestroy() {
@@ -356,12 +349,17 @@ class QuizActivity : AppCompatActivity() {
         if (quizzes.isEmpty()) {
             binding.textQuestionSwitcher.setText("Selamat! Anda berhasil melewati kuis ini")
 
-            val intent = Intent(this, FinishActivity::class.java)
-            intent.putExtra(FinishActivity.IS_SUCCESS, isSuccess)
-            intent.putExtra(FinishActivity.FROM_LEVEL, level)
-            startActivity(intent)
-            finish()
+            exitQuiz()
         }
+    }
+
+    private fun exitQuiz() {
+        val intent = Intent(this, FinishActivity::class.java)
+        intent.putExtra(FinishActivity.IS_SUCCESS, isSuccess)
+        intent.putExtra(FinishActivity.IS_QUIZ, isQuiz)
+        intent.putExtra(FinishActivity.FROM_LEVEL, level)
+        startActivity(intent)
+        finish()
     }
 
     private fun reportPrediction(
