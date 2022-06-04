@@ -4,6 +4,7 @@ import android.content.Context
 import com.bangkit.sibisa.pref.UserPreference
 import com.bangkit.sibisa.repository.AuthRepository
 import com.bangkit.sibisa.repository.ProfileRepository
+import com.bangkit.sibisa.repository.QuizRepository
 import com.bangkit.sibisa.retrofit.RetrofitConfig
 import com.bangkit.sibisa.retrofit.RetrofitService
 
@@ -18,6 +19,10 @@ object Injection {
 
     fun provideProfileRepository(context: Context): ProfileRepository {
         return ProfileRepository(provideService(context))
+    }
+
+    fun provideQuizRepository(context: Context): QuizRepository {
+        return QuizRepository(provideService(context))
     }
 
     fun providePreferences(context: Context): UserPreference {

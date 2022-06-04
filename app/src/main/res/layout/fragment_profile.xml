@@ -11,7 +11,7 @@
         android:layout_height="0dp"
         android:layout_margin="0dp"
         android:scaleType="centerCrop"
-        android:src="@color/ferry"
+        android:src="@drawable/background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.16"
         app:layout_constraintStart_toStartOf="parent"
@@ -97,8 +97,10 @@
         android:background="@color/teal_200"
         app:layout_constraintBottom_toTopOf="@id/text_level_heading"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_join_date" />
+        app:layout_constraintTop_toBottomOf="@id/text_join_date"
+        app:layout_constraintVertical_bias="0.608" />
 
     <TextView
         android:id="@+id/text_level_heading"

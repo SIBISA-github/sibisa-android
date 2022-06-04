@@ -25,24 +25,23 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
-
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        binding.quizButton.setOnClickListener {
-            startActivity(Intent(requireContext(), QuizActivity::class.java))
-        }
-
         binding.levelBtn1.setOnClickListener {
-            startActivity(Intent(requireContext(), LessonActivity::class.java))
+            val intent = Intent(requireContext(), LessonActivity::class.java)
+            intent.putExtra(LessonActivity.LEVEL, 1)
+            startActivity(intent)
         }
         binding.levelBtn2.setOnClickListener {
-            startActivity(Intent(requireContext(), LessonActivity::class.java))
+            val intent = Intent(requireContext(), LessonActivity::class.java)
+            intent.putExtra(LessonActivity.LEVEL, 2)
+            startActivity(intent)
         }
         binding.levelBtn3.setOnClickListener {
-            startActivity(Intent(requireContext(), LessonActivity::class.java))
+            val intent = Intent(requireContext(), LessonActivity::class.java)
+            intent.putExtra(LessonActivity.LEVEL, 3)
+            startActivity(intent)
         }
 
         return root

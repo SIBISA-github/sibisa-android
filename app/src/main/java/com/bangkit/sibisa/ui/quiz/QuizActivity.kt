@@ -2,6 +2,7 @@ package com.bangkit.sibisa.ui.quiz
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -20,8 +21,15 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
+import com.bangkit.sibisa.R
 import com.bangkit.sibisa.databinding.ActivityQuizBinding
-import com.bangkit.sibisa.ui.MainActivity
+import com.bangkit.sibisa.models.detection.DetectionResult
+import com.bangkit.sibisa.models.quiz.QuizInfo
+import com.bangkit.sibisa.models.quiz.QuizQuestion
+import com.bangkit.sibisa.ui.finish.FinishActivity
+import com.bangkit.sibisa.utils.showToast
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.support.common.ops.NormalizeOp
 import org.tensorflow.lite.support.image.ImageProcessor
@@ -34,6 +42,7 @@ import org.tensorflow.lite.task.vision.detector.ObjectDetector
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 import kotlin.math.min
+import kotlin.properties.Delegates
 import kotlin.random.Random
 
 /** Activity that displays the camera and performs object detection on the incoming frames */
@@ -48,11 +57,16 @@ class QuizActivity : AppCompatActivity() {
     private val permissionsRequestCode = Random.nextInt(0, 10000)
 
     private var lensFacing: Int = CameraSelector.LENS_FACING_FRONT
-    private val isFrontFacing get() = lensFacing == CameraSelector.LENS_FACING_FRONT
 
     private var pauseAnalysis = false
     private var imageRotationDegrees: Int = 0
     private val tfImageBuffer = TensorImage(DataType.UINT8)
+
+    private lateinit var info: QuizInfo
+    private lateinit var quizzes: ArrayList<QuizQuestion>
+    private var isSuccess = true
+    private var isQuiz by Delegates.notNull<Boolean>()
+    private var level by Delegates.notNull<Int>()
 
     private val tfImageProcessor by lazy {
         val cropSize = minOf(bitmapBuffer.width, bitmapBuffer.height)
@@ -72,39 +86,100 @@ class QuizActivity : AppCompatActivity() {
         Size(320, 320) // Order of axis is: {1, height, width, 3}
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityQuizBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.skipButton.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
-//            // Disable all camera controls
-//            it.isEnabled = false
-//
-//            if (pauseAnalysis) {
-//                // If image analysis is in paused state, resume it
-//                pauseAnalysis = false
-//                binding.imagePredicted.visibility = View.GONE
-//
-//            } else {
-//                // Otherwise, pause image analysis and freeze image
-//                pauseAnalysis = true
-//                val matrix = Matrix().apply {
-//                    postRotate(imageRotationDegrees.toFloat())
-//                    if (isFrontFacing) postScale(-1f, 1f)
-//                }
-//                val uprightImage = Bitmap.createBitmap(
-//                    bitmapBuffer, 0, 0, bitmapBuffer.width, bitmapBuffer.height, matrix, true
-//                )
-//                binding.imagePredicted.setImageBitmap(uprightImage)
-//                binding.imagePredicted.visibility = View.VISIBLE
-//            }
-//
-//            // Re-enable camera controls
-//            it.isEnabled = true
+        info = intent.getParcelableExtra(INFO)!!
+
+        quizzes = info.quizzes
+        isQuiz = info.isQuiz
+        level = info.level
+
+        binding.skipQuizButton.setOnClickListener {
+            if (isQuiz) {
+                showSkipDialog { skipQuiz() }
+            } else {
+                skipQuiz()
+            }
         }
+
+        binding.skipQuestionButton.setOnClickListener {
+            if (isQuiz) {
+                showSkipDialog { skipQuestion() }
+            } else {
+                skipQuestion()
+            }
+        }
+
+        setupUI()
+    }
+
+    private fun setupUI() {
+        supportActionBar?.hide()
+
+        binding.skipQuizButton.text = if (isQuiz) {
+            "Lewati Kuis"
+        } else {
+            "Lewati latihan"
+        }
+
+        binding.textQuestionSwitcher.setInAnimation(
+            this,
+            androidx.appcompat.R.anim.abc_slide_in_bottom
+        )
+        binding.textQuestionSwitcher.setOutAnimation(
+            this,
+            androidx.appcompat.R.anim.abc_slide_out_top
+        )
+
+        showQuestion()
+        if (!isQuiz) {
+            showImage()
+        }
+    }
+
+    private fun showQuestion() {
+        binding.textQuestionSwitcher.setText(quizzes[0].question?.uppercase())
+    }
+
+    private fun showImage() {
+        binding.draggableCard1.visibility = View.VISIBLE
+        binding.imageReference.visibility = View.VISIBLE
+        Glide.with(this).load(quizzes[0].image)
+            .transition(DrawableTransitionOptions.withCrossFade()).into(binding.imageReference)
+    }
+
+    private fun showSkipDialog(skipFun: () -> Unit) {
+        val builder: AlertDialog.Builder =
+            AlertDialog.Builder(this)
+
+        builder.setMessage("Apakah kamu yakin ingin melewati? Hasil akan dianggap gagal")
+            ?.setPositiveButton(
+                R.string.dialog_message_yes
+            ) { dialog, _ ->
+                dialog.dismiss()
+                skipFun()
+            }?.setNegativeButton(R.string.dialog_message_no) { dialog, _ ->
+                dialog.cancel()
+            }
+
+        val dialog: AlertDialog? = builder.create()
+        dialog?.show()
+    }
+
+    private fun skipQuestion() {
+        if (quizzes.isNotEmpty()) {
+            isSuccess = false
+            advanceQuestion()
+        }
+    }
+
+    private fun skipQuiz() {
+        isSuccess = false
+        exitQuiz()
     }
 
     override fun onDestroy() {
@@ -142,9 +217,6 @@ class QuizActivity : AppCompatActivity() {
                 .setOutputImageFormat(ImageAnalysis.OUTPUT_IMAGE_FORMAT_RGBA_8888)
                 .build()
 
-            var frameCounter = 0
-            var lastFpsTimestamp = System.currentTimeMillis()
-
             imageAnalysis.setAnalyzer(executor, ImageAnalysis.Analyzer { image ->
                 if (!::bitmapBuffer.isInitialized) {
                     // The image rotation and RGB image buffer are initialized only once
@@ -172,9 +244,17 @@ class QuizActivity : AppCompatActivity() {
                     .setMaxResults(5)
                     .setScoreThreshold(ACCURACY_THRESHOLD)
                     .build()
+
+                val modelPath = when (level) {
+                    1 -> LV1_MODEL_PATH
+                    2 -> LV2_MODEL_PATH
+                    3 -> LV3_MODEL_PATH
+                    else -> LV1_MODEL_PATH
+                }
+
                 val detector = ObjectDetector.createFromFileAndOptions(
                     this,
-                    MODEL_PATH,
+                    modelPath,
                     options
                 )
 
@@ -191,30 +271,18 @@ class QuizActivity : AppCompatActivity() {
                 val resultToDisplay = bestResult?.let {
                     DetectionResult(
                         it.boundingBox,
-                        text = "${bestResult.categories.first().label}, ${
+                        displayText = "${bestResult.categories.first().label}, ${
                             bestResult.categories.first().score.times(
                                 100
                             ).toInt()
                         }%",
-                        score = bestResult.categories.first().score
+                        score = bestResult.categories.first().score,
+                        predictionText = bestResult.categories.first().label
                     )
                 }
 
                 reportPrediction(resultToDisplay)
-
-                // Compute the FPS of the entire pipeline
-                val frameCount = 10
-                if (++frameCounter % frameCount == 0) {
-                    frameCounter = 0
-                    val now = System.currentTimeMillis()
-                    val delta = now - lastFpsTimestamp
-                    val fps = 1000 * frameCount.toFloat() / delta
-                    Log.d(
-                        TAG,
-                        "FPS: ${"%.02f".format(fps)} with tensorSize: ${tfImage.width} x ${tfImage.height}"
-                    )
-                    lastFpsTimestamp = now
-                }
+                resultToDisplay?.let { checkAnswer(it) }
             })
 
             // Create a new camera selector each time, enforcing lens facing
@@ -236,7 +304,7 @@ class QuizActivity : AppCompatActivity() {
         for ((i, obj) in results.withIndex()) {
             val box = obj.boundingBox
 
-            Log.d(TAG, "Detected object: ${i} ")
+            Log.d(TAG, "Detected object: $i ")
             Log.d(TAG, "  boundingBox: (${box.left}, ${box.top}) - (${box.right},${box.bottom})")
 
             for ((j, category) in obj.categories.withIndex()) {
@@ -245,6 +313,53 @@ class QuizActivity : AppCompatActivity() {
                 Log.d(TAG, "    Confidence: ${confidence}%")
             }
         }
+    }
+
+    private fun checkAnswer(result: DetectionResult) {
+        runOnUiThread {
+            if (quizzes.isNotEmpty()) {
+                if (result.predictionText.equals(
+                        quizzes[0].question,
+                        true
+                    ) && result.score >= 0.85f
+                ) {
+                    Log.d("RESULT", "BENARRRR")
+                    showToast(this, "Benar! ${quizzes[0].question} terdeteksi")
+                    advanceQuestion()
+                }
+            }
+        }
+    }
+
+    private fun advanceQuestion() {
+        if (quizzes.isNotEmpty()) {
+            quizzes.removeAt(0)
+            if (quizzes.isNotEmpty()) {
+                showQuestion()
+                if (!isQuiz) {
+                    showImage()
+                }
+            } else {
+                checkQuizState()
+            }
+        }
+    }
+
+    private fun checkQuizState() {
+        if (quizzes.isEmpty()) {
+            binding.textQuestionSwitcher.setText("Selamat! Anda berhasil melewati kuis ini")
+
+            exitQuiz()
+        }
+    }
+
+    private fun exitQuiz() {
+        val intent = Intent(this, FinishActivity::class.java)
+        intent.putExtra(FinishActivity.IS_SUCCESS, isSuccess)
+        intent.putExtra(FinishActivity.IS_QUIZ, isQuiz)
+        intent.putExtra(FinishActivity.FROM_LEVEL, level)
+        startActivity(intent)
+        finish()
     }
 
     private fun reportPrediction(
@@ -263,7 +378,7 @@ class QuizActivity : AppCompatActivity() {
 
         // Update the text and UI
         binding.textPrediction.text =
-            detectionResult.text
+            detectionResult.displayText
         (binding.boxPrediction.layoutParams as ViewGroup.MarginLayoutParams).apply {
             topMargin = location.top.toInt()
             leftMargin = location.left.toInt()
@@ -287,7 +402,14 @@ class QuizActivity : AppCompatActivity() {
      * the model into the coordinates that the user sees on the screen.
      */
     private fun mapOutputCoordinates(location: RectF): RectF {
+        val convertedLocation = RectF(
+            location.left * 0.01f,
+            location.top * 0.01f,
+            location.right * 0.01f,
+            location.bottom * 0.01f
+        )
 
+        Log.d("LOCATION", convertedLocation.toString())
         // Step 1: map location to the preview coordinates
         val previewLocation = RectF(
             location.left * binding.viewFinder.width,
@@ -295,6 +417,7 @@ class QuizActivity : AppCompatActivity() {
             location.right * binding.viewFinder.width,
             location.bottom * binding.viewFinder.height
         )
+        Log.d("LOCATION", previewLocation.toString())
 
         // Step 2: compensate for camera sensor orientation and mirroring
         val isFrontFacing = lensFacing == CameraSelector.LENS_FACING_FRONT
@@ -366,12 +489,12 @@ class QuizActivity : AppCompatActivity() {
         private val TAG = QuizActivity::class.java.simpleName
 
         private const val ACCURACY_THRESHOLD = 0.0f
-        private const val MODEL_PATH = "model.tflite"
+        private const val LV1_MODEL_PATH = "level1.tflite"
+        private const val LV2_MODEL_PATH = "level2.tflite"
+        private const val LV3_MODEL_PATH = "level3.tflite"
+
+        const val INFO = "info"
     }
 }
 
-/**
- * DetectionResult
- *      A class to store the visualization info of a detected object.
- */
-data class DetectionResult(val boundingBox: RectF, val text: String, val score: Float)
+
