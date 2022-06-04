@@ -26,11 +26,15 @@ class ProfileRepository(private val retrofitService: RetrofitService) {
 
             emit(NetworkResult.Success(data))
         } catch (e: Exception) {
-            val errorBody = Gson().fromJson(
-                (e as? HttpException)?.response()?.errorBody()
-                    ?.charStream(), ErrorResponse::class.java
-            )
-            emit(NetworkResult.Error(errorBody.errorCode.toString()))
+            try {
+                val errorBody = Gson().fromJson(
+                    (e as? HttpException)?.response()?.errorBody()
+                        ?.charStream(), ErrorResponse::class.java
+                ) ?: null
+                emit(NetworkResult.Error(errorBody?.errorCode.toString()))
+            } catch (e: Exception) {
+                emit(NetworkResult.Error(e.message.toString()))
+            }
         }
     }
 
@@ -48,11 +52,15 @@ class ProfileRepository(private val retrofitService: RetrofitService) {
 
             emit(NetworkResult.Success(data))
         } catch (e: Exception) {
-            val errorBody = Gson().fromJson(
-                (e as? HttpException)?.response()?.errorBody()
-                    ?.charStream(), ErrorResponse::class.java
-            )
-            emit(NetworkResult.Error(errorBody.errorCode.toString()))
+            try {
+                val errorBody = Gson().fromJson(
+                    (e as? HttpException)?.response()?.errorBody()
+                        ?.charStream(), ErrorResponse::class.java
+                ) ?: null
+                emit(NetworkResult.Error(errorBody?.errorCode.toString()))
+            } catch (e: Exception) {
+                emit(NetworkResult.Error(e.message.toString()))
+            }
         }
     }
 
@@ -72,11 +80,15 @@ class ProfileRepository(private val retrofitService: RetrofitService) {
 
             emit(NetworkResult.Success(data))
         } catch (e: Exception) {
-            val errorBody = Gson().fromJson(
-                (e as? HttpException)?.response()?.errorBody()
-                    ?.charStream(), ErrorResponse::class.java
-            )
-            emit(NetworkResult.Error(errorBody.errorCode.toString()))
+            try {
+                val errorBody = Gson().fromJson(
+                    (e as? HttpException)?.response()?.errorBody()
+                        ?.charStream(), ErrorResponse::class.java
+                ) ?: null
+                emit(NetworkResult.Error(errorBody?.errorCode.toString()))
+            } catch (e: Exception) {
+                emit(NetworkResult.Error(e.message.toString()))
+            }
         }
     }
 }
