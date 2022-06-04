@@ -2,6 +2,7 @@ package com.bangkit.sibisa.ui.quiz
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -20,6 +21,7 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
+import com.bangkit.sibisa.R
 import com.bangkit.sibisa.databinding.ActivityQuizBinding
 import com.bangkit.sibisa.models.detection.DetectionResult
 import com.bangkit.sibisa.models.quiz.QuizInfo
@@ -62,6 +64,7 @@ class QuizActivity : AppCompatActivity() {
 
     private lateinit var info: QuizInfo
     private lateinit var quizzes: ArrayList<QuizQuestion>
+    private var isSuccess = true
     private var isQuiz by Delegates.notNull<Boolean>()
     private var level by Delegates.notNull<Int>()
 
@@ -91,25 +94,27 @@ class QuizActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
-        binding.skipQuizButton.setOnClickListener {
-            val intent = Intent(this, FinishActivity::class.java)
-            intent.putExtra(FinishActivity.IS_SUCCESS, true)
-            intent.putExtra(FinishActivity.FROM_LEVEL, level)
-            startActivity(intent)
-            finish()
-        }
-
-        binding.skipQuestionButton.setOnClickListener {
-            if (quizzes.isNotEmpty()) {
-                advanceQuestion()
-            }
-        }
-
         info = intent.getParcelableExtra(INFO)!!
 
         quizzes = info.quizzes
         isQuiz = info.isQuiz
         level = info.level
+
+        binding.skipQuizButton.setOnClickListener {
+            if (isQuiz) {
+                showSkipDialog { skipQuiz() }
+            } else {
+                skipQuiz()
+            }
+        }
+
+        binding.skipQuestionButton.setOnClickListener {
+            if (isQuiz) {
+                showSkipDialog { skipQuestion() }
+            } else {
+                skipQuestion()
+            }
+        }
 
         Log.d("INFO", info.toString())
 
@@ -117,6 +122,12 @@ class QuizActivity : AppCompatActivity() {
     }
 
     private fun setupUI() {
+        binding.skipQuizButton.text = if (isQuiz) {
+            "Lewati Kuis"
+        } else {
+            "Lewati latihan"
+        }
+
         binding.textQuestionSwitcher.setInAnimation(
             this,
             androidx.appcompat.R.anim.abc_slide_in_bottom
@@ -125,6 +136,7 @@ class QuizActivity : AppCompatActivity() {
             this,
             androidx.appcompat.R.anim.abc_slide_out_top
         )
+
         showQuestion()
         if (!isQuiz) {
             showImage()
@@ -140,6 +152,41 @@ class QuizActivity : AppCompatActivity() {
         binding.imageReference.visibility = View.VISIBLE
         Glide.with(this).load(quizzes[0].image)
             .transition(DrawableTransitionOptions.withCrossFade()).into(binding.imageReference)
+    }
+
+    private fun showSkipDialog(skipFun: () -> Unit) {
+        val builder: AlertDialog.Builder =
+            AlertDialog.Builder(this)
+
+        builder.setMessage("Apakah kamu yakin ingin melewati? Hasil akan dianggap gagal")
+            ?.setPositiveButton(
+                R.string.dialog_message_yes
+            ) { dialog, _ ->
+                dialog.dismiss()
+                skipFun()
+            }?.setNegativeButton(R.string.dialog_message_no) { dialog, _ ->
+                dialog.cancel()
+            }
+
+        val dialog: AlertDialog? = builder.create()
+        dialog?.show()
+    }
+
+    private fun skipQuestion() {
+        if (quizzes.isNotEmpty()) {
+            advanceQuestion()
+            isSuccess = false
+        }
+    }
+
+    private fun skipQuiz() {
+        isSuccess = false
+
+        val intent = Intent(this, FinishActivity::class.java)
+        intent.putExtra(FinishActivity.IS_SUCCESS, isSuccess)
+        intent.putExtra(FinishActivity.FROM_LEVEL, level)
+        startActivity(intent)
+        finish()
     }
 
     override fun onDestroy() {
@@ -310,7 +357,7 @@ class QuizActivity : AppCompatActivity() {
             binding.textQuestionSwitcher.setText("Selamat! Anda berhasil melewati kuis ini")
 
             val intent = Intent(this, FinishActivity::class.java)
-            intent.putExtra(FinishActivity.IS_SUCCESS, true)
+            intent.putExtra(FinishActivity.IS_SUCCESS, isSuccess)
             intent.putExtra(FinishActivity.FROM_LEVEL, level)
             startActivity(intent)
             finish()

@@ -129,7 +129,7 @@
         android:layout_marginBottom="40dp"
         android:backgroundTint="@color/broken_white"
         android:padding="8dp"
-        android:text="Menyerah"
+        android:text="Lewati Kuis"
         android:textColor="@color/riviera_paradise"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
