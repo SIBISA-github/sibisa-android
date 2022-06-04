@@ -108,7 +108,20 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/skip_button"
+        android:id="@+id/skip_question_button"
+        style="@style/TextAppearance.MaterialComponents.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="@color/white"
+        android:text="Lewati Pertanyaan"
+        android:textColor="@color/riviera_paradise"
+        app:layout_constraintBottom_toTopOf="@id/skip_quiz_button"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/skip_quiz_button"
         style="@style/TextAppearance.MaterialComponents.Body1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -131,12 +144,19 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:clickable="true"
-            android:focusable="true">
+            android:focusable="true"
+            android:visibility="gone"
+            tools:visibility="visible">
 
             <ImageView
-                android:layout_width="wrap_content"
+                android:id="@+id/imageReference"
+                android:layout_width="150dp"
+                android:adjustViewBounds="true"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/house_part_1" />
+                android:scaleType="fitXY"
+                android:visibility="gone"
+                tools:srcCompat="@drawable/a_lesson"
+                tools:visibility="visible" />
 
         </com.google.android.material.card.MaterialCardView>
     </com.bangkit.sibisa.ui.custom.DraggableCoordinatorLayout>

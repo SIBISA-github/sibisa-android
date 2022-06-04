@@ -16,11 +16,13 @@ import com.bangkit.sibisa.databinding.ActivityLessonBinding
 import com.bangkit.sibisa.factory.ViewModelFactory
 import com.bangkit.sibisa.models.lesson.Lesson
 import com.bangkit.sibisa.models.question.Question
+import com.bangkit.sibisa.models.quiz.QuizInfo
+import com.bangkit.sibisa.models.quiz.QuizQuestion
 import com.bangkit.sibisa.models.result.NetworkResult
 import com.bangkit.sibisa.ui.quiz.QuizActivity
 import com.bangkit.sibisa.utils.showToast
 import com.yuyakaido.android.cardstackview.*
-import okhttp3.internal.wait
+import java.lang.Integer.parseInt
 import kotlin.properties.Delegates
 
 class LessonActivity : AppCompatActivity() {
@@ -147,19 +149,30 @@ class LessonActivity : AppCompatActivity() {
                     is NetworkResult.Success -> {
                         binding.progressBar.visibility = View.GONE
 
+                        Log.d("QUIZ_ACTIVITY", result.data.toString())
                         if (!result.data.isNullOrEmpty()) {
+                            Log.d("QUIZ_ACTIVITY", "aman")
                             questions = result.data
 
                             val mappedQuestions = ArrayList(questions.map {
-                                it?.question
+                                QuizQuestion(
+                                    it?.question,
+                                    it?.image
+                                )
                             })
 
-                            Log.d("QUESTIONS", mappedQuestions.toString())
+                            Log.d("QUIZ_ACTIVITY", level.toString())
+                            val quizInfo = QuizInfo(
+                                level = level,
+                                isQuiz = isQuiz,
+                                quizzes = mappedQuestions
+                            )
+
+                            Log.d("QUIZ_ACTIVITY", mappedQuestions.toString())
+                            Log.d("QUIZ_ACTIVITY", quizInfo.toString())
 
                             val intent = Intent(this, QuizActivity::class.java)
-                            intent.putExtra(QuizActivity.IS_QUIZ, isQuiz)
-                            intent.putExtra(QuizActivity.LEVEL, LEVEL)
-                            intent.putStringArrayListExtra(QuizActivity.QUESTIONS, mappedQuestions)
+                            intent.putExtra(QuizActivity.INFO, quizInfo)
                             startActivity(intent, null)
                         }
                     }

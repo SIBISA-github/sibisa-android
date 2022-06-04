@@ -14,7 +14,7 @@ class FinishActivity : AppCompatActivity() {
         setContentView(R.layout.activity_finish)
 
         isSuccess = intent.getBooleanExtra(IS_SUCCESS, true)
-        fromLevel = intent.getIntExtra(IS_SUCCESS, 1)
+        fromLevel = intent.getIntExtra(FROM_LEVEL, 1)
 
         setupUI()
     }

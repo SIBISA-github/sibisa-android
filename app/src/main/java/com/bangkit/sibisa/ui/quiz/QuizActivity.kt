@@ -8,8 +8,6 @@ import android.content.pm.PackageManager
 import android.graphics.*
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import android.util.Size
 import android.view.View
@@ -24,8 +22,12 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
 import com.bangkit.sibisa.databinding.ActivityQuizBinding
 import com.bangkit.sibisa.models.detection.DetectionResult
+import com.bangkit.sibisa.models.quiz.QuizInfo
+import com.bangkit.sibisa.models.quiz.QuizQuestion
 import com.bangkit.sibisa.ui.finish.FinishActivity
 import com.bangkit.sibisa.utils.showToast
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.support.common.ops.NormalizeOp
 import org.tensorflow.lite.support.image.ImageProcessor
@@ -38,6 +40,7 @@ import org.tensorflow.lite.task.vision.detector.ObjectDetector
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 import kotlin.math.min
+import kotlin.properties.Delegates
 import kotlin.random.Random
 
 /** Activity that displays the camera and performs object detection on the incoming frames */
@@ -57,8 +60,10 @@ class QuizActivity : AppCompatActivity() {
     private var imageRotationDegrees: Int = 0
     private val tfImageBuffer = TensorImage(DataType.UINT8)
 
-    private lateinit var questions: ArrayList<String>
-    private lateinit var images: ArrayList<String>
+    private lateinit var info: QuizInfo
+    private lateinit var quizzes: ArrayList<QuizQuestion>
+    private var isQuiz by Delegates.notNull<Boolean>()
+    private var level by Delegates.notNull<Int>()
 
     private val tfImageProcessor by lazy {
         val cropSize = minOf(bitmapBuffer.width, bitmapBuffer.height)
@@ -84,24 +89,27 @@ class QuizActivity : AppCompatActivity() {
         binding = ActivityQuizBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.skipButton.setOnClickListener {
+        binding.skipQuizButton.setOnClickListener {
             val intent = Intent(this, FinishActivity::class.java)
-            intent.putExtra(FinishActivity.IS_SUCCESS, false)
-            startActivity(intent, null)
-            finish()
-        }
-
-        questions = intent.getStringArrayListExtra(QUESTIONS)!!
-
-        Log.d("QUESTIONS", questions.toString())
-
-        binding.skipButton.setOnClickListener {
-            val intent = Intent(this, FinishActivity::class.java)
-            intent.putExtra(FinishActivity.IS_SUCCESS, false)
-            intent.putExtra(FinishActivity.FROM_LEVEL, LEVEL)
+            intent.putExtra(FinishActivity.IS_SUCCESS, true)
+            intent.putExtra(FinishActivity.FROM_LEVEL, level)
             startActivity(intent)
             finish()
         }
+
+        binding.skipQuestionButton.setOnClickListener {
+            if (quizzes.isNotEmpty()) {
+                advanceQuestion()
+            }
+        }
+
+        info = intent.getParcelableExtra(INFO)!!
+
+        quizzes = info.quizzes
+        isQuiz = info.isQuiz
+        level = info.level
+
+        Log.d("INFO", info.toString())
 
         setupUI()
     }
@@ -116,10 +124,20 @@ class QuizActivity : AppCompatActivity() {
             androidx.appcompat.R.anim.abc_slide_out_top
         )
         showQuestion()
+        if (!isQuiz) {
+            showImage()
+        }
     }
 
     private fun showQuestion() {
-        binding.textQuestionSwitcher.setText(questions[0].uppercase())
+        binding.textQuestionSwitcher.setText(quizzes[0].question?.uppercase())
+    }
+
+    private fun showImage() {
+        binding.draggableCard1.visibility = View.VISIBLE
+        binding.imageReference.visibility = View.VISIBLE
+        Glide.with(this).load(quizzes[0].image)
+            .transition(DrawableTransitionOptions.withCrossFade()).into(binding.imageReference)
     }
 
     override fun onDestroy() {
@@ -185,8 +203,7 @@ class QuizActivity : AppCompatActivity() {
                     .setScoreThreshold(ACCURACY_THRESHOLD)
                     .build()
 
-                Log.d("LEVEL", intent.getIntExtra(LEVEL, 1).toString())
-                val modelPath = when (intent.getIntExtra(LEVEL, 1)) {
+                val modelPath = when (level) {
                     1 -> LV1_MODEL_PATH
                     2 -> LV2_MODEL_PATH
                     3 -> LV3_MODEL_PATH
@@ -222,11 +239,8 @@ class QuizActivity : AppCompatActivity() {
                     )
                 }
 
-                Log.d(TAG, questions[0])
-
                 reportPrediction(resultToDisplay)
                 resultToDisplay?.let { checkAnswer(it) }
-                checkQuiz()
             })
 
             // Create a new camera selector each time, enforcing lens facing
@@ -248,7 +262,7 @@ class QuizActivity : AppCompatActivity() {
         for ((i, obj) in results.withIndex()) {
             val box = obj.boundingBox
 
-            Log.d(TAG, "Detected object: ${i} ")
+            Log.d(TAG, "Detected object: $i ")
             Log.d(TAG, "  boundingBox: (${box.left}, ${box.top}) - (${box.right},${box.bottom})")
 
             for ((j, category) in obj.categories.withIndex()) {
@@ -261,22 +275,41 @@ class QuizActivity : AppCompatActivity() {
 
     private fun checkAnswer(result: DetectionResult) {
         runOnUiThread {
-            if (result.predictionText.equals(questions[0], true) && result.score >= 0.85f) {
-                Log.d("RESULT", "BENARRRR")
-                showToast(this, "Benar! ${questions[0]} terdeteksi")
-                questions.removeAt(0)
-                showQuestion()
+            if (quizzes.isNotEmpty()) {
+                if (result.predictionText.equals(
+                        quizzes[0].question,
+                        true
+                    ) && result.score >= 0.85f
+                ) {
+                    Log.d("RESULT", "BENARRRR")
+                    showToast(this, "Benar! ${quizzes[0].question} terdeteksi")
+                    advanceQuestion()
+                }
             }
         }
     }
 
-    private fun checkQuiz() {
-        if (questions.isEmpty()) {
+    private fun advanceQuestion() {
+        if (quizzes.isNotEmpty()) {
+            quizzes.removeAt(0)
+            if (quizzes.isNotEmpty()) {
+                showQuestion()
+                if (!isQuiz) {
+                    showImage()
+                }
+            } else {
+                checkQuizState()
+            }
+        }
+    }
+
+    private fun checkQuizState() {
+        if (quizzes.isEmpty()) {
             binding.textQuestionSwitcher.setText("Selamat! Anda berhasil melewati kuis ini")
 
             val intent = Intent(this, FinishActivity::class.java)
             intent.putExtra(FinishActivity.IS_SUCCESS, true)
-            intent.putExtra(FinishActivity.FROM_LEVEL, LEVEL)
+            intent.putExtra(FinishActivity.FROM_LEVEL, level)
             startActivity(intent)
             finish()
         }
@@ -322,7 +355,14 @@ class QuizActivity : AppCompatActivity() {
      * the model into the coordinates that the user sees on the screen.
      */
     private fun mapOutputCoordinates(location: RectF): RectF {
+        val convertedLocation = RectF(
+            location.left * 0.01f,
+            location.top * 0.01f,
+            location.right * 0.01f,
+            location.bottom * 0.01f
+        )
 
+        Log.d("LOCATION", convertedLocation.toString())
         // Step 1: map location to the preview coordinates
         val previewLocation = RectF(
             location.left * binding.viewFinder.width,
@@ -330,6 +370,7 @@ class QuizActivity : AppCompatActivity() {
             location.right * binding.viewFinder.width,
             location.bottom * binding.viewFinder.height
         )
+        Log.d("LOCATION", previewLocation.toString())
 
         // Step 2: compensate for camera sensor orientation and mirroring
         val isFrontFacing = lensFacing == CameraSelector.LENS_FACING_FRONT
@@ -405,9 +446,7 @@ class QuizActivity : AppCompatActivity() {
         private const val LV2_MODEL_PATH = "level2.tflite"
         private const val LV3_MODEL_PATH = "level3.tflite"
 
-        const val LEVEL = "level"
-        const val QUESTIONS = "questions"
-        const val IS_QUIZ = "quiz"
+        const val INFO = "info"
     }
 }
 
