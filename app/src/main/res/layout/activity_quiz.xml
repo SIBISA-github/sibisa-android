@@ -109,24 +109,26 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/skip_question_button"
-        style="@style/TextAppearance.MaterialComponents.Body1"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginVertical="8dp"
         android:layout_marginBottom="8dp"
-        android:backgroundTint="@color/white"
+        android:padding="8dp"
         android:text="Lewati Pertanyaan"
-        android:textColor="@color/riviera_paradise"
         app:layout_constraintBottom_toTopOf="@id/skip_quiz_button"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/skip_quiz_button"
-        style="@style/TextAppearance.MaterialComponents.Body1"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginVertical="8dp"
         android:layout_marginBottom="40dp"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="@color/broken_white"
+        android:padding="8dp"
         android:text="Menyerah"
         android:textColor="@color/riviera_paradise"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -151,8 +153,8 @@
             <ImageView
                 android:id="@+id/imageReference"
                 android:layout_width="150dp"
-                android:adjustViewBounds="true"
                 android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
                 android:scaleType="fitXY"
                 android:visibility="gone"
                 tools:srcCompat="@drawable/a_lesson"
