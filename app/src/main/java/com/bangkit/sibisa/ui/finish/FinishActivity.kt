@@ -1,5 +1,7 @@
 package com.bangkit.sibisa.ui.finish
 
+import android.graphics.drawable.ColorDrawable
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.bangkit.sibisa.R
@@ -16,6 +18,18 @@ class FinishActivity : AppCompatActivity() {
         isSuccess = intent.getBooleanExtra(IS_SUCCESS, true)
         fromLevel = intent.getIntExtra(FROM_LEVEL, 1)
 
+        supportActionBar?.let {
+            it.setDisplayShowTitleEnabled(false)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                it.setBackgroundDrawable(ColorDrawable(getColor(R.color.riviera_paradise)))
+            }
+
+            // logo for action bar
+            it.setDisplayShowCustomEnabled(true)
+            val view = layoutInflater.inflate(R.layout.custom_image, null)
+            it.customView = view
+        }
+
         setupUI()
     }
 
@@ -26,6 +40,14 @@ class FinishActivity : AppCompatActivity() {
         } else {
             // display failed page
         }
+    }
+
+    private fun updateExp(){
+
+    }
+
+    private fun updateLevel(){
+
     }
 
     companion object {
