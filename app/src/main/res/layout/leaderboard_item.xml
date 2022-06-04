@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="8dp"
+    android:layout_marginTop="4dp"
     android:padding="10dp">
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -12,36 +12,36 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginHorizontal="48dp"
-        tools:src="@drawable/ic_profile_pic"
+        app:civ_border_color="#FF000000"
         app:civ_border_width="0.5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:civ_border_color="#FF000000"/>
+        tools:src="@drawable/ic_profile_pic" />
 
     <TextView
         android:id="@+id/tv_rank"
-        android:layout_width="0dp"
+        style="@style/TextAppearance.MaterialComponents.Headline6"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="14dp"
-        style="@style/TextAppearance.MaterialComponents.Headline6"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/iv_profile"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         tools:text="1" />
 
     <TextView
         android:id="@+id/tv_username"
+        style="@style/TextAppearance.MaterialComponents.Body1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:padding="10dp"
-        style="@style/TextAppearance.MaterialComponents.Body1"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/tv_exp"
         app:layout_constraintStart_toEndOf="@+id/iv_profile"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         tools:text="Lorem Ipsum" />
 
     <TextView

@@ -54,12 +54,12 @@ interface RetrofitService {
         @Path("level") level: Int
     ): BaseResponse<List<Question?>>
 
-    @POST("user/level")
+    @PUT("user/level")
     suspend fun updateLevel(
         @Body level: UpdateLevelRequest
     ): BaseResponse<Profile>
 
-    @POST("user/exp")
+    @PUT("user/exp")
     suspend fun updateExp(
         @Body expData: UpdateExpRequest
     ): BaseResponse<Profile>

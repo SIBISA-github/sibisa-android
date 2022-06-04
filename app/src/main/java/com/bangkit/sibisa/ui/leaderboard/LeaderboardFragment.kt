@@ -60,10 +60,17 @@ class LeaderboardFragment : Fragment() {
                     is NetworkResult.Success -> {
                         binding.progressBar.visibility = View.GONE
 
-                        result.data.let {
-                            if (!it.isNullOrEmpty()) {
-                                setupTop3UI(it)
-                                setupRecyclerView(it.slice(3 until it.size))
+                        result.data.let { list ->
+                            val sortedResult = list?.sortedByDescending { profile ->
+                                profile?.exp
+                            }
+
+                            Log.d("SORT", sortedResult.toString())
+                            Log.d("SORT", sortedResult?.size.toString())
+
+                            if (!sortedResult.isNullOrEmpty()) {
+                                setupTop3UI(sortedResult)
+                                setupRecyclerView(sortedResult.slice(3 until sortedResult.size))
                             } else {
                                 binding.textLeaderboardError.visibility = View.VISIBLE
                             }
