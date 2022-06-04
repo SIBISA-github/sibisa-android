@@ -89,6 +89,8 @@ class QuizActivity : AppCompatActivity() {
         binding = ActivityQuizBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.hide()
+
         binding.skipQuizButton.setOnClickListener {
             val intent = Intent(this, FinishActivity::class.java)
             intent.putExtra(FinishActivity.IS_SUCCESS, true)
