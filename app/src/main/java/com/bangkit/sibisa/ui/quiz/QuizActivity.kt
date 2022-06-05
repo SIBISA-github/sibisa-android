@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.*
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -23,6 +24,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
 import com.bangkit.sibisa.R
 import com.bangkit.sibisa.databinding.ActivityQuizBinding
+import com.bangkit.sibisa.databinding.CustomAlertDialogBinding
 import com.bangkit.sibisa.models.detection.DetectionResult
 import com.bangkit.sibisa.models.quiz.QuizInfo
 import com.bangkit.sibisa.models.quiz.QuizQuestion
@@ -102,7 +104,7 @@ class QuizActivity : AppCompatActivity() {
             if (isQuiz) {
                 showSkipDialog { skipQuiz() }
             } else {
-                skipQuiz()
+                showHelpDialog()
             }
         }
 
@@ -168,6 +170,22 @@ class QuizActivity : AppCompatActivity() {
 
         val dialog: AlertDialog? = builder.create()
         dialog?.show()
+    }
+
+    private fun showHelpDialog() {
+        val builder: AlertDialog.Builder =
+            AlertDialog.Builder(this)
+
+        val dialog = builder.create()
+        val dialogBinding: CustomAlertDialogBinding = CustomAlertDialogBinding.inflate(layoutInflater)
+        dialog.setContentView(R.layout.custom_alert_dialog)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialogBinding.alertTitle.text = "HELP"
+        dialogBinding.alertText.text = "TEST 123 bisa ga ya ini pliss"
+        dialogBinding.alertOK.setOnClickListener {
+            showToast(this, "dialog OK")
+        }
+        dialog.show()
     }
 
     private fun skipQuestion() {
