@@ -35,6 +35,7 @@
     <string name="logout_dialog_message">Are you sure you want to sign out?</string>
     <string name="picture_dialog_message">Are you sure you want to change your profile picture?</string>
     <string name="dialog_message_yes">Ya</string>
+    <string name="dialog_message_ok">OK</string>
     <string name="dialog_message_no">Tidak</string>
     <string name="text_exp">+%s XP</string>
     <string name="unknown">unknown</string>
@@ -54,4 +55,9 @@
     <string name="failed_text">Kamu belum berhasil menjawab pertanyaan-pertanyaan dengan benar, yuk coba lagi!</string>
     <string name="continue_to_home">Lanjut</string>
     <string name="back_to_lesson">Kembali ke materi</string>
+    <string name="help">Petunjuk</string>
+    <string name="skip_question">Lewati Pertanyaan</string>
+    <string name="skip_quiz">Lewati Kuis</string>
+    <string name="close">close</string>
+    <string name="ok">OK</string>
 </resources>
