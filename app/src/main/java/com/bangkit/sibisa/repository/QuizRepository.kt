@@ -31,7 +31,7 @@ class QuizRepository(private val retrofitService: RetrofitService) {
                 ) ?: null
                 emit(NetworkResult.Error(errorBody?.errorCode.toString()))
             } catch (e: Exception) {
-                emit(NetworkResult.Error(e.message.toString()))
+                emit(NetworkResult.Error("Server error, please try again later"))
             }
         }
     }
@@ -56,7 +56,7 @@ class QuizRepository(private val retrofitService: RetrofitService) {
                 ) ?: null
                 emit(NetworkResult.Error(errorBody?.errorCode.toString()))
             } catch (e: Exception) {
-                emit(NetworkResult.Error(e.message.toString()))
+                emit(NetworkResult.Error("Server error, please try again later"))
             }
         }
     }
