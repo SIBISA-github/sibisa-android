@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.util.Size
+import android.view.MotionEvent
+import android.view.ScaleGestureDetector
 import android.view.View
 import android.view.ViewGroup
 import androidx.camera.core.AspectRatio
@@ -26,6 +28,7 @@ import com.bangkit.sibisa.databinding.ActivityQuizBinding
 import com.bangkit.sibisa.models.detection.DetectionResult
 import com.bangkit.sibisa.models.quiz.QuizInfo
 import com.bangkit.sibisa.models.quiz.QuizQuestion
+import com.bangkit.sibisa.ui.custom.ScaleListener
 import com.bangkit.sibisa.ui.finish.FinishActivity
 import com.bangkit.sibisa.utils.showToast
 import com.bumptech.glide.Glide
@@ -64,6 +67,7 @@ class QuizActivity : AppCompatActivity() {
 
     private lateinit var info: QuizInfo
     private lateinit var quizzes: ArrayList<QuizQuestion>
+    private lateinit var scaleDetector: ScaleGestureDetector
     private var isSuccess = true
     private var isQuiz by Delegates.notNull<Boolean>()
     private var level by Delegates.notNull<Int>()
@@ -98,23 +102,8 @@ class QuizActivity : AppCompatActivity() {
         isQuiz = info.isQuiz
         level = info.level
 
-        binding.skipQuizButton.setOnClickListener {
-            if (isQuiz) {
-                showSkipDialog { skipQuiz() }
-            } else {
-                skipQuiz()
-            }
-        }
-
-        binding.skipQuestionButton.setOnClickListener {
-            if (isQuiz) {
-                showSkipDialog { skipQuestion() }
-            } else {
-                skipQuestion()
-            }
-        }
-
         setupUI()
+        setupAction()
     }
 
     private fun setupUI() {
@@ -135,10 +124,34 @@ class QuizActivity : AppCompatActivity() {
             androidx.appcompat.R.anim.abc_slide_out_top
         )
 
+        setupZoomableImage()
+
         showQuestion()
         if (!isQuiz) {
             showImage()
         }
+    }
+
+    private fun setupAction() {
+        binding.skipQuizButton.setOnClickListener {
+            if (isQuiz) {
+                showSkipDialog { skipQuiz() }
+            } else {
+                skipQuiz()
+            }
+        }
+
+        binding.skipQuestionButton.setOnClickListener {
+            if (isQuiz) {
+                showSkipDialog { skipQuestion() }
+            } else {
+                skipQuestion()
+            }
+        }
+    }
+
+    private fun setupZoomableImage() {
+        scaleDetector = ScaleGestureDetector(this, ScaleListener(binding.imageReference))
     }
 
     private fun showQuestion() {
@@ -395,6 +408,11 @@ class QuizActivity : AppCompatActivity() {
         // Make sure all UI elements are visible
         binding.boxPrediction.visibility = View.VISIBLE
         binding.textPrediction.visibility = View.VISIBLE
+    }
+
+    override fun onTouchEvent(event: MotionEvent?): Boolean {
+        scaleDetector.onTouchEvent(event)
+        return super.onTouchEvent(event)
     }
 
     /**
