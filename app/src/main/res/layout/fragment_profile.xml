@@ -51,7 +51,7 @@
 
     <TextView
         android:id="@+id/text_username"
-        style="@style/TextAppearance.MaterialComponents.Headline4"
+        style="?attr/textAppearanceHeadline4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="4dp"
@@ -64,7 +64,7 @@
 
     <TextView
         android:id="@+id/text_name"
-        style="@style/TextAppearance.MaterialComponents.Body1"
+        style="?attr/textAppearanceBody1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -77,7 +77,7 @@
 
     <TextView
         android:id="@+id/text_join_date"
-        style="@style/TextAppearance.MaterialComponents.Body1"
+        style="?attr/textAppearanceBody1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -104,7 +104,7 @@
 
     <TextView
         android:id="@+id/text_level_heading"
-        style="@style/TextAppearance.MaterialComponents.Headline5"
+        style="?attr/textAppearanceHeadline5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
@@ -117,7 +117,7 @@
 
     <TextView
         android:id="@+id/text_level"
-        style="@style/TextAppearance.MaterialComponents.Headline6"
+        style="?attr/textAppearanceHeadline6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -130,7 +130,7 @@
 
     <TextView
         android:id="@+id/text_exp_heading"
-        style="@style/TextAppearance.MaterialComponents.Headline5"
+        style="?attr/textAppearanceHeadline5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:drawablePadding="8dp"
@@ -142,7 +142,7 @@
 
     <TextView
         android:id="@+id/text_exp"
-        style="@style/TextAppearance.MaterialComponents.Headline6"
+        style="?attr/textAppearanceHeadline6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"

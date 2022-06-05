@@ -31,7 +31,7 @@
 
     <TextView
         android:id="@+id/level"
-        style="@style/TextAppearance.MaterialComponents.Body1"
+        style="?attr/textAppearanceBody1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="8dp"
@@ -54,7 +54,7 @@
 
     <TextView
         android:id="@+id/level_2"
-        style="@style/TextAppearance.MaterialComponents.Body1"
+        style="?attr/textAppearanceBody1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="8dp"
@@ -77,7 +77,7 @@
 
     <TextView
         android:id="@+id/level_3"
-        style="@style/TextAppearance.MaterialComponents.Body1"
+        style="?attr/textAppearanceBody1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="8dp"
@@ -150,7 +150,7 @@
         app:layout_constraintVertical_bias="0.608" />
 
     <TextView
-        style="@style/TextAppearance.MaterialComponents.Headline4"
+        style="?attr/textAppearanceHeadline4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="24dp"

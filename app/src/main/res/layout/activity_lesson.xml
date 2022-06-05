@@ -8,12 +8,12 @@
 
     <TextView
         android:id="@+id/lesson_heading"
+        style="?attr/textAppearanceHeadline5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="16dp"
         android:gravity="center"
-        style="@style/TextAppearance.MaterialComponents.Headline5"
         app:layout_constraintBottom_toTopOf="@id/lesson_carousel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,12 +21,12 @@
         tools:text="Lorem Ipsum" />
 
     <ImageButton
-        android:contentDescription="@string/help"
         android:id="@+id/help_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_margin="16dp"
         android:background="@drawable/circle_button"
+        android:contentDescription="@string/help"
         android:src="@drawable/ic_baseline_help_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

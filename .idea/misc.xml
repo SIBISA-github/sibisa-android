@@ -24,8 +24,9 @@
         <entry key="..\:/Users/marsh/OneDrive/Documents/Kuliah/Bangkit 2022/Capstone Project/sibisa-android/app/src/main/res/drawable/list_item.xml" value="0.21" />
         <entry key="..\:/Users/marsh/OneDrive/Documents/Kuliah/Bangkit 2022/Capstone Project/sibisa-android/app/src/main/res/drawable/shape_rectangle.xml" value="0.1" />
         <entry key="..\:/Users/marsh/OneDrive/Documents/Kuliah/Bangkit 2022/Capstone Project/sibisa-android/app/src/main/res/drawable/text_border.xml" value="0.196" />
-        <entry key="..\:/Users/marsh/OneDrive/Documents/Kuliah/Bangkit 2022/Capstone Project/sibisa-android/app/src/main/res/layout/activity_finish.xml" value="0.16" />
-        <entry key="..\:/Users/marsh/OneDrive/Documents/Kuliah/Bangkit 2022/Capstone Project/sibisa-android/app/src/main/res/layout/activity_lesson.xml" value="0.2" />
+        <entry key="..\:/Users/marsh/OneDrive/Documents/Kuliah/Bangkit 2022/Capstone Project/sibisa-android/app/src/main/res/font/inter_bold.xml" value="0.1111111111111111" />
+        <entry key="..\:/Users/marsh/OneDrive/Documents/Kuliah/Bangkit 2022/Capstone Project/sibisa-android/app/src/main/res/layout/activity_finish.xml" value="0.25" />
+        <entry key="..\:/Users/marsh/OneDrive/Documents/Kuliah/Bangkit 2022/Capstone Project/sibisa-android/app/src/main/res/layout/activity_lesson.xml" value="0.12" />
         <entry key="..\:/Users/marsh/OneDrive/Documents/Kuliah/Bangkit 2022/Capstone Project/sibisa-android/app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="..\:/Users/marsh/OneDrive/Documents/Kuliah/Bangkit 2022/Capstone Project/sibisa-android/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/marsh/OneDrive/Documents/Kuliah/Bangkit 2022/Capstone Project/sibisa-android/app/src/main/res/layout/activity_profile.xml" value="0.18802083333333333" />
@@ -34,7 +35,7 @@
         <entry key="..\:/Users/marsh/OneDrive/Documents/Kuliah/Bangkit 2022/Capstone Project/sibisa-android/app/src/main/res/layout/custom_alert_dialog.xml" value="0.22" />
         <entry key="..\:/Users/marsh/OneDrive/Documents/Kuliah/Bangkit 2022/Capstone Project/sibisa-android/app/src/main/res/layout/custom_image.xml" value="0.13994565217391305" />
         <entry key="..\:/Users/marsh/OneDrive/Documents/Kuliah/Bangkit 2022/Capstone Project/sibisa-android/app/src/main/res/layout/fragment_dashboard.xml" value="0.2265625" />
-        <entry key="..\:/Users/marsh/OneDrive/Documents/Kuliah/Bangkit 2022/Capstone Project/sibisa-android/app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="..\:/Users/marsh/OneDrive/Documents/Kuliah/Bangkit 2022/Capstone Project/sibisa-android/app/src/main/res/layout/fragment_home.xml" value="0.22" />
         <entry key="..\:/Users/marsh/OneDrive/Documents/Kuliah/Bangkit 2022/Capstone Project/sibisa-android/app/src/main/res/layout/fragment_leaderboard.xml" value="0.18" />
         <entry key="..\:/Users/marsh/OneDrive/Documents/Kuliah/Bangkit 2022/Capstone Project/sibisa-android/app/src/main/res/layout/fragment_notifications.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/marsh/OneDrive/Documents/Kuliah/Bangkit 2022/Capstone Project/sibisa-android/app/src/main/res/layout/fragment_profile.xml" value="0.22" />

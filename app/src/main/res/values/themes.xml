@@ -14,5 +14,19 @@
         <!-- Customize your theme here. -->
         <item name="android:textColorPrimary">@color/black</item>
         <item name="bottomNavigationStyle">@style/BottomNavigationViewStyle</item>
+
+        <!--Typography-->
+        <item name="textAppearanceHeadline2">@style/TextAppearance.SIBISA.Headline2</item>
+        <item name="textAppearanceHeadline3">@style/TextAppearance.SIBISA.Headline3</item>
+        <item name="textAppearanceHeadline4">@style/TextAppearance.SIBISA.Headline4</item>
+        <item name="textAppearanceHeadline5">@style/TextAppearance.SIBISA.Headline5</item>
+        <item name="textAppearanceHeadline6">@style/TextAppearance.SIBISA.Headline6</item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.SIBISA.Subtitle1</item>
+        <item name="textAppearanceSubtitle2">@style/TextAppearance.SIBISA.Subtitle2</item>
+        <item name="textAppearanceBody1">@style/TextAppearance.SIBISA.Body1</item>
+        <item name="textAppearanceBody2">@style/TextAppearance.SIBISA.Body2</item>
+        <item name="textAppearanceButton">@style/TextAppearance.SIBISA.Button</item>
+        <item name="textAppearanceCaption">@style/TextAppearance.SIBISA.Caption</item>
+        <item name="textAppearanceOverline">@style/TextAppearance.SIBISA.Overline</item>
     </style>
 </resources>
