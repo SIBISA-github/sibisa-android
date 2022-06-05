@@ -37,10 +37,6 @@ class FinishActivity : AppCompatActivity() {
         isQuiz = intent.getBooleanExtra(IS_QUIZ, true)
         fromLevel = intent.getIntExtra(FROM_LEVEL, 1)
 
-        Log.d("FINISH", isSuccess.toString())
-        Log.d("FINISH", isQuiz.toString())
-        Log.d("FINISH", fromLevel.toString())
-
         viewModel = ViewModelProvider(this, ViewModelFactory(this))[FinishViewModel::class.java]
 
         setupUI()

@@ -56,11 +56,11 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="4dp"
         android:gravity="center"
-        tools:text="Lorem Ipsum"
         app:layout_constraintBottom_toTopOf="@id/text_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/profile_image" />
+        app:layout_constraintTop_toBottomOf="@id/profile_image"
+        tools:text="Lorem Ipsum" />
 
     <TextView
         android:id="@+id/text_name"
@@ -69,11 +69,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:gravity="center"
-        tools:text="Lorem Ipsum"
         app:layout_constraintBottom_toTopOf="@id/text_join_date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_username" />
+        app:layout_constraintTop_toBottomOf="@id/text_username"
+        tools:text="Lorem Ipsum" />
 
     <TextView
         android:id="@+id/text_join_date"
@@ -83,11 +83,11 @@
         android:layout_marginTop="12dp"
         android:drawablePadding="8dp"
         android:gravity="center"
-        tools:text="Lorem Ipsum"
         app:drawableStartCompat="@drawable/ic_baseline_access_time_filled_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_name" />
+        app:layout_constraintTop_toBottomOf="@id/text_name"
+        tools:text="Lorem Ipsum" />
 
     <View
         android:id="@+id/horizontal_line"
@@ -123,10 +123,10 @@
         android:layout_marginTop="12dp"
         android:drawablePadding="8dp"
         android:gravity="center"
-        tools:text="1"
         app:layout_constraintEnd_toEndOf="@id/text_level_heading"
         app:layout_constraintStart_toStartOf="@id/text_level_heading"
-        app:layout_constraintTop_toBottomOf="@id/text_level_heading" />
+        app:layout_constraintTop_toBottomOf="@id/text_level_heading"
+        tools:text="1" />
 
     <TextView
         android:id="@+id/text_exp_heading"
@@ -148,10 +148,21 @@
         android:layout_marginTop="12dp"
         android:drawablePadding="8dp"
         android:gravity="center"
-        tools:text="+500 EXP"
         app:layout_constraintEnd_toEndOf="@id/text_exp_heading"
         app:layout_constraintStart_toStartOf="@id/text_exp_heading"
-        app:layout_constraintTop_toBottomOf="@id/text_exp_heading" />
+        app:layout_constraintTop_toBottomOf="@id/text_exp_heading"
+        tools:text="+500 EXP" />
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/bloodthirsty_vampire"
+        android:text="@string/sign_out"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_level" />
+
 
     <ProgressBar
         android:id="@+id/progressBar"
