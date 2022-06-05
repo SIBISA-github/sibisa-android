@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class RetrofitConfig {
     companion object {
         private var BASE_URL = "https://api-sibisa.herokuapp.com/api/v1/"
-        private var PROD_URL = "https://sibisa-351215.et.r.appspot.com/"
+        private var PROD_URL = "https://sibisa-351215.et.r.appspot.com/api/v1"
 
         fun getApiService(context: Context): RetrofitService {
             val loggingInterceptor = if (BuildConfig.DEBUG) {
@@ -26,7 +26,7 @@ class RetrofitConfig {
                 .addInterceptor(serviceInterceptor)
                 .build()
             val retrofit = Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl(PROD_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()
