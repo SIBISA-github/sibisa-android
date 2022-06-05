@@ -29,6 +29,7 @@ import com.bangkit.sibisa.models.detection.DetectionResult
 import com.bangkit.sibisa.models.quiz.QuizInfo
 import com.bangkit.sibisa.models.quiz.QuizQuestion
 import com.bangkit.sibisa.ui.finish.FinishActivity
+import com.bangkit.sibisa.utils.showHelpDialog
 import com.bangkit.sibisa.utils.showToast
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
@@ -104,7 +105,7 @@ class QuizActivity : AppCompatActivity() {
             if (isQuiz) {
                 showSkipDialog { skipQuiz() }
             } else {
-                showHelpDialog()
+                skipQuiz()
             }
         }
 
@@ -113,6 +114,18 @@ class QuizActivity : AppCompatActivity() {
                 showSkipDialog { skipQuestion() }
             } else {
                 skipQuestion()
+            }
+        }
+
+        binding.helpButton.setOnClickListener {
+            if (isQuiz) {
+                val text =
+                    "ika berhasil menjawab semua pertanyaan, kamu akan mendapatkan EXP \n\nNamun, jika gagal atau melewati kamu tidak akan mendapatkan EXP"
+                showHelpDialog(this, "PETUNJUK", text)
+            } else {
+                val text =
+                    "Mode latihan dilengkapi dengan referensi gambar untuk memudahkan kamu berlatih!\n\nGambar dapat dipindahkan sesukamu dengan menggeser gambar di layar\n\nKamu tidak dapat mendapatkan EXP di mode ini"
+                showHelpDialog(this, "PETUNJUK", text)
             }
         }
 
@@ -172,21 +185,21 @@ class QuizActivity : AppCompatActivity() {
         dialog?.show()
     }
 
-    private fun showHelpDialog() {
-        val builder: AlertDialog.Builder =
-            AlertDialog.Builder(this)
-
-        val dialog = builder.create()
-        val dialogBinding: CustomAlertDialogBinding = CustomAlertDialogBinding.inflate(layoutInflater)
-        dialog.setContentView(R.layout.custom_alert_dialog)
-        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialogBinding.alertTitle.text = "HELP"
-        dialogBinding.alertText.text = "TEST 123 bisa ga ya ini pliss"
-        dialogBinding.alertOK.setOnClickListener {
-            showToast(this, "dialog OK")
-        }
-        dialog.show()
-    }
+//    private fun showHelpDialog(text: String) {
+//        val builder: AlertDialog.Builder =
+//            AlertDialog.Builder(this)
+//
+//        builder.setTitle("PETUNJUK")
+//            .setMessage(text)
+//            ?.setNeutralButton(
+//                R.string.dialog_message_ok
+//            ) { dialog, _ ->
+//                dialog.dismiss()
+//            }
+//
+//        val dialog: AlertDialog? = builder.create()
+//        dialog?.show()
+//    }
 
     private fun skipQuestion() {
         if (quizzes.isNotEmpty()) {
