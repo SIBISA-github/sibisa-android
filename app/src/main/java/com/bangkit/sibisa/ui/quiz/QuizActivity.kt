@@ -120,7 +120,7 @@ class QuizActivity : AppCompatActivity() {
         binding.helpButton.setOnClickListener {
             if (isQuiz) {
                 val text =
-                    "ika berhasil menjawab semua pertanyaan, kamu akan mendapatkan EXP \n\nNamun, jika gagal atau melewati kamu tidak akan mendapatkan EXP"
+                    "Jika berhasil menjawab semua pertanyaan, kamu akan mendapatkan EXP \n\nNamun, jika gagal atau melewati kamu tidak akan mendapatkan EXP"
                 showHelpDialog(this, "PETUNJUK", text)
             } else {
                 val text =
