@@ -32,8 +32,8 @@
     <string name="text_leaderboard_empty">No user profiles available</string>
     <string name="sign_out">Sign Out</string>
     <string name="save_changes">Save Changes</string>
-    <string name="logout_dialog_message">Are you sure you want to sign out?</string>
-    <string name="picture_dialog_message">Are you sure you want to change your profile picture?</string>
+    <string name="logout_dialog_message">Apakah kamu yakin ingin keluar dari akun?</string>
+    <string name="picture_dialog_message">Apakah kamu yakin ingin mengganti foto profil?</string>
     <string name="dialog_message_yes">Ya</string>
     <string name="dialog_message_ok">OK</string>
     <string name="dialog_message_no">Tidak</string>
@@ -46,6 +46,7 @@
     <string name="huruf_vokal">Huruf Vokal</string>
     <string name="kata_dasar">Kata Dasar</string>
     <string name="kuis">Kuis</string>
+    <string name="kuis_gabungan">Kuis</string>
     <string name="level_pertengahan">Level Pertengahan</string>
     <string name="coming_soon">Coming Soon!</string>
     <string name="lesson_exercise_button">Latihan</string>

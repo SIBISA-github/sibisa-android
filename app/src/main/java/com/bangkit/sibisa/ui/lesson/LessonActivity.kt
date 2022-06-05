@@ -20,6 +20,7 @@ import com.bangkit.sibisa.models.quiz.QuizInfo
 import com.bangkit.sibisa.models.quiz.QuizQuestion
 import com.bangkit.sibisa.models.result.NetworkResult
 import com.bangkit.sibisa.ui.quiz.QuizActivity
+import com.bangkit.sibisa.utils.showHelpDialog
 import com.bangkit.sibisa.utils.showToast
 import com.yuyakaido.android.cardstackview.*
 import java.lang.Integer.parseInt
@@ -60,9 +61,21 @@ class LessonActivity : AppCompatActivity() {
             goToQuestion(false)
         }
 
-        level = intent.getIntExtra(LEVEL, 0)
-        Log.d("LEVEL", level.toString())
+        binding.helpButton.setOnClickListener {
+            showHelpDialog(
+                this,
+                "PETUNJUK",
+                "Materi terdiri dari beberapa foto sesuai dengan level yang ada \n\n Kamu dapat melihat foto dengan cara menggeser foto ke arah horizontal \n\n Tekan tombol kuis untuk mengerjakan kuis \n\n Tekan tombol latihan untuk berlatih"
+            )
+        }
 
+        level = intent.getIntExtra(LEVEL, 0)
+
+        when (level) {
+            1 -> binding.lessonHeading.text = resources.getString(R.string.huruf_vokal)
+            2 -> binding.lessonHeading.text = resources.getString(R.string.kata_dasar)
+            3 -> binding.lessonHeading.text = resources.getString(R.string.kuis_gabungan)
+        }
         fetchLessons()
     }
 
