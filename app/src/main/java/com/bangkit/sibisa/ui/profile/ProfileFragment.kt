@@ -65,6 +65,7 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupUI()
+        setupAction()
     }
 
     override fun onDestroyView() {
@@ -120,6 +121,12 @@ class ProfileFragment : Fragment() {
                     }
                 }
             }
+        }
+    }
+
+    private fun setupAction() {
+        binding.logoutButton.setOnClickListener {
+            logout()
         }
     }
 
