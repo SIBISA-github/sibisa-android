@@ -11,7 +11,7 @@
         android:id="@+id/icon_home"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="56dp"
         android:adjustViewBounds="true"
         android:contentDescription="@string/app_name"
         android:src="@drawable/ic_app"
@@ -109,11 +109,11 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="32dp"
-        app:passwordToggleEnabled="true"
-        app:passwordToggleTint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/regist_email_layout"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/black"
         app:startIconDrawable="@drawable/ic_baseline_lock_24">
 
         <EditText
@@ -128,27 +128,26 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
-        app:cornerRadius="20dp"
         android:id="@+id/registButton"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:padding="12dp"
-        android:layout_marginTop="32dp"
         android:text="@string/register"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:cornerRadius="20dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintBottom_toTopOf="@id/loginCtaTextView"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/regist_password_layout" />
 
     <TextView
         android:id="@+id/loginCtaTextView"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
         android:gravity="center"
         android:textColor="@color/white"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/registButton" />
