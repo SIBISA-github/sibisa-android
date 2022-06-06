@@ -7,17 +7,39 @@
     android:background="@color/ferry"
     tools:context=".ui.register.RegisterActivity">
 
+    <ImageView
+        android:id="@+id/icon_home"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="40dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/ic_app"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/logo_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/app_logo"
+        android:src="@drawable/ic_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/icon_home" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/regist_name_layout"
         style="@style/LoginRegisterTextInputLayoutStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/guidelineHorizontal"
+        app:layout_constraintTop_toBottomOf="@id/logo_home"
         app:startIconDrawable="@drawable/ic_baseline_person_24">
 
         <EditText
@@ -111,18 +133,20 @@
         android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:padding="12dp"
-        android:layout_margin="32dp"
+        android:layout_marginTop="32dp"
         android:text="@string/register"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/loginCtaTextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/regist_password_layout" />
 
     <TextView
         android:id="@+id/loginCtaTextView"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_marginBottom="20dp"
         android:gravity="center"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
