@@ -347,12 +347,17 @@ class QuizActivity : AppCompatActivity() {
     }
 
     private fun checkAnswer(result: DetectionResult) {
+        val threshold = if(level == 1) {
+            0.92f
+        } else {
+            0.98f
+        }
         runOnUiThread {
             if (quizzes.isNotEmpty()) {
                 if (result.predictionText.equals(
                         quizzes[0].question,
                         true
-                    ) && result.score >= 0.85f
+                    ) && result.score >= threshold
                 ) {
                     Log.d("RESULT", "BENARRRR")
                     showToast(this, "Benar! ${quizzes[0].question} terdeteksi")
