@@ -6,7 +6,7 @@
     <string name="name">Name</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
-    <string name="register">Register</string>
+    <string name="register">Daftar</string>
     <string name="sibisa">Sibisa</string>
     <string name="level">Level 1</string>
     <string name="level_basic">Level Dasar</string>
@@ -16,13 +16,13 @@
     <string name="lesson_carousel_desc">huruf A</string>
     <string name="lesson_subtittle">Mempelajari huruf A</string>
     <string name="title_login_page">Login</string>
-    <string name="login">login</string>
+    <string name="login">Masuk</string>
     <string name="title_profile">Profile</string>
     <string name="level_heading">LEVEL</string>
     <string name="exp_heading">EXP</string>
     <string name="username">Username</string>
-    <string name="login_from_register_cta">Sudah punya akun? Klik untuk masuk</string>
-    <string name="register_from_login_cta">Belum punya akun? Klik untuk daftar </string>
+    <string name="login_from_register_cta">Sudah punya akun? Masuk</string>
+    <string name="register_from_login_cta">Belum punya akun? Daftar </string>
     <string name="profile_picture">Profile Picture</string>
     <string name="title_leaderboard">Leaderboard</string>
     <string name="rank1_number">1</string>

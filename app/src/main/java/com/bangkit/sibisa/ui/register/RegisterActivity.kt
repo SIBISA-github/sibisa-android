@@ -76,8 +76,8 @@ class RegisterActivity : AppCompatActivity() {
             }
         }
 
-        val startIndex = text.indexOf("Klik untuk masuk")
-        val endIndex = startIndex + "Klik untuk masuk".length
+        val startIndex = text.indexOf("Masuk")
+        val endIndex = startIndex + "Masuk".length
 
         spannableString.setSpan(boldSpan, startIndex, endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         spannableString.setSpan(clickSpan, startIndex, endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
