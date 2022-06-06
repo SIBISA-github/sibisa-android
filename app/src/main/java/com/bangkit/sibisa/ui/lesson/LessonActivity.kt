@@ -74,7 +74,7 @@ class LessonActivity : AppCompatActivity() {
         when (level) {
             1 -> binding.lessonHeading.text = resources.getString(R.string.huruf_vokal)
             2 -> binding.lessonHeading.text = resources.getString(R.string.kata_dasar)
-            3 -> binding.lessonHeading.text = resources.getString(R.string.kuis_gabungan)
+            3 -> binding.lessonHeading.text = resources.getString(R.string.kuis_akhir)
         }
 
         fetchLessons()
