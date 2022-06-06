@@ -21,8 +21,8 @@
     <string name="level_heading">LEVEL</string>
     <string name="exp_heading">EXP</string>
     <string name="username">Username</string>
-    <string name="login_from_register_cta">Already have an account? Click here to login</string>
-    <string name="register_from_login_cta">Don\'t have an account yet? Register here</string>
+    <string name="login_from_register_cta">Sudah punya akun? Klik untuk masuk</string>
+    <string name="register_from_login_cta">Belum punya akun? Klik untuk daftar </string>
     <string name="profile_picture">Profile Picture</string>
     <string name="title_leaderboard">Leaderboard</string>
     <string name="rank1_number">1</string>
