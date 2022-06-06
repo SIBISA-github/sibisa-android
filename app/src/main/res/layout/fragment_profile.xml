@@ -158,6 +158,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/bloodthirsty_vampire"
+        app:icon="@drawable/ic_baseline_exit_to_app_24"
         android:text="@string/sign_out"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

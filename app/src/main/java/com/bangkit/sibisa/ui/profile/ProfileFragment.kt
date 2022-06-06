@@ -126,7 +126,7 @@ class ProfileFragment : Fragment() {
 
     private fun setupAction() {
         binding.logoutButton.setOnClickListener {
-            logout()
+            showLogoutDialog()
         }
     }
 
