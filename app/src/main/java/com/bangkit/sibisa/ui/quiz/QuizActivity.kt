@@ -31,6 +31,7 @@ import com.bangkit.sibisa.models.quiz.QuizQuestion
 import com.bangkit.sibisa.ui.finish.FinishActivity
 import com.bangkit.sibisa.utils.showHelpDialog
 import com.bangkit.sibisa.utils.showToast
+import com.bangkit.sibisa.utils.showYesNoDialog
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import org.tensorflow.lite.DataType
@@ -194,21 +195,11 @@ class QuizActivity : AppCompatActivity() {
     }
 
     private fun showSkipDialog(skipFun: () -> Unit) {
-        val builder: AlertDialog.Builder =
-            AlertDialog.Builder(this)
-
-        builder.setMessage("Apakah kamu yakin ingin melewati? Hasil akan dianggap gagal")
-            ?.setPositiveButton(
-                R.string.dialog_message_yes
-            ) { dialog, _ ->
-                dialog.dismiss()
-                skipFun()
-            }?.setNegativeButton(R.string.dialog_message_no) { dialog, _ ->
-                dialog.cancel()
-            }
-
-        val dialog: AlertDialog? = builder.create()
-        dialog?.show()
+        showYesNoDialog(
+            this,
+            "PERHATIAN",
+            "Apakah kamu yakin ingin melewati? Hasil akan dianggap gagal"
+        ) { skipFun() }
     }
 
     private fun skipQuestion() {
