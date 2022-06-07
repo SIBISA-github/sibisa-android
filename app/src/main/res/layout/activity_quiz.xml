@@ -155,7 +155,8 @@
             android:id="@+id/draggableCard1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="bottom|center"
+            android:layout_marginBottom="110dp"
             android:clickable="true"
             android:focusable="true"
             android:visibility="gone"
@@ -168,9 +169,9 @@
                 android:adjustViewBounds="true"
                 android:scaleType="fitXY"
                 android:visibility="gone"
+                tools:ignore="ContentDescription"
                 tools:srcCompat="@drawable/a_lesson"
-                tools:visibility="visible"
-                tools:ignore="ContentDescription" />
+                tools:visibility="visible" />
 
         </com.google.android.material.card.MaterialCardView>
     </com.bangkit.sibisa.ui.custom.DraggableCoordinatorLayout>
