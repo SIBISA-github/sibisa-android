@@ -25,15 +25,15 @@
         tools:text="@string/congrats_text_heading" />
 
     <ImageView
+        android:contentDescription="@string/congrats_text_heading"
         android:id="@+id/finishImage"
-        android:layout_width="200dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
-        tools:src="@drawable/ic_trophy"
+        tools:src="@drawable/trophy_2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/expText"
-        android:layout_margin="12dp"
         />
 
     <com.google.android.material.textview.MaterialTextView
