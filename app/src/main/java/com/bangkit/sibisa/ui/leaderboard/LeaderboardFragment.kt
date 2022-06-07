@@ -90,7 +90,8 @@ class LeaderboardFragment : Fragment() {
         Log.d("PROFILES", profiles.toString())
         // no. 1
         if (profiles[0]?.image != null && profiles[2]?.image != IMAGE_PLACEHOLDER) {
-            Glide.with(requireContext()).load(profiles[0]?.image).into(binding.rank1Image)
+            Glide.with(requireContext()).load(profiles[0]?.image).placeholder(R.drawable.ic_person)
+                .error(R.drawable.ic_person).into(binding.rank1Image)
         }
         if (!profiles[0]?.name.isNullOrEmpty()) {
             binding.textRank1Name.text = profiles[0]?.username
@@ -99,7 +100,8 @@ class LeaderboardFragment : Fragment() {
 
         // no. 2
         if (profiles[1]?.image != null && profiles[2]?.image != IMAGE_PLACEHOLDER) {
-            Glide.with(requireContext()).load(profiles[1]?.image).into(binding.rank2Image)
+            Glide.with(requireContext()).load(profiles[1]?.image).placeholder(R.drawable.ic_person)
+                .error(R.drawable.ic_person).into(binding.rank2Image)
         }
         if (!profiles[1]?.name.isNullOrEmpty()) {
             binding.textRank2Name.text = profiles[1]?.username
@@ -108,7 +110,8 @@ class LeaderboardFragment : Fragment() {
 
         // no. 3
         if (profiles[2]?.image != null && profiles[2]?.image != IMAGE_PLACEHOLDER) {
-            Glide.with(requireContext()).load(profiles[2]?.image).into(binding.rank3Image)
+            Glide.with(requireContext()).load(profiles[2]?.image).placeholder(R.drawable.ic_person)
+                .error(R.drawable.ic_person).into(binding.rank3Image)
         }
         if (!profiles[2]?.name.isNullOrEmpty()) {
             binding.textRank3Name.text = profiles[2]?.username

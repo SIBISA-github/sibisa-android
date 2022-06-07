@@ -93,7 +93,9 @@ class ProfileFragment : Fragment() {
                         val profile = result.data
                         with(binding) {
                             if (profile.image != null) {
-                                Glide.with(requireContext()).load(profile.image).into(profileImage)
+                                Glide.with(requireContext()).load(profile.image)
+                                    .placeholder(R.drawable.ic_person).error(R.drawable.ic_person)
+                                    .into(profileImage)
                             }
                             textName.text = profile.name
                             textUsername.text = profile.username
@@ -157,7 +159,7 @@ class ProfileFragment : Fragment() {
                         binding.progressBar.visibility = View.GONE
 
                         binding.profileImage.setImageURI(selectedImg)
-                        showToast(requireContext(), "Profile picture updated!")
+                        showToast(requireContext(), "Foto profil telah diganti!")
                     }
                     is NetworkResult.Error -> {
                         binding.progressBar.visibility = View.GONE

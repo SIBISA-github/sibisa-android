@@ -25,7 +25,7 @@
         android:layout_marginTop="48dp"
         android:layout_marginBottom="20dp"
         android:contentDescription="@string/profile_picture"
-        android:src="@drawable/ic_person"
+        tools:src="@drawable/ic_person"
         app:layout_constraintBottom_toTopOf="@id/text_username"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
