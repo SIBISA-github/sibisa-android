@@ -18,6 +18,7 @@ import com.bangkit.sibisa.models.result.NetworkResult
 import com.bangkit.sibisa.pref.UserPreference
 import com.bangkit.sibisa.ui.login.LoginActivity
 import com.bangkit.sibisa.utils.showToast
+import com.bangkit.sibisa.utils.showYesNoDialog
 import com.bangkit.sibisa.utils.uriToFile
 import com.bumptech.glide.Glide
 import java.io.File
@@ -96,7 +97,9 @@ class ProfileFragment : Fragment() {
                             }
                             textName.text = profile.name
                             textUsername.text = profile.username
-                            textLevel.text = profile.idlevel.toString()
+
+                            val level = profile.exp?.div(50)
+                            textLevel.text = level.toString()
                             textExp.text = getString(R.string.text_exp, profile.exp.toString())
                             val parsedDate = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                                 LocalDateTime.parse(
@@ -174,39 +177,15 @@ class ProfileFragment : Fragment() {
         launcherIntentGallery.launch(chooser)
     }
 
-    private fun showLogoutDialog() {
-        val builder: AlertDialog.Builder? = activity?.let {
-            AlertDialog.Builder(it)
-        }
-
-        builder?.setMessage(R.string.logout_dialog_message)?.setPositiveButton(
-            R.string.dialog_message_yes
-        ) { dialog, _ ->
-            dialog.dismiss()
-            logout()
-        }?.setNegativeButton(R.string.dialog_message_no) { dialog, _ ->
-            dialog.cancel()
-        }
-
-        val dialog: AlertDialog? = builder?.create()
-        dialog?.show()
+    private fun showProfilePictureDialog(selectedImg: Uri) {
+        showYesNoDialog(
+            requireContext(), "PERHATIAN", getString(R.string.picture_dialog_message)
+        ) { uploadImage(selectedImg) }
     }
 
-    private fun showProfilePictureDialog(selectedImg: Uri) {
-        val builder: AlertDialog.Builder? = activity?.let {
-            AlertDialog.Builder(it)
-        }
-
-        builder?.setMessage(R.string.picture_dialog_message)?.setPositiveButton(
-            R.string.dialog_message_yes
-        ) { dialog, _ ->
-            uploadImage(selectedImg)
-            dialog.dismiss()
-        }?.setNegativeButton(R.string.dialog_message_no) { dialog, _ ->
-            dialog.cancel()
-        }
-
-        val dialog: AlertDialog? = builder?.create()
-        dialog?.show()
+    private fun showLogoutDialog() {
+        showYesNoDialog(
+            requireContext(), "PERHATIAN", getString(R.string.logout_dialog_message)
+        ) { logout() }
     }
 }

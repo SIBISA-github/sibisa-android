@@ -21,7 +21,7 @@
 
             <TextView
                 android:id="@+id/alertTitle"
-                style="?attr/textAppearanceHeadline4"
+                style="?attr/textAppearanceHeadline5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="16dp"
@@ -54,26 +54,26 @@
                 tools:text="Lorem Ipsum" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/alertYES"
+                android:id="@+id/alertNO"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="16dp"
                 android:text="@string/no"
                 android:backgroundTint="@color/bloodthirsty_vampire"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/alertNO"
+                app:layout_constraintEnd_toStartOf="@id/alertYES"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/alertText" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/alertNO"
+                android:id="@+id/alertYES"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="16dp"
                 android:text="@string/yes"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/alertYES"
+                app:layout_constraintStart_toEndOf="@id/alertNO"
                 app:layout_constraintTop_toBottomOf="@id/alertText" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
