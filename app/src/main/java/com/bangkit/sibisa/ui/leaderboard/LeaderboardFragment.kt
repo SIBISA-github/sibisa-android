@@ -89,7 +89,7 @@ class LeaderboardFragment : Fragment() {
     private fun setupTop3UI(profiles: List<Profile?>) {
         Log.d("PROFILES", profiles.toString())
         // no. 1
-        if (profiles[0]?.image != null) {
+        if (profiles[0]?.image != null && profiles[2]?.image != IMAGE_PLACEHOLDER) {
             Glide.with(requireContext()).load(profiles[0]?.image).into(binding.rank1Image)
         }
         if (!profiles[0]?.name.isNullOrEmpty()) {
@@ -98,7 +98,7 @@ class LeaderboardFragment : Fragment() {
         binding.textRank1Exp.text = getString(R.string.text_exp, profiles[0]?.exp.toString())
 
         // no. 2
-        if (profiles[1]?.image != null) {
+        if (profiles[1]?.image != null && profiles[2]?.image != IMAGE_PLACEHOLDER) {
             Glide.with(requireContext()).load(profiles[1]?.image).into(binding.rank2Image)
         }
         if (!profiles[1]?.name.isNullOrEmpty()) {
@@ -107,7 +107,7 @@ class LeaderboardFragment : Fragment() {
         binding.textRank2Exp.text = getString(R.string.text_exp, profiles[1]?.exp.toString())
 
         // no. 3
-        if (profiles[2]?.image != null) {
+        if (profiles[2]?.image != null && profiles[2]?.image != IMAGE_PLACEHOLDER) {
             Glide.with(requireContext()).load(profiles[2]?.image).into(binding.rank3Image)
         }
         if (!profiles[2]?.name.isNullOrEmpty()) {
@@ -141,5 +141,9 @@ class LeaderboardFragment : Fragment() {
         binding.leaderboard.apply {
             adapter = profilesAdapter
         }
+    }
+
+    companion object {
+        const val IMAGE_PLACEHOLDER = "https://storage.googleapis.com/sibisa_bucket/default.jpg"
     }
 }
