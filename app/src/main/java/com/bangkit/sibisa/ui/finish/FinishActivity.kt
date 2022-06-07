@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.ViewModelProvider
 import com.bangkit.sibisa.R
 import com.bangkit.sibisa.databinding.ActivityFinishBinding
@@ -17,6 +18,8 @@ import com.bangkit.sibisa.models.result.NetworkResult
 import com.bangkit.sibisa.ui.MainActivity
 import com.bangkit.sibisa.ui.lesson.LessonActivity
 import com.bangkit.sibisa.utils.showToast
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import kotlin.properties.Delegates
 
 class FinishActivity : AppCompatActivity() {
@@ -51,9 +54,29 @@ class FinishActivity : AppCompatActivity() {
             if (isQuiz) {
                 updateExp()
             }
+
+            Glide.with(this).load(
+                ResourcesCompat.getDrawable(
+                    resources,
+                    R.drawable.ic_trophy,
+                    null
+                )
+            )
+                .transition(DrawableTransitionOptions.withCrossFade())
+                .into(binding.finishImage)
         } else {
             binding.finishTextHeading.text = getString(R.string.failed_text_heading)
             binding.finishText.text = getString(R.string.failed_text)
+
+            Glide.with(this).load(
+                ResourcesCompat.getDrawable(
+                    resources,
+                    R.drawable.ic_cross,
+                    null
+                )
+            )
+                .transition(DrawableTransitionOptions.withCrossFade())
+                .into(binding.finishImage)
 
             if (isQuiz) {
                 binding.expText.text = getString(R.string.text_exp, "0")
