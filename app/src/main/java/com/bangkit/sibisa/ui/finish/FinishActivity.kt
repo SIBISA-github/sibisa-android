@@ -80,6 +80,8 @@ class FinishActivity : AppCompatActivity() {
 
             if (isQuiz) {
                 binding.expText.text = getString(R.string.text_exp, "0")
+            } else {
+                binding.finishText.visibility = View.VISIBLE
             }
 
             playLevelAnimation()
@@ -164,7 +166,11 @@ class FinishActivity : AppCompatActivity() {
         binding.progressBar.visibility = View.GONE
 
         binding.finishTextHeading.text = getString(R.string.congrats_text_heading)
-        binding.finishText.text = getString(R.string.congrats_text)
+
+        if (!isQuiz) {
+            binding.finishText.visibility = View.VISIBLE
+            binding.finishText.text = getString(R.string.congrats_text)
+        }
 
         playLevelAnimation()
     }
@@ -180,8 +186,8 @@ class FinishActivity : AppCompatActivity() {
 
     private fun playLevelAnimation() {
         val heading =
-            ObjectAnimator.ofFloat(binding.finishTextHeading, View.ALPHA, 1f).setDuration(1000)
-        val text = ObjectAnimator.ofFloat(binding.finishText, View.ALPHA, 1f).setDuration(1000)
+            ObjectAnimator.ofFloat(binding.finishTextHeading, View.ALPHA, 1f).setDuration(500)
+        val text = ObjectAnimator.ofFloat(binding.finishText, View.ALPHA, 1f).setDuration(500)
 
         AnimatorSet().apply {
             playTogether(heading, text)

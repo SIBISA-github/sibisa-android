@@ -388,8 +388,6 @@ class QuizActivity : AppCompatActivity() {
 
     private fun checkQuizState() {
         if (quizzes.isEmpty()) {
-            binding.textQuestionSwitcher.setText("Selamat! Anda berhasil melewati kuis ini")
-
             exitQuiz()
         }
     }

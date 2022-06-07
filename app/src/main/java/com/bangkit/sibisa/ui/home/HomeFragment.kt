@@ -82,7 +82,6 @@ class HomeFragment : Fragment() {
                                 null
                             )
                         )
-                            .transition(DrawableTransitionOptions.withCrossFade())
                             .into(binding.levelBtn1)
 
                         // level 2
@@ -95,7 +94,6 @@ class HomeFragment : Fragment() {
                                         null
                                     )
                                 )
-                                    .transition(DrawableTransitionOptions.withCrossFade())
                                     .into(binding.levelBtn2)
 
                                 setButtonAsAble(binding.levelBtn2)
@@ -109,7 +107,6 @@ class HomeFragment : Fragment() {
                                         null
                                     )
                                 )
-                                    .transition(DrawableTransitionOptions.withCrossFade())
                                     .into(binding.levelBtn3)
 
                                 setButtonAsAble(binding.levelBtn3)
