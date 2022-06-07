@@ -71,7 +71,7 @@ class FinishActivity : AppCompatActivity() {
             Glide.with(this).load(
                 ResourcesCompat.getDrawable(
                     resources,
-                    R.drawable.ic_cross,
+                    R.drawable.ic_red_close_300,
                     null
                 )
             )
