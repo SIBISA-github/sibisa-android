@@ -54,10 +54,6 @@ class ProfileFragment : Fragment() {
     ): View {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
 
-        binding.cameraButton.setOnClickListener {
-            startGallery()
-        }
-
         return binding.root
     }
 
@@ -125,6 +121,10 @@ class ProfileFragment : Fragment() {
     }
 
     private fun setupAction() {
+        binding.cameraButton.setOnClickListener {
+            startGallery()
+        }
+
         binding.logoutButton.setOnClickListener {
             showLogoutDialog()
         }
