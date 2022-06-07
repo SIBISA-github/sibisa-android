@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/Users/USER/Bangkit/sibisa-android/app/src/main/res/drawable/bg_vector.xml" value="0.1525" />
         <entry key="..\:/Users/USER/Bangkit/sibisa-android/app/src/main/res/drawable/circle_button.xml" value="0.1855" />
+        <entry key="..\:/Users/USER/Bangkit/sibisa-android/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.117" />
         <entry key="..\:/Users/USER/Bangkit/sibisa-android/app/src/main/res/drawable/ic_logo.xml" value="0.1" />
         <entry key="..\:/Users/USER/Bangkit/sibisa-android/app/src/main/res/drawable/icon_bg.xml" value="0.137" />
         <entry key="..\:/Users/USER/Bangkit/sibisa-android/app/src/main/res/drawable/text_border.xml" value="0.1" />
@@ -12,6 +13,9 @@
         <entry key="..\:/Users/USER/Bangkit/sibisa-android/app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="..\:/Users/USER/Bangkit/sibisa-android/app/src/main/res/layout/activity_register.xml" value="0.14666666666666667" />
         <entry key="..\:/Users/USER/Bangkit/sibisa-android/app/src/main/res/layout/fragment_home.xml" value="0.22" />
+        <entry key="..\:/Users/USER/Bangkit/sibisa-android/app/src/main/res/layout/fragment_leaderboard.xml" value="0.2" />
+        <entry key="..\:/Users/USER/Bangkit/sibisa-android/app/src/main/res/layout/fragment_profile.xml" value="0.2" />
+        <entry key="..\:/Users/USER/Bangkit/sibisa-android/app/src/main/res/layout/leaderboard_item.xml" value="0.2" />
         <entry key="..\:/Users/marsh/OneDrive/Documents/Kuliah/Bangkit 2022/Capstone Project/sibisa-android/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
       </map>
     </option>
