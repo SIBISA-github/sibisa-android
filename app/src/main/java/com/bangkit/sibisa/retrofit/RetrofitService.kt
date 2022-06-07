@@ -57,10 +57,10 @@ interface RetrofitService {
     @PUT("user/level")
     suspend fun updateLevel(
         @Body level: UpdateLevelRequest
-    ): BaseResponse<Profile>
+    ): BaseResponse<Nothing>
 
     @PUT("user/exp")
     suspend fun updateExp(
         @Body expData: UpdateExpRequest
-    ): BaseResponse<Profile>
+    ): BaseResponse<Nothing>
 }

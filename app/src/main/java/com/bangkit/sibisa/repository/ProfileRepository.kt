@@ -89,12 +89,13 @@ class ProfileRepository(private val retrofitService: RetrofitService) {
                 ) ?: null
                 emit(NetworkResult.Error(errorBody?.errorCode.toString()))
             } catch (e: Exception) {
+                Log.d("CHECK_FINISH", e.message.toString())
                 emit(NetworkResult.Error("Server error, please try again later"))
             }
         }
     }
 
-    fun updateExp(expData: UpdateExpRequest): LiveData<NetworkResult<Profile>> = liveData {
+    fun updateExp(expData: UpdateExpRequest): LiveData<NetworkResult<Boolean>> = liveData {
         emit(NetworkResult.Loading)
         try {
             val response = retrofitService.updateExp(expData)
@@ -103,9 +104,7 @@ class ProfileRepository(private val retrofitService: RetrofitService) {
                 throw Exception(response.message)
             }
 
-            val data = response.data!!
-
-            emit(NetworkResult.Success(data))
+            emit(NetworkResult.Success(true))
         } catch (e: Exception) {
             try {
                 val errorBody = Gson().fromJson(
@@ -114,12 +113,13 @@ class ProfileRepository(private val retrofitService: RetrofitService) {
                 ) ?: null
                 emit(NetworkResult.Error(errorBody?.errorCode.toString()))
             } catch (e: Exception) {
+                Log.d("CHECK_FINISH", e.message.toString())
                 emit(NetworkResult.Error("Server error, please try again later"))
             }
         }
     }
 
-    fun updateLevel(levelData: UpdateLevelRequest): LiveData<NetworkResult<Profile>> = liveData {
+    fun updateLevel(levelData: UpdateLevelRequest): LiveData<NetworkResult<Boolean>> = liveData {
         emit(NetworkResult.Loading)
         try {
             val response = retrofitService.updateLevel(levelData)
@@ -128,9 +128,7 @@ class ProfileRepository(private val retrofitService: RetrofitService) {
                 throw Exception(response.message)
             }
 
-            val data = response.data!!
-
-            emit(NetworkResult.Success(data))
+            emit(NetworkResult.Success(true))
         } catch (e: Exception) {
             try {
                 val errorBody = Gson().fromJson(
