@@ -70,6 +70,7 @@ class QuizActivity : AppCompatActivity() {
     private var isSuccess = true
     private var isQuiz by Delegates.notNull<Boolean>()
     private var level by Delegates.notNull<Int>()
+    private var threshold by Delegates.notNull<Float>()
 
     private val tfImageProcessor by lazy {
         val cropSize = minOf(bitmapBuffer.width, bitmapBuffer.height)
@@ -100,6 +101,12 @@ class QuizActivity : AppCompatActivity() {
         quizzes = info.quizzes
         isQuiz = info.isQuiz
         level = info.level
+
+        threshold = if (level == 1) {
+            0.92f
+        } else {
+            0.98f
+        }
 
         binding.skipQuizButton.setOnClickListener {
             if (isQuiz) {
@@ -136,6 +143,9 @@ class QuizActivity : AppCompatActivity() {
         } else {
             "Lewati latihan"
         }
+
+        binding.textThreshold.text =
+            getString(R.string.acceptance_threshold, threshold.times(100).toString())
 
         binding.textQuestionSwitcher.setInAnimation(
             this,
@@ -347,11 +357,6 @@ class QuizActivity : AppCompatActivity() {
     }
 
     private fun checkAnswer(result: DetectionResult) {
-        val threshold = if (level == 1) {
-            0.92f
-        } else {
-            0.98f
-        }
         runOnUiThread {
             if (quizzes.isNotEmpty()) {
                 if (result.predictionText.equals(
