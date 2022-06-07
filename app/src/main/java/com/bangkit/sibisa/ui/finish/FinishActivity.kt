@@ -49,16 +49,16 @@ class FinishActivity : AppCompatActivity() {
     private fun setupUI() {
         setupActionBar()
         if (isSuccess) {
-            updateLevel()
-
             if (isQuiz) {
-                updateExp()
+                updateLevel()
+            } else {
+                displayCongrats()
             }
 
             Glide.with(this).load(
                 ResourcesCompat.getDrawable(
                     resources,
-                    R.drawable.ic_trophy,
+                    R.drawable.trophy_2,
                     null
                 )
             )
@@ -116,7 +116,7 @@ class FinishActivity : AppCompatActivity() {
     }
 
     private fun updateLevel() {
-        viewModel.updateLevel(fromLevel).observe(this) { result ->
+        viewModel.updateLevel(fromLevel+1).observe(this) { result ->
             if (result != null) {
                 when (result) {
                     is NetworkResult.Loading -> {
@@ -124,12 +124,11 @@ class FinishActivity : AppCompatActivity() {
                         binding.progressBar.bringToFront()
                     }
                     is NetworkResult.Success -> {
-                        binding.progressBar.visibility = View.GONE
+                        displayCongrats()
 
-                        binding.finishTextHeading.text = getString(R.string.congrats_text_heading)
-                        binding.finishText.text = getString(R.string.congrats_text)
-
-                        playLevelAnimation()
+                        if (isQuiz) {
+                            updateExp()
+                        }
                     }
                     is NetworkResult.Error -> {
                         binding.progressBar.visibility = View.GONE
@@ -150,11 +149,7 @@ class FinishActivity : AppCompatActivity() {
                         binding.progressBar2.bringToFront()
                     }
                     is NetworkResult.Success -> {
-                        binding.progressBar2.visibility = View.GONE
-
-                        binding.expText.text = getString(R.string.text_exp, exp.toString())
-
-                        playExpAnimation()
+                        displayExp()
                     }
                     is NetworkResult.Error -> {
                         binding.progressBar2.visibility = View.GONE
@@ -163,6 +158,24 @@ class FinishActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun displayCongrats() {
+        binding.progressBar.visibility = View.GONE
+
+        binding.finishTextHeading.text = getString(R.string.congrats_text_heading)
+        binding.finishText.text = getString(R.string.congrats_text)
+
+        playLevelAnimation()
+    }
+
+    private fun displayExp() {
+        val exp = fromLevel * 100
+        binding.progressBar2.visibility = View.GONE
+
+        binding.expText.text = getString(R.string.text_exp, exp.toString())
+
+        playExpAnimation()
     }
 
     private fun playLevelAnimation() {
