@@ -45,10 +45,10 @@ class ProfilesAdapter(private val appContext: Context) :
         val profile = profiles[position]
 
         with(viewHolder.binding) {
-            tvRank.text = "${position+4}"
+            tvRank.text = "${position + 4}"
             tvUsername.text = profile?.name
             tvExp.text = appContext.getString(R.string.text_exp, profile?.exp.toString())
-            if (profile?.image != null) {
+            if (profile?.image != null && profile.image != IMAGE_PLACEHOLDER) {
                 Glide.with(appContext).load(profile.image).into(ivProfile)
             }
         }
@@ -58,5 +58,9 @@ class ProfilesAdapter(private val appContext: Context) :
 
     interface OnClickedCallback {
         fun onClicked(profileData: Profile?, appContext: Context)
+    }
+
+    companion object {
+        const val IMAGE_PLACEHOLDER = "https://storage.googleapis.com/sibisa_bucket/default.jpg"
     }
 }
