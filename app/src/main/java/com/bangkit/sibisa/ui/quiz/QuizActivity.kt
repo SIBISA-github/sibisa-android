@@ -119,13 +119,9 @@ class QuizActivity : AppCompatActivity() {
 
         binding.helpButton.setOnClickListener {
             if (isQuiz) {
-                val text =
-                    "Jika berhasil menjawab semua pertanyaan, kamu akan mendapatkan EXP \n\nNamun, jika gagal atau melewati kamu tidak akan mendapatkan EXP"
-                showHelpDialog(this, "PETUNJUK", text)
+                showQuizHelpDialog()
             } else {
-                val text =
-                    "Mode latihan dilengkapi dengan referensi gambar untuk memudahkan kamu berlatih!\n\nGambar dapat dipindahkan sesukamu dengan menggeser gambar di layar\n\nKamu tidak dapat mendapatkan EXP di mode ini"
-                showHelpDialog(this, "PETUNJUK", text)
+                showExerciseHelpDialog()
             }
         }
 
@@ -150,6 +146,14 @@ class QuizActivity : AppCompatActivity() {
             androidx.appcompat.R.anim.abc_slide_out_top
         )
 
+        if (level == 1 && isQuiz) {
+            showQuizHelpDialog()
+        }
+
+        if (level == 1 && !isQuiz) {
+            showExerciseHelpDialog()
+        }
+
         showQuestion()
         if (!isQuiz) {
             showImage()
@@ -165,6 +169,18 @@ class QuizActivity : AppCompatActivity() {
         binding.imageReference.visibility = View.VISIBLE
         Glide.with(this).load(quizzes[0].image)
             .transition(DrawableTransitionOptions.withCrossFade()).into(binding.imageReference)
+    }
+
+    private fun showQuizHelpDialog() {
+        val text =
+            "Jika berhasil menjawab semua pertanyaan, kamu akan mendapatkan EXP \n\nNamun, jika gagal atau melewati kamu tidak akan mendapatkan EXP"
+        showHelpDialog(this, "PETUNJUK", text)
+    }
+
+    private fun showExerciseHelpDialog() {
+        val text =
+            "Mode latihan dilengkapi dengan referensi gambar untuk memudahkan kamu berlatih!\n\nGambar dapat dipindahkan sesukamu dengan menggeser gambar di layar\n\nKamu tidak dapat mendapatkan EXP di mode ini"
+        showHelpDialog(this, "PETUNJUK", text)
     }
 
     private fun showSkipDialog(skipFun: () -> Unit) {
@@ -184,22 +200,6 @@ class QuizActivity : AppCompatActivity() {
         val dialog: AlertDialog? = builder.create()
         dialog?.show()
     }
-
-//    private fun showHelpDialog(text: String) {
-//        val builder: AlertDialog.Builder =
-//            AlertDialog.Builder(this)
-//
-//        builder.setTitle("PETUNJUK")
-//            .setMessage(text)
-//            ?.setNeutralButton(
-//                R.string.dialog_message_ok
-//            ) { dialog, _ ->
-//                dialog.dismiss()
-//            }
-//
-//        val dialog: AlertDialog? = builder.create()
-//        dialog?.show()
-//    }
 
     private fun skipQuestion() {
         if (quizzes.isNotEmpty()) {
@@ -347,7 +347,7 @@ class QuizActivity : AppCompatActivity() {
     }
 
     private fun checkAnswer(result: DetectionResult) {
-        val threshold = if(level == 1) {
+        val threshold = if (level == 1) {
             0.92f
         } else {
             0.98f

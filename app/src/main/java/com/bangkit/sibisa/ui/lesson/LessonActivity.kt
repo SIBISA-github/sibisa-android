@@ -141,11 +141,14 @@ class LessonActivity : AppCompatActivity() {
                         if (!result.data.isNullOrEmpty()) {
                             lessons = result.data
                             setupCards()
-                            showHelpDialog(
-                                this,
-                                "PETUNJUK",
-                                "Materi terdiri dari beberapa foto sesuai dengan level yang ada \n\n Kamu dapat melihat foto dengan cara menggeser foto ke arah horizontal \n\n Tekan tombol kuis untuk mengerjakan kuis \n\n Tekan tombol latihan untuk berlatih"
-                            )
+
+                            if (level == 1) {
+                                showHelpDialog(
+                                    this,
+                                    "PETUNJUK",
+                                    "Materi terdiri dari beberapa foto sesuai dengan level yang ada \n\n Kamu dapat melihat foto dengan cara menggeser foto ke arah horizontal \n\n Tekan tombol kuis untuk mengerjakan kuis \n\n Tekan tombol latihan untuk berlatih"
+                                )
+                            }
                         }
                     }
                     is NetworkResult.Error -> {
