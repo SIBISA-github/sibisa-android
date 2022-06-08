@@ -19,7 +19,6 @@ import com.bangkit.sibisa.ui.profile.ProfileViewModel
 import com.bangkit.sibisa.utils.showHelpDialog
 import com.bangkit.sibisa.utils.showToast
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import kotlin.properties.Delegates
 
 class HomeFragment : Fragment() {

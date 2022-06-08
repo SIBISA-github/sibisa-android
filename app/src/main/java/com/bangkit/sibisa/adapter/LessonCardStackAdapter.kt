@@ -6,9 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bangkit.sibisa.databinding.ItemCardBinding
-import com.bangkit.sibisa.databinding.LeaderboardItemBinding
 import com.bangkit.sibisa.models.lesson.Lesson
-import com.bangkit.sibisa.models.profile.Profile
 import com.bumptech.glide.Glide
 
 class LessonCardStackAdapter(private val appContext: Context) :

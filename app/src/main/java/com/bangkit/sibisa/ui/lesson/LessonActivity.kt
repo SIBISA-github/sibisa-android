@@ -23,7 +23,6 @@ import com.bangkit.sibisa.ui.quiz.QuizActivity
 import com.bangkit.sibisa.utils.showHelpDialog
 import com.bangkit.sibisa.utils.showToast
 import com.yuyakaido.android.cardstackview.*
-import java.lang.Integer.parseInt
 import kotlin.properties.Delegates
 
 class LessonActivity : AppCompatActivity() {

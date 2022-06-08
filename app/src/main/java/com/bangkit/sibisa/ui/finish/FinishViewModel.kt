@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.bangkit.sibisa.models.exp.UpdateExpRequest
 import com.bangkit.sibisa.models.level.UpdateLevelRequest
-import com.bangkit.sibisa.models.profile.Profile
 import com.bangkit.sibisa.models.result.NetworkResult
 import com.bangkit.sibisa.repository.ProfileRepository
 

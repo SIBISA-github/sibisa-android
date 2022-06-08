@@ -2,18 +2,17 @@ package com.bangkit.sibisa.ui.quiz
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.*
-import android.graphics.drawable.ColorDrawable
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Bitmap
+import android.graphics.RectF
 import android.os.Bundle
 import android.util.Log
 import android.util.Size
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.AspectRatio
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
@@ -24,7 +23,6 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
 import com.bangkit.sibisa.R
 import com.bangkit.sibisa.databinding.ActivityQuizBinding
-import com.bangkit.sibisa.databinding.CustomAlertDialogBinding
 import com.bangkit.sibisa.models.detection.DetectionResult
 import com.bangkit.sibisa.models.quiz.QuizInfo
 import com.bangkit.sibisa.models.quiz.QuizQuestion

@@ -25,7 +25,4 @@ object Injection {
         return QuizRepository(provideService(context))
     }
 
-    fun providePreferences(context: Context): UserPreference {
-        return UserPreference(context)
-    }
 }

@@ -17,10 +17,6 @@ class ProfilesAdapter(private val appContext: Context) :
     private lateinit var onClickedCallback: OnClickedCallback
     private var profiles = ArrayList<Profile?>()
 
-    fun setOnClickedCallback(onClickedCallback: OnClickedCallback) {
-        this.onClickedCallback = onClickedCallback
-    }
-
     fun setProfiles(profiles: List<Profile?>?) {
         profiles?.let {
             val diffCallback = ProfileDiffCallback(this.profiles.toList(), profiles)
@@ -57,7 +53,6 @@ class ProfilesAdapter(private val appContext: Context) :
     override fun getItemCount() = profiles.size
 
     interface OnClickedCallback {
-        fun onClicked(profileData: Profile?, appContext: Context)
     }
 
     companion object {

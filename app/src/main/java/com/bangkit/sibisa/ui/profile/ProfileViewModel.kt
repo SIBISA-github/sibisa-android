@@ -6,11 +6,9 @@ import com.bangkit.sibisa.models.profile.UpdateProfileResponse
 import com.bangkit.sibisa.models.result.NetworkResult
 import com.bangkit.sibisa.repository.ProfileRepository
 import com.bangkit.sibisa.utils.reduceFileImage
-import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
-import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 
 class ProfileViewModel(private val profileRepository: ProfileRepository) : ViewModel() {

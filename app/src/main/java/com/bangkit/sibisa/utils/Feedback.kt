@@ -8,14 +8,6 @@ import android.view.View
 import android.widget.*
 import com.bangkit.sibisa.R
 
-fun showLoading(isLoading: Boolean, progressBar: ProgressBar) {
-    if (isLoading) {
-        progressBar.visibility = View.VISIBLE
-    } else {
-        progressBar.visibility = View.GONE
-    }
-}
-
 fun showToast(context: Context, message: String) {
     Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
 }
