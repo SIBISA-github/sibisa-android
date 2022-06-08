@@ -92,7 +92,7 @@
         android:layout_height="108dp"
         android:layout_marginTop="36dp"
         android:contentDescription="@string/level_pertengahan"
-        android:src="@drawable/chapter"
+        android:src="@drawable/chapter_2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/level_3" />
