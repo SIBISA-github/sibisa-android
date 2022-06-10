@@ -1,7 +1,6 @@
 package com.bangkit.sibisa.di
 
 import android.content.Context
-import com.bangkit.sibisa.pref.UserPreference
 import com.bangkit.sibisa.repository.AuthRepository
 import com.bangkit.sibisa.repository.ProfileRepository
 import com.bangkit.sibisa.repository.QuizRepository
@@ -9,20 +8,24 @@ import com.bangkit.sibisa.retrofit.RetrofitConfig
 import com.bangkit.sibisa.retrofit.RetrofitService
 
 object Injection {
-    fun provideService(context: Context): RetrofitService {
+    private fun provideHerokuService(context: Context): RetrofitService {
+        return RetrofitConfig.getHerokuApiService(context)
+    }
+
+    private fun provideGCPService(context: Context): RetrofitService {
         return RetrofitConfig.getApiService(context)
     }
 
     fun provideAuthRepository(context: Context): AuthRepository {
-        return AuthRepository(provideService(context))
+        return AuthRepository(provideGCPService(context))
     }
 
     fun provideProfileRepository(context: Context): ProfileRepository {
-        return ProfileRepository(provideService(context))
+        return ProfileRepository(provideGCPService(context), provideHerokuService(context))
     }
 
     fun provideQuizRepository(context: Context): QuizRepository {
-        return QuizRepository(provideService(context))
+        return QuizRepository(provideGCPService(context))
     }
 
 }

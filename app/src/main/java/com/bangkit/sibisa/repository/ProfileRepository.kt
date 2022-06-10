@@ -14,11 +14,14 @@ import com.google.gson.Gson
 import okhttp3.MultipartBody
 import retrofit2.HttpException
 
-class ProfileRepository(private val retrofitService: RetrofitService) {
+class ProfileRepository constructor(
+    private val GCPService: RetrofitService,
+    private val herokuService: RetrofitService
+) {
     fun getAllUserProfiles(): LiveData<NetworkResult<List<Profile?>?>> = liveData {
         emit(NetworkResult.Loading)
         try {
-            val response = retrofitService.getAllUserProfiles()
+            val response = GCPService.getAllUserProfiles()
 
             if (response.status in 599 downTo 400) {
                 throw Exception(response.message)
@@ -43,7 +46,7 @@ class ProfileRepository(private val retrofitService: RetrofitService) {
     fun getUserProfile(userID: Int): LiveData<NetworkResult<Profile>> = liveData {
         emit(NetworkResult.Loading)
         try {
-            val response = retrofitService.getUserProfileById(userID)
+            val response = GCPService.getUserProfileById(userID)
 
             if (response.status in 599 downTo 400) {
                 Log.d("USER_PROFILE", response.message)
@@ -72,7 +75,7 @@ class ProfileRepository(private val retrofitService: RetrofitService) {
     ): LiveData<NetworkResult<UpdateProfileResponse>> = liveData {
         emit(NetworkResult.Loading)
         try {
-            val response = retrofitService.updateProfile(userID, file, null, null)
+            val response = herokuService.updateProfile(userID, file, null, null)
 
             if (response.status in 599 downTo 400) {
                 throw Exception(response.message)
@@ -98,7 +101,7 @@ class ProfileRepository(private val retrofitService: RetrofitService) {
     fun updateExp(expData: UpdateExpRequest): LiveData<NetworkResult<Boolean>> = liveData {
         emit(NetworkResult.Loading)
         try {
-            val response = retrofitService.updateExp(expData)
+            val response = GCPService.updateExp(expData)
 
             if (response.status in 599 downTo 400) {
                 throw Exception(response.message)
@@ -122,7 +125,7 @@ class ProfileRepository(private val retrofitService: RetrofitService) {
     fun updateLevel(levelData: UpdateLevelRequest): LiveData<NetworkResult<Boolean>> = liveData {
         emit(NetworkResult.Loading)
         try {
-            val response = retrofitService.updateLevel(levelData)
+            val response = GCPService.updateLevel(levelData)
 
             if (response.status in 599 downTo 400) {
                 throw Exception(response.message)
