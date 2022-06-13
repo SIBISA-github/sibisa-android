@@ -15,8 +15,7 @@ import okhttp3.MultipartBody
 import retrofit2.HttpException
 
 class ProfileRepository constructor(
-    private val GCPService: RetrofitService,
-    private val herokuService: RetrofitService
+    private val GCPService: RetrofitService
 ) {
     fun getAllUserProfiles(): LiveData<NetworkResult<List<Profile?>?>> = liveData {
         emit(NetworkResult.Loading)
@@ -75,7 +74,7 @@ class ProfileRepository constructor(
     ): LiveData<NetworkResult<UpdateProfileResponse>> = liveData {
         emit(NetworkResult.Loading)
         try {
-            val response = herokuService.updateProfile(userID, file, null, null)
+            val response = GCPService.updateProfile(userID, file, null, null)
 
             if (response.status in 599 downTo 400) {
                 throw Exception(response.message)
