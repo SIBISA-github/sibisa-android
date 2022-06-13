@@ -21,7 +21,7 @@ object Injection {
     }
 
     fun provideProfileRepository(context: Context): ProfileRepository {
-        return ProfileRepository(provideGCPService(context), provideHerokuService(context))
+        return ProfileRepository(provideGCPService(context))
     }
 
     fun provideQuizRepository(context: Context): QuizRepository {
