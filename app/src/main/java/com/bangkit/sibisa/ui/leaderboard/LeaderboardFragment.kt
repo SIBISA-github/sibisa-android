@@ -89,7 +89,7 @@ class LeaderboardFragment : Fragment() {
     private fun setupTop3UI(profiles: List<Profile?>) {
         Log.d("PROFILES", profiles.toString())
         // no. 1
-        if (profiles[0]?.image != null && profiles[2]?.image != IMAGE_PLACEHOLDER) {
+        if (profiles[0]?.image != null && profiles[0]?.image != IMAGE_PLACEHOLDER) {
             Glide.with(requireContext()).load(profiles[0]?.image).placeholder(R.drawable.ic_person)
                 .error(R.drawable.ic_person).into(binding.rank1Image)
         }
@@ -99,7 +99,7 @@ class LeaderboardFragment : Fragment() {
         binding.textRank1Exp.text = getString(R.string.text_exp, profiles[0]?.exp.toString())
 
         // no. 2
-        if (profiles[1]?.image != null && profiles[2]?.image != IMAGE_PLACEHOLDER) {
+        if (profiles[1]?.image != null && profiles[1]?.image != IMAGE_PLACEHOLDER) {
             Glide.with(requireContext()).load(profiles[1]?.image).placeholder(R.drawable.ic_person)
                 .error(R.drawable.ic_person).into(binding.rank2Image)
         }
