@@ -7,4 +7,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="broken_white">#FFF8F7F3</color>
+    <color name="riviera_paradise">#FF03989E</color>
+    <color name="bloodthirsty_vampire">#FF9e0903</color>
+    <color name="iridescent_turqoise">#FF7CFFC4</color>
+    <color name="ferry">#FF383F45</color>
+    <color name="grey">#FF383F45</color>
+    <color name="cerebral_grey">#cccccc</color>
 </resources>
